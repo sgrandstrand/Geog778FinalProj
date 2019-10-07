@@ -1,0 +1,57 @@
+/* Stylesheet by */
+
+html,
+body,
+#mapid {
+    height: 100%;
+    font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+#header {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.tab {
+    margin-left: 55px;
+}
+
+.sidebar-header {
+    /*    background: #3E606F;*/
+    font-size: 1.3em;
+}
+
+/*
+.sidebar-tabs {
+    background-color: #9E9E87;
+}
+*/
+
+/*
+.sidebar-tabs > li,
+.sidebar-tabs > ul > li {
+    color: #333;
+}
+*/
+
+/*
+.sidebar-tabs > li:hover,
+.sidebar-tabs > ul > li:hover {
+    color: #000;
+    background-color: #BDBD9E;
+}
+*/
+/*
+
+.sidebar-tabs > li.active,
+.sidebar-tabs > ul > li.active {
+    color: #3E606F;
+    background-color: #FCFFF5;
+}
+*/
+
+/*
+.sidebar-content {
+    background-color: #FCFFF5;
+}
+*/
