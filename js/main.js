@@ -45,30 +45,76 @@ var map = L.map('mapid', {
 // Database Queries
 // Will go here
 
-var cartoDBUserName = "{sgrandstrand}";
-var sqlQuery = "SELECT * FROM sgrandstrand.well_nitrate";
 
 var apikey = "9127f5c72a53c1d127d45e1ff9a13d521865b7f2"
+var cartoDBUserName = "{sgrandstrand}";
 
+// sql queries to get layers
+var sqlQuery1 = "SELECT * FROM sgrandstrand.county"; // county layer
+var sqlQuery2 = "SELECT * FROM sgrandstrand.drinking_water_supply_management_area_vulnerability"; // drinking water supply mangement area vulnerability 
 
-// Function to add all coffee shops
-//function showAll() {
+// ***Still need to create*** \\
+
+// Function to show any layer
+
+//function showLayer(sqlQuery, popupname, popupname2) {
 //    // Get CARTO selection as GeoJSON and Add to Map
 //    $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery + "&api_key=" + apikey, function (data) {
-//        nitrate = L.geoJson(data, {
+//        county = L.geoJson(data, {
 //            onEachFeature: function (feature, layer) {
-//                layer.bindPopup('<p><b>' + feature.properties.nitr_ran + '</b><br /><em>');
-//                layer.cartodb_id = feature.properties.cartodb_id;
+//                layer.bindPopup('<p><b>' + feature.properties. + popupname + '</b><br /><em>');
+//                layer.cartodb_id = feature.properties. + popupname2;
 //            }
 //        }).addTo(map);
 //    });
+//    
 //};
 
+
+
+
+// Function to add all coffee shops
+function showAll() {
+    // Get CARTO selection as GeoJSON and Add to Map
+    $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery1 + "&api_key=" + apikey, function (data) {
+        county = L.geoJson(data, {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup('<p><b>' + feature.properties.cty_name + '</b><br /><em>');
+                layer.cartodb_id = feature.properties.cartodb_id;
+            }
+        }).addTo(map);
+    });
+    $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery2 + "&api_key=" + apikey, function (data) {
+        layer = L.geoJson(data, {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup('<p><b>' + feature.properties.dws_vul + '</b><br /><em>');
+                layer.cartodb_id = feature.properties.cartodb_id;
+            }
+        }).addTo(map);
+    });
+};
+
+
+// to call what is loaded on load of page
 $(document).ready(function () {
-//    showAll();
+    showAll();
     //Create sidebar function
-    function createSidebar() {
-        var sidebar = L.control.sidebar('sidebar').addTo(map);
-        sidebar.open('home');
-    }
-});
+    function createSidebars() {
+
+        var leftsidebar = L.control.sidebar('sidebar-left', {
+            position: 'left'
+        });
+        map.addControl(leftsidebar);
+
+        //.addTo(map).open("home");
+
+
+        var rightsidebar = L.control.sidebar('sidebar-right', {
+            position: 'right'
+        });
+        map.addControl(rightsidebar);
+
+        //.addTo(map).open("top5");
+
+    } // end of createSidebars function
+}); // end o document.ready function
