@@ -21,27 +21,58 @@ body,
     font-size: 1.3em;
 }
 
+#sidebarleft {
+    padding-top: 200px;
+}
+
 /*
+.navbar-default {
+    background-color: dimgray;
+    border: none;
+}
+
+.navbar .navbar-nav li a {
+    color: whitesmoke;
+}
+
+.navbar .navbar-nav li a:hover {
+    color: cyan;
+}
+
+.navbar .navbar-brand {
+    color: whitesmoke;
+}
+*/
+
+/* This is used to add spacing between the sections */
+@media (min-width: 768px) {
+    navbarS .container-fluid {
+        padding-top: 100px;
+        padding-bottom: 100px;
+        padding-left: 50px;
+    }
+
+    /*
 .sidebar-tabs {
     background-color: #9E9E87;
 }
 */
 
-/*
+    /*
 .sidebar-tabs > li,
 .sidebar-tabs > ul > li {
     color: #333;
 }
 */
 
-/*
+    /*
 .sidebar-tabs > li:hover,
 .sidebar-tabs > ul > li:hover {
     color: #000;
     background-color: #BDBD9E;
 }
 */
-/*
+    /*
 
 .sidebar-tabs > li.active,
 .sidebar-tabs > ul > li.active {
@@ -50,7 +81,7 @@ body,
 }
 */
 
-/*
+    /*
 .sidebar-content {
     background-color: #FCFFF5;
 }

@@ -53,6 +53,8 @@ var cartoDBUserName = "{sgrandstrand}";
 var sqlQuery1 = "SELECT * FROM sgrandstrand.county"; // county layer
 var sqlQuery2 = "SELECT * FROM sgrandstrand.drinking_water_supply_management_area_vulnerability"; // drinking water supply mangement area vulnerability 
 
+
+
 // ***Still need to create*** \\
 
 // Function to show any layer
@@ -74,7 +76,7 @@ var sqlQuery2 = "SELECT * FROM sgrandstrand.drinking_water_supply_management_are
 
 
 // Function to add all coffee shops
-function showAll() {
+function getData() {
     // Get CARTO selection as GeoJSON and Add to Map
     $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery1 + "&api_key=" + apikey, function (data) {
         county = L.geoJson(data, {
@@ -95,9 +97,10 @@ function showAll() {
 };
 
 
+
 // to call what is loaded on load of page
 $(document).ready(function () {
-    showAll();
+    getData();
     //Create sidebar function
     function createSidebars() {
 
@@ -107,14 +110,6 @@ $(document).ready(function () {
         map.addControl(leftsidebar);
 
         //.addTo(map).open("home");
-
-
-        var rightsidebar = L.control.sidebar('sidebar-right', {
-            position: 'right'
-        });
-        map.addControl(rightsidebar);
-
-        //.addTo(map).open("top5");
 
     } // end of createSidebars function
 }); // end o document.ready function
