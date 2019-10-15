@@ -8,11 +8,11 @@ var light = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/
 
 
 var mapOptions = {
-    zoomControl: false,
+    //    zoomControl: false,
     center: [44.5, -89.79],
-    zoom: 6,
-    minZoom: 3,
-    maxZoom: 18,
+    //    zoom: 6,
+    //    minZoom: 3,
+    //    maxZoom: 18,
     layers: [light]
 };
 
@@ -38,21 +38,22 @@ var map = L.map('mapid', mapOptions);
 //    //.addTo(map);
 //};
 
-map.createPane("boundaryPane").style.zIndex = 250;
-map.createPane("countyPane").style.zIndex = 260;
-
-
-//map.createPane("hu2Pane").style.zIndex = 270;
-//map.createPane("hu4Pane").style.zIndex = 280;
-//map.createPane("hu6Pane").style.zIndex = 290;
+//map.createPane("boundaryPane").style.zIndex = 250;
+//map.createPane("countyPane").style.zIndex = 260;
+//map.createPane("wqindexPane").style.zIndex = 270;
+//map.createPane("hydrindexPane").style.zIndex = 280;
+////map.createPane("hu6Pane").style.zIndex = 290;
 //map.createPane("hu8Pane").style.zIndex = 300;
 //map.createPane("markerPane").style.zIndex = 450;
 //map.createPane("popupPane").style.zIndex = 700;
 
-
+////hold layers
+//var county = null;
+//var boundary = null;
+//var wqindex = null;
+//var hydrindex = null;
 
 // carto info for future reference: 
-
 var apikey = "9127f5c72a53c1d127d45e1ff9a13d521865b7f2"
 var cartoDBUserName = "{sgrandstrand}";
 
@@ -72,21 +73,23 @@ var sqlQuery9 = "SELECT * FROM sgrandstrand.bdry_bwsr_rim_cons_easements_clp";
 // Function to add layers from Carto
 function getData() {
     // Get CARTO selection as GeoJSON and Add to Map
-    $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery1 + "&api_key=" + apikey, function (data) {
+    var county = $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery1 + "&api_key=" + apikey, function (data) {
         county = L.geoJson(data, {
-            pane: 'countyPane',
+            //            pane: 'countyPane',
             onEachFeature: function (feature, layer) {
                 layer.bindPopup('<p><b>' + feature.properties.cty_name + '</b><br /><em>');
                 layer.cartodb_id = feature.properties.cartodb_id;
             }
         }).addTo(map);
     });
-    $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery2 + "&api_key=" + apikey, function (data) {
-        pane: 'boundaryPane',
-        boundary = L.geoJson(data).addTo(map);
+    var boundary = $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery2 + "&api_key=" + apikey, function (data) {
+        boundary = L.geoJson(data, {
+            //            pane: 'boundaryPane',
+        }).addTo(map);
     });
-    $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery3 + "&api_key=" + apikey, function (data) {
+    var wqindex = $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery3 + "&api_key=" + apikey, function (data) {
         wqindex = L.geoJson(data, {
+            //            pane: 'wqindexPane',
             onEachFeature: function (feature, layer) {
                 layer.bindPopup('<p>WQ Index<b>' + feature.properties.dnr_waters + '</b><br /><em>');
                 layer.cartodb_id = feature.properties.cartodb_id;
@@ -94,8 +97,9 @@ function getData() {
         }).addTo(map);
     });
 
-    $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery4 + "&api_key=" + apikey, function (data) {
+    var hydrindex = $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery4 + "&api_key=" + apikey, function (data) {
         hydrindex = L.geoJson(data, {
+            //            pane: 'hydrindexPane',
             onEachFeature: function (feature, layer) {
                 layer.bindPopup('<p>Hydro Index<b>' + feature.properties.dnr_waters + '</b><br /><em>');
                 layer.cartodb_id = feature.properties.cartodb_id;
@@ -103,17 +107,29 @@ function getData() {
         }).addTo(map);
     });
 
+
     var baseLayers = {
         "Light": light
     };
+    console.log(baseLayers);
     var overlays = {
         "Counties": county,
         "Hawk Creek Watershed": boundary,
         "Water QUality Index": wqindex,
         "Hydro Index": hydrindex
     };
-    L.control.layers(baseLayers, overlays).addTo(map);
+    console.log(overlays)
+    //    L.control.zoom({
+    //        position: "topleft"
+    //    }).addTo(map)
+    //    L.control.layers(baseLayers, overlays).addTo(map);
 
+    //Add layers control to the map
+    var layerControl = L.control.layers(baseLayers, overlays, {
+        position: 'topright',
+        collapsed: false
+    });
+    layerControl.addTo(map);
 };
 
 
