@@ -1,12 +1,34 @@
 /* Stylesheet by */
 
+/*
+body {
+    padding: 0;
+    margin: 0;
+}
+*/
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    padding-top: 50px;
+    /* the size of the padding-top need to be the one of the navbar */
+}
+
+/*
 html,
 body,
 #mapid {
     height: 100%;
     font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
+*/
 
+/*
 #header {
     margin-top: 0px;
     margin-bottom: 0px;
@@ -17,14 +39,61 @@ body,
 }
 
 .sidebar-header {
-    /*    background: #3E606F;*/
+    background: #3E606F;
     font-size: 1.3em;
 }
 
-#sidebarleft {
+#sidebar {
     padding-top: 200px;
 }
+*/
 
+/* Leaflet Layers Control */
+
+.leaflet-control-layers {
+    border-radius: none;
+    box-shadow: none;
+}
+
+.leaflet-control-layers-expanded {
+    width: 100% !important;
+    padding: 0px;
+    background-color: transparent;
+    border: none !important;
+}
+
+#layercontrol {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+#layercontrol .title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.navbar-default {
+    background-color: royalblue;
+    border: none;
+}
+
+.navbar .navbar-nav li a {
+    color: whitesmoke;
+}
+
+.navbar .navbar-nav li a:hover {
+    color: slategrey;
+}
+
+.navbar .navbar-brand {
+    color: whitesmoke;
+}
 
 /*
 .navbar-default {
@@ -45,35 +114,29 @@ body,
 }
 */
 
-/* This is used to add spacing between the sections */
-@media (min-width: 768px) {
-    navbarS .container-fluid {
-        padding-top: 100px;
-        padding-bottom: 100px;
-        padding-left: 50px;
-    }
 
-    /*
+
+/*
 .sidebar-tabs {
     background-color: #9E9E87;
 }
 */
 
-    /*
+/*
 .sidebar-tabs > li,
 .sidebar-tabs > ul > li {
     color: #333;
 }
 */
 
-    /*
+/*
 .sidebar-tabs > li:hover,
 .sidebar-tabs > ul > li:hover {
     color: #000;
     background-color: #BDBD9E;
 }
 */
-    /*
+/*
 
 .sidebar-tabs > li.active,
 .sidebar-tabs > ul > li.active {
@@ -82,7 +145,7 @@ body,
 }
 */
 
-    /*
+/*
 .sidebar-content {
     background-color: #FCFFF5;
 }

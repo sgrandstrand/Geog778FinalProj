@@ -1,56 +1,3 @@
-// Javascript by //
-
-
-var light = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicHNteXRoMiIsImEiOiJjaXNmNGV0bGcwMG56MnludnhyN3Y5OHN4In0.xsZgj8hsNPzjb91F31-rYA', {
-    id: 'mapbox.streets',
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
-});
-
-
-var mapOptions = {
-    zoomControl: false,
-    center: [44.5, -89.79],
-    zoom: 6,
-    minZoom: 3,
-    maxZoom: 18,
-    layers: [light]
-};
-
-
-var map = L.map('mapid', mapOptions);
-
-//
-////// Layers for map ////
-//// Hawk Creek Boundary 
-//var hwkCreekBndry = "https://dservices.arcgis.com/HRPe58bUyBqyyiCt/arcgis/services/hawkCreekBndry/WFSServer?service=wfs&request=getcapabilities"
-//
-//function getData() {
-//    // Get ESRI WFS as GeoJSON and Add to Map
-//    var hawkcreekbndry = L.esri.featureLayer({
-//        url: hwkCreekBndry,
-//        style: function () {
-//            return {
-//                color: "#70ca49",
-//                weight: 2
-//            };
-//        }
-//    })
-//    //.addTo(map);
-//};
-
-map.createPane("boundaryPane").style.zIndex = 250;
-map.createPane("countyPane").style.zIndex = 260;
-
-
-//map.createPane("hu2Pane").style.zIndex = 270;
-//map.createPane("hu4Pane").style.zIndex = 280;
-//map.createPane("hu6Pane").style.zIndex = 290;
-//map.createPane("hu8Pane").style.zIndex = 300;
-//map.createPane("markerPane").style.zIndex = 450;
-//map.createPane("popupPane").style.zIndex = 700;
-
-
-
 // carto info for future reference: 
 
 var apikey = "9127f5c72a53c1d127d45e1ff9a13d521865b7f2"
@@ -69,12 +16,11 @@ var sqlQuery9 = "SELECT * FROM sgrandstrand.bdry_bwsr_rim_cons_easements_clp";
 
 
 
-// Function to add layers from Carto
+// Function to add all coffee shops
 function getData() {
     // Get CARTO selection as GeoJSON and Add to Map
     $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery1 + "&api_key=" + apikey, function (data) {
         county = L.geoJson(data, {
-            pane: 'countyPane',
             onEachFeature: function (feature, layer) {
                 layer.bindPopup('<p><b>' + feature.properties.cty_name + '</b><br /><em>');
                 layer.cartodb_id = feature.properties.cartodb_id;
@@ -82,7 +28,6 @@ function getData() {
         }).addTo(map);
     });
     $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery2 + "&api_key=" + apikey, function (data) {
-        pane: 'boundaryPane',
         boundary = L.geoJson(data).addTo(map);
     });
     $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery3 + "&api_key=" + apikey, function (data) {
@@ -95,7 +40,7 @@ function getData() {
     });
 
     $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery4 + "&api_key=" + apikey, function (data) {
-        hydrindex = L.geoJson(data, {
+        wqindex = L.geoJson(data, {
             onEachFeature: function (feature, layer) {
                 layer.bindPopup('<p>Hydro Index<b>' + feature.properties.dnr_waters + '</b><br /><em>');
                 layer.cartodb_id = feature.properties.cartodb_id;
@@ -103,24 +48,11 @@ function getData() {
         }).addTo(map);
     });
 
-    var baseLayers = {
-        "Light": light
-    };
-    var overlays = {
-        "Counties": county,
-        "Hawk Creek Watershed": boundary,
-        "Water QUality Index": wqindex,
-        "Hydro Index": hydrindex
-    };
-    L.control.layers(baseLayers, overlays).addTo(map);
-
 };
 
+<
+link rel = "stylesheet"
+href = "http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" / >
 
-
-// to call what is loaded on load of page
-$(document).ready(function () {
-    getData();
-    //Create sidebar function
-
-}); // end of document.ready function
+    <
+    script src = "http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js" > < /script>

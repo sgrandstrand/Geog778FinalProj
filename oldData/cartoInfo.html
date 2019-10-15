@@ -1,0 +1,38 @@
+carto info for future reference: 
+
+var apikey = "9127f5c72a53c1d127d45e1ff9a13d521865b7f2"
+var cartoDBUserName = "{sgrandstrand}";
+
+// sql queries to get layers
+var sqlQuery1 = "SELECT * FROM sgrandstrand.county"; // county layer
+var sqlQuery2 = "SELECT * FROM sgrandstrand.drinking_water_supply_management_area_vulnerability"; // drinking water supply mangement area vulnerability 
+
+
+
+
+// Function to add all coffee shops
+function getData() {
+    // Get CARTO selection as GeoJSON and Add to Map
+    $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery1 + "&api_key=" + apikey, function (data) {
+        county = L.geoJson(data, {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup('<p><b>' + feature.properties.cty_name + '</b><br /><em>');
+                layer.cartodb_id = feature.properties.cartodb_id;
+            }
+        }).addTo(map);
+    });
+    $.getJSON("https://sgrandstrand.carto.com/api/v2/sql?format=GeoJSON&q=" + sqlQuery2 + "&api_key=" + apikey, function (data) {
+        layer = L.geoJson(data, {
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup('<p><b>' + feature.properties.dws_vul + '</b><br /><em>');
+                layer.cartodb_id = feature.properties.cartodb_id;
+            }
+        }).addTo(map);
+    });
+};
+
+
+
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+    
+        <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
