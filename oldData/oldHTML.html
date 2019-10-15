@@ -55,3 +55,56 @@ html code taken off
 -->
     </div>
 </div>
+
+
+
+
+
+
+
+
+<!--     Navigation Bar-->
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsemenu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="fa fa-bars"></span>
+            </button>
+
+            <a class="navbar-brand" href="index.html">Hawk Creek One Watershed One Plan</a>
+        </div>
+        <div class="collapse navbar-collapse" id="collapsemenu">
+            <ul class="nav navbar-nav pull-right">
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="metadata.html">Metadata</a></li>
+                <li><a href="help.html">Help</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+
+<div class="container bodyContainer">
+    <div class="row mapContainer">
+
+        <!-- panel -->
+        <div id="collapseBtnXs" class="visible-xs">
+            <button type="button" class="btn" onclick="collapsePanelXs();">+</button>
+        </div>
+
+        <div id="panel">
+
+            <div id="collapseBtn">
+                <button type="button" class="btn btn-sm hidden-xs" onclick="collapsePanel();"> - </button> </div>
+            <div id="panelContent" class="container-fluid">panel content</div>
+        </div>
+
+        <!-- map -->
+        <div class="col-xs-12" id="mapid"></div>
+
+    </div>
+</div>

@@ -86,3 +86,39 @@ $(".leaflet-control-layers-separator").after("<br><strong class='title'>Layers</
 //    }
 //
 //}
+
+
+js from response website(see old css
+    for address)
+
+// Hide/show panel function for desktop view. The panel is shown by default. 
+var showPanel = true;
+
+function collapsePanel() {
+    if (showPanel === true) {
+        $('div#panel').css('width', '35px');
+        $('div#panelContent').css('opacity', '0');
+        $('div#collapseBtn button').text('>');
+        showPanel = !showPanel;
+    } else {
+        $('div#panel').css('width', '300px');
+        $('div#panelContent').css('opacity', '1');
+        $('div#collapseBtn button').text('<');
+        showPanel = !showPanel;
+    }
+}
+// Hide/show panel function for mobile view. The panel is not shown by default.
+var showPanelXs = false;
+
+function collapsePanelXs() {
+    if (showPanelXs === true) {
+        $('div#panel').css('width', '0px');
+        $('div#panelContent').css('opacity', '0');
+        showPanelXs = !showPanelXs;
+    } else {
+        $('div#panel').css('width', 'calc(100% - 45px)');
+        $('div#panelContent').css('opacity', '1');
+        $('div#navbar').removeClass('in')
+        showPanelXs = !showPanelXs;
+    }
+}

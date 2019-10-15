@@ -1,152 +1,54 @@
 /* Stylesheet by */
 
-/*
-body {
-    padding: 0;
-    margin: 0;
-}
-*/
 
-html,
-body {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-}
-
-body {
-    padding-top: 50px;
-    /* the size of the padding-top need to be the one of the navbar */
-}
-
-/*
 html,
 body,
-#mapid {
+#container {
     height: 100%;
-    font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
-}
-*/
-
-/*
-#header {
-    margin-top: 0px;
-    margin-bottom: 0px;
+    overflow: hidden;
+    width: 100%;
 }
 
-.tab {
-    margin-left: 55px;
+body {
+    /* height of .navbar, customize with @navbar-height variable */
+    padding-top: 0px;
 }
 
-.sidebar-header {
-    background: #3E606F;
-    font-size: 1.3em;
+.navbar {
+    min-height: 50px;
+}
+
+.navbar-default {
+    background-color: #3E606F;
+    border: none;
+}
+
+.navbar .navbar-brand {
+    color: whitesmoke;
 }
 
 #sidebar {
-    padding-top: 200px;
-}
-*/
-
-/* Leaflet Layers Control */
-
-.leaflet-control-layers {
-    border-radius: none;
-    box-shadow: none;
+    float: left;
+    height: 100%;
+    max-width: 100%;
+    width: 150px;
+    padding-left: 1%;
 }
 
-.leaflet-control-layers-expanded {
-    width: 100% !important;
-    padding: 0px;
-    background-color: transparent;
-    border: none !important;
+#mapid {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: auto;
 }
 
-#layercontrol {
-    display: inline-block;
+.sidebar-wrapper {
+    height: 100%;
+    position: relative;
     width: 100%;
-    padding: 10px;
-    background-color: transparent;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
 }
 
-#layercontrol .title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
+@media (max-width: 767px) {
+    #sidebar {
+        display: none;
+    }
 }
-
-.navbar-default {
-    background-color: royalblue;
-    border: none;
-}
-
-.navbar .navbar-nav li a {
-    color: whitesmoke;
-}
-
-.navbar .navbar-nav li a:hover {
-    color: slategrey;
-}
-
-.navbar .navbar-brand {
-    color: whitesmoke;
-}
-
-/*
-.navbar-default {
-    background-color: dimgray;
-    border: none;
-}
-
-.navbar .navbar-nav li a {
-    color: whitesmoke;
-}
-
-.navbar .navbar-nav li a:hover {
-    color: cyan;
-}
-
-.navbar .navbar-brand {
-    color: whitesmoke;
-}
-*/
-
-
-
-/*
-.sidebar-tabs {
-    background-color: #9E9E87;
-}
-*/
-
-/*
-.sidebar-tabs > li,
-.sidebar-tabs > ul > li {
-    color: #333;
-}
-*/
-
-/*
-.sidebar-tabs > li:hover,
-.sidebar-tabs > ul > li:hover {
-    color: #000;
-    background-color: #BDBD9E;
-}
-*/
-/*
-
-.sidebar-tabs > li.active,
-.sidebar-tabs > ul > li.active {
-    color: #3E606F;
-    background-color: #FCFFF5;
-}
-*/
-
-/*
-.sidebar-content {
-    background-color: #FCFFF5;
-}
-*/
