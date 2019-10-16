@@ -65,7 +65,7 @@ style="float: right"
 
 
 <body>
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbarid">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsemenu" aria-expanded="false">
@@ -93,9 +93,43 @@ style="float: right"
                         <h3 class="panel-title">Map Layers</h3>
                     </div>
                     <div class="panel-info">
-                        <p><input type="checkbox" name="name1" value="BoundaryLayer" checked> Hawk Creek Boundary<br>
-                            <input type="checkbox" name="name2" value="CountyLayer"> Counties<br>
-                            <input type="checkbox" name="name3" value="OtherLayer"> HUC 2<br></p>
+                        <p><input type="checkbox" value="hawkcreekbndry" checked> Hawk Creek Boundary
+                            <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseBndry" aria-expanded="false" aria-controls="collapseExample">
+                                <span class="sr-only">Expand to Edit </span>
+                                <span class="far fa-edit"></span></button>
+                            <div class="collapse" id="collapseBndry">
+                                <div class="card card-body">
+                                    Will add an edit symbology section.
+                                </div>
+                            </div>
+                            <input type="checkbox" value="cnty"> Counties
+                            <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseCnty" aria-expanded="false" aria-controls="collapseCnty">
+                                <span class="sr-only">Expand to Edit </span>
+                                <span class="far fa-edit"></span></button>
+                            <div class="collapse" id="collapseCnty">
+                                <div class="card card-body">
+                                    Will add an edit symbology section.
+                                </div>
+                            </div>
+                            <br>
+                            <input type="checkbox" value="huc8"> HUC 8<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehuc8" aria-expanded="false" aria-controls="collapseExample">
+                                <span class="sr-only">Expand to Edit </span>
+                                <span class="far fa-edit"></span></button>
+                            <div class="collapse" id="collapsehuc8">
+                                <div class="card card-body">
+                                    Will add an edit symbology section.
+                                </div>
+                            </div>
+                            <br>
+                            <input type="checkbox" value="wtrVul"> Drinking Water Supply Vulnerability<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewtrVul" aria-expanded="false" aria-controls="collapseExample">
+                                <span class="sr-only">Expand to Edit </span>
+                                <span class="far fa-edit"></span></button>
+                            <div class="collapse" id="collapsewtrVul">
+                                <div class="card card-body">
+                                    Will add an edit symbology section.
+                                </div>
+                            </div>
+                        </p>
                     </div>
                 </div>
             </div>

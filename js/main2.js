@@ -9,7 +9,7 @@ var light = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/
 
 var mapOptions = {
     //    zoomControl: false,
-    center: [45.90, -92],
+    center: [44.5, -89.79],
     zoom: 6,
     minZoom: 3,
     maxZoom: 18,
@@ -68,154 +68,201 @@ var a_nitrCnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/servi
 var a_nitrTwn = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/35"; //Nitrate rates by township
 
 
+function getData() {
+    // Get ESRI WFS as GeoJSON and Add to Map
 
-// Get ESRI WFS as GeoJSON and Add to Map
+    /////*** BOUNDARY LAYERS ****\\\\
+    var hawkcreekbndry = L.esri.featureLayer({
+        url: a_hwkCreekBndry,
+        style: function () {
+            return {
+                color: "#70ca49",
+                weight: 2
+            };
+        }
+    }).addTo(map);
 
-/////*** BOUNDARY LAYERS ****\\\\
-var hawkcreekbndry = L.esri.featureLayer({
-    url: a_hwkCreekBndry,
-    style: function () {
-        return {
-            color: "#70ca49",
-            weight: 2
-        };
+    var cnty = L.esri.featureLayer({
+        url: a_cnty,
+        style: function () {
+            return {
+                color: "#7256E8",
+                weight: 2
+            };
+        }
+    }).addTo(map);
+
+    var huc2 = L.esri.featureLayer({
+        url: a_huc2,
+    });
+
+    var huc4 = L.esri.featureLayer({
+        url: a_huc4,
+    });
+    var huc6 = L.esri.featureLayer({
+        url: a_huc6,
+    });
+    var huc8 = L.esri.featureLayer({
+        url: a_huc8,
+    });
+    var huc10 = L.esri.featureLayer({
+        url: a_huc10,
+    });
+    var huc12 = L.esri.featureLayer({
+        url: a_huc12,
+    });
+    var huc14 = L.esri.featureLayer({
+        url: a_huc14,
+    });
+    var huc16 = L.esri.featureLayer({
+        url: a_huc16,
+    });
+
+
+
+    ////// *** hydrography layers *** /////
+
+    var fEMAflood = L.esri.featureLayer({
+        url: a_fEMAflood,
+    });
+
+    var imptStrm = L.esri.featureLayer({
+        url: a_imptStrm,
+    });
+    var impLks = L.esri.featureLayer({
+        url: a_impLks,
+    });
+    var altwtr = L.esri.featureLayer({
+        url: a_altwtr,
+    });
+    var phos = L.esri.featureLayer({
+        url: a_phos,
+    });
+    var trout = L.esri.featureLayer({
+        url: a_trout,
+    });
+    var wellhead = L.esri.featureLayer({
+        url: a_wellhead,
+    });
+    var wtrVul = L.esri.featureLayer({
+        url: a_wtrVul,
+    });
+
+    ////// *** landstatus layers *** /////
+
+    var gAP_DNR = L.esri.featureLayer({
+        url: a_gAP_DNR,
+    });
+    var gAP_State = L.esri.featureLayer({
+        url: a_gAP_State,
+    });
+    var gAP_Cnty = L.esri.featureLayer({
+        url: a_gAP_Cnty,
+    });
+    var gAP_Fed = L.esri.featureLayer({
+        url: a_gAP_Fed,
+    });
+    var natPra = L.esri.featureLayer({
+        url: a_natPra,
+    });
+
+
+    ////// *** index layers *** /////
+
+    var bioIndex = L.esri.featureLayer({
+        url: a_bioIndex,
+    });
+    var hydIndex = L.esri.featureLayer({
+        url: a_hydIndex,
+    });
+    var geoIndex = L.esri.featureLayer({
+        url: a_geoIndex,
+    });
+    var conIndex = L.esri.featureLayer({
+        url: a_conIndex,
+    });
+    var wQIndex = L.esri.featureLayer({
+        url: a_wQIndex,
+    });
+    var combIndex = L.esri.featureLayer({
+        url: a_combIndex,
+    });
+
+
+
+    /////*** Misc. layers ***/////
+
+    var natPlnt = L.esri.featureLayer({
+        url: a_natPlnt,
+    });
+    var mBSbio = L.esri.featureLayer({
+        url: a_mBSbio,
+    });
+    var cONUS = L.esri.featureLayer({
+        url: a_cONUS,
+    });
+    var dNRCatch = L.esri.featureLayer({
+        url: a_dNRCatch,
+    });
+    var bedrockPoll = L.esri.featureLayer({
+        url: a_bedrockPoll,
+    });
+    var nitrCnty = L.esri.featureLayer({
+        url: a_nitrCnty,
+    });
+    var nitrTwn = L.esri.featureLayer({
+        url: a_nitrTwn,
+    });
+
+
+    var overlays = {
+        "Watershed Boundary": hawkcreekbndry,
+        "Counties": cnty,
+        "HUC 2": huc2,
+        "HUC 4": huc4,
+        "HUC 6": huc6,
+        "HUC 8": huc8,
+        "HUC 10": huc10,
+        "HUC 12": huc12,
+        "HUC 14": huc14,
+        "HUC 16": huc16,
+        "100 YR Floodplain": fEMAflood,
+        "Impaired Streams": imptStrm,
+        "Impaired Lakes": impLks,
+        "Altered Watercourses": altwtr,
+        "Lake Phosophorus Sensitivity Significance": phos,
+        "Trout Streams": trout,
+        "Wellhead Protection Areas": wellhead,
+        "Drinking Water Supply Vulnerability": wtrVul,
+
+
+        "GAP DNR Land": gAP_DNR,
+        "GAP State Land": gAP_State,
+        "GAP County Land": gAP_Cnty,
+        "GAP Federal Land": gAP_Fed,
+        "Natice Prairies": natPra,
+
+        // index layers //
+        "Bio Index Mean": bioIndex,
+        "Hyd Index Mean": hydIndex,
+        "Geo Index Mean": geoIndex,
+        "Con Index Mean": conIndex,
+        "WQ Index Mean": wQIndex,
+        "Combined Index Mean": combIndex,
+
+        // Misc. layers
+
+        "Native Plants": natPlnt,
+        "MBS Biodiversity": mBSbio,
+        "NWI": cONUS,
+        "Catchments": dNRCatch,
+        "Bedrock Pollution Sensitivity": bedrockPoll,
+        "Nitrate per County": nitrCnty,
+        "Nitrate per Township": nitrTwn
+
     }
-}).addTo(map);
-
-var cnty = L.esri.featureLayer({
-    url: a_cnty,
-    style: function () {
-        return {
-            color: "#7256E8",
-            weight: 2
-        };
-    }
-})
-
-var huc2 = L.esri.featureLayer({
-    url: a_huc2,
-});
-
-var huc4 = L.esri.featureLayer({
-    url: a_huc4,
-});
-var huc6 = L.esri.featureLayer({
-    url: a_huc6,
-});
-var huc8 = L.esri.featureLayer({
-    url: a_huc8,
-});
-var huc10 = L.esri.featureLayer({
-    url: a_huc10,
-});
-var huc12 = L.esri.featureLayer({
-    url: a_huc12,
-});
-var huc14 = L.esri.featureLayer({
-    url: a_huc14,
-});
-var huc16 = L.esri.featureLayer({
-    url: a_huc16,
-});
-
-
-
-////// *** hydrography layers *** /////
-
-var fEMAflood = L.esri.featureLayer({
-    url: a_fEMAflood,
-});
-
-var imptStrm = L.esri.featureLayer({
-    url: a_imptStrm,
-});
-var impLks = L.esri.featureLayer({
-    url: a_impLks,
-});
-var altwtr = L.esri.featureLayer({
-    url: a_altwtr,
-});
-var phos = L.esri.featureLayer({
-    url: a_phos,
-});
-var trout = L.esri.featureLayer({
-    url: a_trout,
-});
-var wellhead = L.esri.featureLayer({
-    url: a_wellhead,
-});
-var wtrVul = L.esri.featureLayer({
-    url: a_wtrVul,
-    style: styleWtrVul,
-});
-
-////// *** landstatus layers *** /////
-
-var gAP_DNR = L.esri.featureLayer({
-    url: a_gAP_DNR,
-});
-var gAP_State = L.esri.featureLayer({
-    url: a_gAP_State,
-});
-var gAP_Cnty = L.esri.featureLayer({
-    url: a_gAP_Cnty,
-});
-var gAP_Fed = L.esri.featureLayer({
-    url: a_gAP_Fed,
-});
-var natPra = L.esri.featureLayer({
-    url: a_natPra,
-});
-
-
-////// *** index layers *** /////
-
-var bioIndex = L.esri.featureLayer({
-    url: a_bioIndex,
-});
-var hydIndex = L.esri.featureLayer({
-    url: a_hydIndex,
-});
-var geoIndex = L.esri.featureLayer({
-    url: a_geoIndex,
-});
-var conIndex = L.esri.featureLayer({
-    url: a_conIndex,
-});
-var wQIndex = L.esri.featureLayer({
-    url: a_wQIndex,
-});
-var combIndex = L.esri.featureLayer({
-    url: a_combIndex,
-});
-
-
-
-/////*** Misc. layers ***/////
-
-var natPlnt = L.esri.featureLayer({
-    url: a_natPlnt,
-});
-var mBSbio = L.esri.featureLayer({
-    url: a_mBSbio,
-});
-var cONUS = L.esri.featureLayer({
-    url: a_cONUS,
-});
-var dNRCatch = L.esri.featureLayer({
-    url: a_dNRCatch,
-});
-var bedrockPoll = L.esri.featureLayer({
-    url: a_bedrockPoll,
-});
-var nitrCnty = L.esri.featureLayer({
-    url: a_nitrCnty,
-});
-var nitrTwn = L.esri.featureLayer({
-    url: a_nitrTwn,
-});
-
-
+    L.control.layers(null, overlays).addTo(map);
+};
 
 //map.createPane("boundaryPane").style.zIndex = 250;
 //map.createPane("countyPane").style.zIndex = 260;
@@ -226,97 +273,22 @@ var nitrTwn = L.esri.featureLayer({
 //map.createPane("markerPane").style.zIndex = 450;
 //map.createPane("popupPane").style.zIndex = 700;
 
-/// STYLE FUNCTIONS
-
-// Water vulnerability
-function styleWtrVul(feature) {
-    level = feature.properties.dws_vul;
-    var colorToUse;
-    if (level === "Very High") colorToUse = '#ff7f7f';
-    else if (level === "High") colorToUse = '#ffd27f';
-    else if (level === "Moderate") colorToUse = '#ffffbe';
-    else if (level === "Low") colorToUse = '#d3ffbe';
-    else if (level === "Very Low") colorToUse = '#bed2ff';
-    else colorToUse - "transparent";
-
-    return {
-        "color": colorToUse,
-        "weight": 2
-    };
-}
 
 
-$(document).ready(function () {
-
-    $('input[value="hawkcreekbndry"]').click(function () {
-        if ($(this).is(":checked")) {
-            console.log("adding layer this is checked")
-            hawkcreekbndry.addTo(map);
-        } else if ($(this).is(":not(:checked)")) {
-            console.log("this is removing layer")
-            map.removeLayer(hawkcreekbndry);
-        }
-    });
-
-
-    $('input[value="cnty"]').click(function () {
-        if ($(this).is(":checked")) {
-            cnty.addTo(map);
-        } else if ($(this).is(":not(:checked)")) {
-            map.removeLayer(cnty);
-        }
-    });
-    $('input[value="huc8"]').click(function () {
-        if ($(this).is(":checked")) {
-            huc8.addTo(map);
-        } else if ($(this).is(":not(:checked)")) {
-            map.removeLayer(huc8);
-        }
-    });
-    $('input[value="wtrVul"]').click(function () {
-        if ($(this).is(":checked")) {
-            wtrVul.addTo(map);
-        } else if ($(this).is(":not(:checked)")) {
-            map.removeLayer(wtrVul);
-        }
-    });
-
-
-    //    $('input[type="checkbox]').click(function (event) {
-    //                layerClicked = window[event.target.value];
-    //                console.log(layerClicked);
-    //
-    //                if (map.hasLayer(layerClicked)) {
-    //                    map.removeLayer(layerClicked);
-    //                } else {
-    //                    map.addLayer(layerClicked);
-    //                };
-    //            });
-
-});
 // to call what is loaded on load of page
-//        $(document).ready(function () {
-//            getData();
+$(document).ready(function () {
+    getData();
 
-//    //keep nav bar from dissapearing 
-//    var margin = 78;
-//    $('#mapid').on('mousedown', function () {
-//        $('#navbarid').css('margin-top', margin + 'px');
-//    });
-//    $('#mapid').blur(function () {
-//        margin = margin + 78;
-//    });
-
-
-//Create sidebar function
-//
-//}); // end of document.ready function
+    //    //keep nav bar from dissapearing 
+    //    var margin = 78;
+    //    $('#mapid').on('mousedown', function () {
+    //        $('#navbarid').css('margin-top', margin + 'px');
+    //    });
+    //    $('#mapid').blur(function () {
+    //        margin = margin + 78;
+    //    });
 
 
-// potential function to add any layer to map. 
-//function getData1(url) {
-//    layer = L.esri.featureLayer({
-//        url: url
-//    }).addTo(map);
-//
-//};
+    //Create sidebar function
+
+}); // end of document.ready function

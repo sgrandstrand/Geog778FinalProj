@@ -11,7 +11,7 @@ body,
 
 body {
     /* height of .navbar, customize with @navbar-height variable */
-    padding-top: 0px;
+    padding-top: 50px;
 }
 
 .navbar {
@@ -51,4 +51,14 @@ body {
     #sidebar {
         display: none;
     }
+}
+
+
+.btn-outline-primary {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+#features .panel-info p {
+    margin: 0px 0px 0px 0px;
 }
