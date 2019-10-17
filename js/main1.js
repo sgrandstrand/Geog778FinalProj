@@ -8,7 +8,7 @@ var light = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/
 
 
 var mapOptions = {
-    //    zoomControl: false,
+    zoomControl: false,
     center: [45.90, -92],
     zoom: 6,
     minZoom: 3,
@@ -19,6 +19,14 @@ var mapOptions = {
 
 var map = L.map('mapid', mapOptions);
 
+
+L.control.zoom({
+    position: 'topright'
+}).addTo(map);
+//var sidebar = L.control.sidebar({
+//    container: 'sidebar'
+//}).addTo(map);
+//sidebar.open('features');
 
 //// URL's for Layers ////
 
@@ -241,57 +249,36 @@ function styleWtrVul(feature) {
 
     return {
         "color": colorToUse,
-        "weight": 2
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
     };
 }
 
 
+
 $(document).ready(function () {
 
-    $('input[value="hawkcreekbndry"]').click(function () {
+    $('input[type="checkbox"]').click(function () {
+        layerClicked = window[event.target.value];
         if ($(this).is(":checked")) {
-            console.log("adding layer this is checked")
-            hawkcreekbndry.addTo(map);
+            map.addLayer(layerClicked);
         } else if ($(this).is(":not(:checked)")) {
-            console.log("this is removing layer")
-            map.removeLayer(hawkcreekbndry);
+
+            map.removeLayer(layerClicked);
         }
     });
+    $('#toggleSidebar').click(function () {
+        $("#features").toggle(function () {
 
-
-    $('input[value="cnty"]').click(function () {
-        if ($(this).is(":checked")) {
-            cnty.addTo(map);
-        } else if ($(this).is(":not(:checked)")) {
-            map.removeLayer(cnty);
-        }
+        });
     });
-    $('input[value="huc8"]').click(function () {
-        if ($(this).is(":checked")) {
-            huc8.addTo(map);
-        } else if ($(this).is(":not(:checked)")) {
-            map.removeLayer(huc8);
-        }
-    });
-    $('input[value="wtrVul"]').click(function () {
-        if ($(this).is(":checked")) {
-            wtrVul.addTo(map);
-        } else if ($(this).is(":not(:checked)")) {
-            map.removeLayer(wtrVul);
-        }
-    });
+    $('#closeSidebar').click(function () {
+        $("#features").toggle(function () {
 
-
-    //    $('input[type="checkbox]').click(function (event) {
-    //                layerClicked = window[event.target.value];
-    //                console.log(layerClicked);
-    //
-    //                if (map.hasLayer(layerClicked)) {
-    //                    map.removeLayer(layerClicked);
-    //                } else {
-    //                    map.addLayer(layerClicked);
-    //                };
-    //            });
+        });
+    });
 
 });
 // to call what is loaded on load of page
