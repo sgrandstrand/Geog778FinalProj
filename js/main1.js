@@ -21,12 +21,30 @@ var map = L.map('mapid', mapOptions);
 
 
 L.control.zoom({
+    position: 'bottomright'
+}).addTo(map);
+
+// LEAFLET EASY PRINT
+//L.easyPrint({
+//    title: 'Print Map',
+//    position: 'bottomright',
+//    sizeModes: ['A4Portrait', 'A4Landscape']
+//}).addTo(map);
+
+// Leaflet Browser Print
+
+L.control.browserPrint({
+    title: 'Print Map',
+    documentTitle: 'Hawk Creek Watershed',
+    closePopupsOnPrint: false,
+    printModes: [
+		"Landscape",
+		"Portrait",
+		L.control.browserPrint.mode.auto()
+	],
+    manualMode: false,
     position: 'topright'
 }).addTo(map);
-//var sidebar = L.control.sidebar({
-//    container: 'sidebar'
-//}).addTo(map);
-//sidebar.open('features');
 
 //// URL's for Layers ////
 
@@ -75,6 +93,9 @@ var a_bedrockPoll = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/se
 var a_nitrCnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/34"; //Nitrate rates by county
 var a_nitrTwn = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/35"; //Nitrate rates by township
 
+/// *** RASTER LAYERS ***////
+
+// var a_soil = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekRast/MapServer/0"
 
 
 // Get ESRI WFS as GeoJSON and Add to Map
@@ -84,8 +105,7 @@ var hawkcreekbndry = L.esri.featureLayer({
     url: a_hwkCreekBndry,
     style: function () {
         return {
-            color: "#70ca49",
-            weight: 2
+            color: "#70ca49"
         };
     }
 }).addTo(map);
@@ -224,6 +244,11 @@ var nitrTwn = L.esri.featureLayer({
 });
 
 
+//*** RASTER LAYERS ***///
+
+//var soil = L.esri.tiledMapLayer({
+//    url: a_soil,
+//});
 
 //map.createPane("boundaryPane").style.zIndex = 250;
 //map.createPane("countyPane").style.zIndex = 260;
@@ -257,6 +282,16 @@ function styleWtrVul(feature) {
 }
 
 
+////*** Functions to change Opacity on Layers ****\\\\\
+
+
+function updateOpacity(val, layer) {
+    layer.setStyle({
+        opacity: val,
+        fillOpacity: val
+    });
+}
+
 
 $(document).ready(function () {
 
@@ -279,6 +314,9 @@ $(document).ready(function () {
 
         });
     });
+
+    /// CHANGE opacity of layer
+
 
 });
 // to call what is loaded on load of page
