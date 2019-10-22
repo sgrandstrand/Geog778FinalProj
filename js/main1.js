@@ -64,14 +64,14 @@ L.control.browserPrint({
     position: 'topright'
 }).addTo(map);
 
-map.on("browser-print-start", function (e) {
-    L.control.scale({
-        position: 'bottomright',
-        metric: false,
-        maxWidth: 200
-    }).addTo(e.printMap);
-    L.control.
-});
+//map.on("browser-print-start", function (e) {
+//    L.control.scale({
+//        position: 'bottomright',
+//        metric: false,
+//        maxWidth: 200
+//    }).addTo(e.printMap);
+//    L.control.
+//});
 
 
 
