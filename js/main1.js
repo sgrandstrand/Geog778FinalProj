@@ -1,11 +1,25 @@
 // Javascript by //
 
 
-var light = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicHNteXRoMiIsImEiOiJjaXNmNGV0bGcwMG56MnludnhyN3Y5OHN4In0.xsZgj8hsNPzjb91F31-rYA', {
-    id: 'mapbox.streets',
+var light = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2dyYW5kc3RyYW5kIiwiYSI6ImNqY3BtMm52MjJyZWsycXBmMDZremxsN3EifQ.3HVgf9jrNbmCSBBBlp5zlQ', {
+
+    //                        pk.eyJ1IjoicHNteXRoMiIsImEiOiJjaXNmNGV0bGcwMG56MnludnhyN3Y5OHN4In0.xsZgj8hsNPzjb91F31-rYA
+    //    id: 'mapbox.streets',
+    id: 'mapbox.light',
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
 });
 
+var dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2dyYW5kc3RyYW5kIiwiYSI6ImNqY3BtMm52MjJyZWsycXBmMDZremxsN3EifQ.3HVgf9jrNbmCSBBBlp5zlQ', {
+    id: 'mapbox.dark',
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
+});
+
+var imagery = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2dyYW5kc3RyYW5kIiwiYSI6ImNqY3BtMm52MjJyZWsycXBmMDZremxsN3EifQ.3HVgf9jrNbmCSBBBlp5zlQ', {
+    id: 'mapbox.satellite',
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
+});
+//                       mapbox://styles/mapbox/dark-v10
+//                       mapbox://styles/mapbox/satellite-v9
 
 var mapOptions = {
     zoomControl: false,
@@ -19,11 +33,21 @@ var mapOptions = {
 
 var map = L.map('mapid', mapOptions);
 
+L.control.scale({
+    position: 'bottomright'
+}).addTo(map);
 
 L.control.zoom({
     position: 'bottomright'
 }).addTo(map);
 
+
+var baseMaps = {
+    "Light": light,
+    "Dark": dark,
+    "Imagery": imagery
+}
+L.control.layers(null, baseMaps).addTo(map);
 
 // Leaflet Browser Print
 
@@ -39,6 +63,18 @@ L.control.browserPrint({
     manualMode: false,
     position: 'topright'
 }).addTo(map);
+
+map.on("browser-print-start", function (e) {
+    L.control.scale({
+        position: 'bottomright',
+        metric: false,
+        maxWidth: 200
+    }).addTo(e.printMap);
+    L.control.
+});
+
+
+
 
 //// URL's for Layers ////
 
@@ -82,7 +118,7 @@ var a_bedrockPoll = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/se
 var a_nitrCnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/29"; //Nitrate rates by county
 var a_nitrTwn = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/30"; //Nitrate rates by township
 var a_easemnts = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/6" // 11 Boundary rin con easements? 
-
+var a_gSSURGO = "" // WHAT IS THIS? 
 
 /// *** RASTER LAYERS ***////
 
@@ -99,7 +135,10 @@ var hawkcreekbndry = L.esri.featureLayer({
         return {
             color: "#70ca49"
         };
-    }
+    },
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><i> Hawk Creek Watershed </i></p>');
+    },
 }).addTo(map);
 
 var cnty = L.esri.featureLayer({
@@ -109,8 +148,11 @@ var cnty = L.esri.featureLayer({
             color: "#7256E8",
             weight: 2
         };
-    }
-})
+    },
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><i> County: ' + feature.properties.CTY_NAME + '</i></p>');
+    },
+});
 
 
 var huc8 = L.esri.featureLayer({
@@ -179,6 +221,10 @@ var altwtr = L.esri.featureLayer({
 var phos = L.esri.featureLayer({
     url: a_phos,
     style: stylePhos,
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><b> Phosphorus Priority Class: </b>' + feature.properties.LPSS_CLASS + '</p>');
+    },
+
 });
 var trout = L.esri.featureLayer({
     url: a_trout,
@@ -234,6 +280,9 @@ var natPra = L.esri.featureLayer({
 var bioIndex = L.esri.featureLayer({
     url: a_bioIndex,
     style: styleBioIndex,
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><b> Bio Index Mean: ' + feature.properties.B_I_MEAN + '</b></p>');
+    },
 });
 var hydIndex = L.esri.featureLayer({
     url: a_hydIndex,
@@ -250,6 +299,9 @@ var conIndex = L.esri.featureLayer({
 var wQIndex = L.esri.featureLayer({
     url: a_wQIndex,
     style: styleWQIndex,
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><b> Water Quality Index Mean: ' + feature.properties.W_I_MEAN + '</b></p>');
+    },
 });
 var combIndex = L.esri.featureLayer({
     url: a_combIndex,
@@ -258,11 +310,19 @@ var combIndex = L.esri.featureLayer({
 
 
 
+
+
 /////*** Misc. layers ***/////
 
 var natPlnt = L.esri.featureLayer({
     url: a_natPlnt,
+    style: function () {
+        return {
+            color: "#71c98d",
+        };
+    }
 });
+
 var mBSbio = L.esri.featureLayer({
     url: a_mBSbio,
 });
@@ -274,12 +334,29 @@ var dNRCatch = L.esri.featureLayer({
 });
 var bedrockPoll = L.esri.featureLayer({
     url: a_bedrockPoll,
+    style: function () {
+        return {
+            color: "#bf324c",
+        };
+    }
 });
 var nitrCnty = L.esri.featureLayer({
     url: a_nitrCnty,
 });
 var nitrTwn = L.esri.featureLayer({
     url: a_nitrTwn,
+});
+var easemnts = L.esri.featureLayer({
+    url: a_easemnts,
+    style: function () {
+        return {
+            color: "#f28f24",
+        };
+    }
+});
+
+var gSSURGO = L.esri.featureLayer({
+    url: a_gSSURGO,
 });
 
 
@@ -551,7 +628,6 @@ function styleWQIndex(feature) {
     else if (type > 70 && type <= 80) colorToUse = '#83cf00';
     else if (type > 80 && type <= 90) colorToUse = '#5aba00';
     else if (type > 90 && type <= 100) colorToUse = '#308f00';
-
     else colorToUse = "transparent";
 
     return {
@@ -588,6 +664,22 @@ function styleCombIndex(feature) {
     };
 }
 
+function styleDNRCatch(feature) {
+    type = feature.properties.STRATEGY;
+    var colorToUse;
+    if (type === "VIGILANCE") colorToUse = '#002673';
+    else if (type === "NEEDS PROTECTION") colorToUse = '#005ce6';
+    else if (level === "FULL RESTORATION") colorToUse = '#a1ceff';
+    else if (level === "PARTIAL RESTORATION") colorToUse = '#9c9c9c';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
 ////*** Functions to change Opacity on Layers ****\\\\\
 
 
@@ -603,6 +695,12 @@ function updateOpacityBound(val, layer) {
         opacity: val,
     });
 }
+
+
+
+// Legend Controls 
+
+
 
 
 $(document).ready(function () {
