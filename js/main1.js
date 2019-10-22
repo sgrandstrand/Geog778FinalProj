@@ -42,45 +42,47 @@ L.control.browserPrint({
 
 //// URL's for Layers ////
 
-var a_hwkCreekBndry = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/2"; // Hawk Creek Boundary 
-var a_cnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/1"; // county layer
-var a_huc8 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/6"; //USGS HUC 8
-var a_huc10 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/7"; //USGS HUC 10
-var a_huc12 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/8"; //USGS HUC 12
+var a_hwkCreekBndry = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/1"; //2 Hawk Creek Boundary 
+var a_cnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/0"; //1 county layer
+var a_huc8 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/2"; //6USGS HUC 8
+var a_huc10 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/3"; //7USGS HUC 10
+var a_huc12 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/4"; //8USGS HUC 12
 
-var a_fEMAflood = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/18"; // 100 year flood plain from FEMA
-var a_imptStrm = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/31"; //Impaired streams
-var a_impLks = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/32"; //Impaired Lakes
-var a_altwtr = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/19"; //Altered Watercourse
-var a_phos = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/16"; // lake phosophorus sensitivity significance 
-var a_trout = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/36"; //trout streams
-var a_wellhead = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/37"; //Well Head Protection Areas
-var a_wtrVul = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/15"; // drinking water supply vulnerability
+var a_fEMAflood = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/13"; //18 100 year flood plain from FEMA
+var a_imptStrm = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/26"; //Impaired streams
+var a_impLks = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/27"; //Impaired Lakes
+var a_altwtr = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/14"; //19 Altered Watercourse
+var a_phos = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/11"; // 16 lake phosophorus sensitivity significance 
+var a_trout = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/31"; //trout streams
+var a_wellhead = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/32"; //Well Head Protection Areas
+var a_wtrVul = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/10"; //15 drinking water supply vulnerability
 
 //land status layers
-var a_gAP_DNR = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/27"; //GAP DNR Lands
-var a_gAP_State = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/28"; //GAP state Lands
-var a_gAP_Cnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/29"; //GAP county Lands
-var a_gAP_Fed = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/30"; //GAP Federal Lands
-var a_natPra = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/14"; //DNR native prairies
+var a_gAP_DNR = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/22"; //27GAP DNR Lands
+var a_gAP_State = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/23"; //28GAP state Lands
+var a_gAP_Cnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/24"; //GAP county Lands
+var a_gAP_Fed = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/25"; //GAP Federal Lands
+var a_natPra = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/8"; //14DNR native prairies
 
 // index layers //
-var a_bioIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/20"; //Bio Index Mean
-var a_hydIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/21"; //Hyd Index Mean
-var a_geoIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/22"; //Geo Index Mean
-var a_conIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/23"; //Con Index Mean
-var a_wQIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/24"; //WQ index Mean
-var a_combIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/25"; //combined index mean
+var a_bioIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/15"; //20Bio Index Mean
+var a_hydIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/16"; //21Hyd Index Mean
+var a_geoIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/17"; //22Geo Index Mean
+var a_conIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/18"; //23Con Index Mean
+var a_wQIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/19"; //24WQ index Mean
+var a_combIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/20"; //25combined index mean
 
 // Misc. layers
 
-var a_natPlnt = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/26"; //DNR native plant communities
-var a_mBSbio = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/33"; //MBS sites of biodiversity significance 
-var a_cONUS = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/12"; //NWI CONUS_wet_poly
-var a_dNRCatch = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/13"; // DNR catchments 
-var a_bedrockPoll = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/17"; // bedrock surface pollution sensitivity
-var a_nitrCnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/34"; //Nitrate rates by county
-var a_nitrTwn = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/35"; //Nitrate rates by township
+var a_natPlnt = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/21"; //26DNR native plant communities
+var a_mBSbio = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/28"; //MBS sites of biodiversity significance 
+var a_cONUS = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/7"; //12NWI CONUS_wet_poly
+var a_dNRCatch = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/9"; //13 DNR catchments 
+var a_bedrockPoll = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/12"; // 17bedrock surface pollution sensitivity
+var a_nitrCnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/29"; //Nitrate rates by county
+var a_nitrTwn = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/30"; //Nitrate rates by township
+var a_easemnts = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/6" // 11 Boundary rin con easements? 
+
 
 /// *** RASTER LAYERS ***////
 
@@ -207,15 +209,23 @@ var gAP_DNR = L.esri.featureLayer({
 });
 var gAP_State = L.esri.featureLayer({
     url: a_gAP_State,
+    style: styleGAP_State,
 });
 var gAP_Cnty = L.esri.featureLayer({
     url: a_gAP_Cnty,
+    style: styleGAP_Cnty,
 });
 var gAP_Fed = L.esri.featureLayer({
     url: a_gAP_Fed,
+    style: styleGAP_Fed,
 });
 var natPra = L.esri.featureLayer({
     url: a_natPra,
+    style: function () {
+        return {
+            color: "#735100",
+        };
+    }
 });
 
 
@@ -223,21 +233,27 @@ var natPra = L.esri.featureLayer({
 
 var bioIndex = L.esri.featureLayer({
     url: a_bioIndex,
+    style: styleBioIndex,
 });
 var hydIndex = L.esri.featureLayer({
     url: a_hydIndex,
+    style: styleHydIndex,
 });
 var geoIndex = L.esri.featureLayer({
     url: a_geoIndex,
+    style: styleGeoIndex,
 });
 var conIndex = L.esri.featureLayer({
     url: a_conIndex,
+    style: styleConIndex,
 });
 var wQIndex = L.esri.featureLayer({
     url: a_wQIndex,
+    style: styleWQIndex,
 });
 var combIndex = L.esri.featureLayer({
     url: a_combIndex,
+    style: styleCombIndex,
 });
 
 
@@ -363,7 +379,214 @@ function styleGAP_DNR(feature) {
     };
 }
 
+function styleGAP_State(feature) {
+    type = feature.properties.AGENCY_NAM;
+    var colorToUse;
+    if (type === "Department of Agriculture") colorToUse = '#ffd37f';
+    else if (type === "Department of Corrections") colorToUse = '#e8beff';
+    else if (type === "Department of Military Affairs") colorToUse = '#ff00c3';
+    else if (type === "Department of Transportation") colorToUse = '#898944';
+    else if (type === "State (Undifferentiated)") colorToUse = '#897044';
+    else colorToUse = "transparent";
 
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleGAP_Cnty(feature) {
+    type = feature.properties.AGENCY_NAM;
+    var colorToUse;
+    if (type === "County") colorToUse = '#ffffbe';
+    else if (type === "County Admin/State Forest") colorToUse = '#ffff73';
+    else if (type === "County Admin/State Owned") colorToUse = '#d7d79e';
+    else if (type === "County Admin/State Park") colorToUse = '#cdcd66';
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleGAP_Fed(feature) {
+    type = feature.properties.AGENCY_NAM;
+    var colorToUse;
+    if (type === "U.S. Army Corps of Engineers") colorToUse = '#bee8ff';
+    else if (type === "U.S. Department of Agriculture") colorToUse = '#73deff';
+    else if (type === "U.S. Forest Service") colorToUse = '#00c3ff';
+    else if (type === "U.S. Fish and Wildlife Service") colorToUse = '#73b2ff';
+    else if (type === "U.S. Park Service") colorToUse = '#005ce6';
+    else if (type === "Bureau of Indian Affairs") colorToUse = '#004da8';
+    else if (type === "Bureau of Land Management") colorToUse = '#446589';
+    else if (type === "Farmers Home Administration") colorToUse = '#002673';
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleBioIndex(feature) {
+    type = feature.properties.B_I_MEAN;
+    var colorToUse;
+    if (type >= 0 && type <= 10) colorToUse = '#e60000';
+    else if (type > 10 && type <= 20) colorToUse = '#ff3700';
+    else if (type > 20 && type <= 30) colorToUse = '#ff7300';
+    else if (type > 30 && type <= 40) colorToUse = '#ffaa00';
+    else if (type > 40 && type <= 50) colorToUse = '#ffe100';
+    else if (type > 50 && type <= 60) colorToUse = '#e5f500';
+    else if (type > 60 && type <= 70) colorToUse = '#afe000';
+    else if (type > 70 && type <= 80) colorToUse = '#83cf00';
+    else if (type > 80 && type <= 90) colorToUse = '#5aba00';
+    else if (type > 90 && type <= 100) colorToUse = '#308f00';
+
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleHydIndex(feature) {
+    type = feature.properties.H_I_MEAN;
+    var colorToUse;
+    if (type >= 0 && type <= 10) colorToUse = '#e60000';
+    else if (type > 10 && type <= 20) colorToUse = '#ff3700';
+    else if (type > 20 && type <= 30) colorToUse = '#ff7300';
+    else if (type > 30 && type <= 40) colorToUse = '#ffaa00';
+    else if (type > 40 && type <= 50) colorToUse = '#ffe100';
+    else if (type > 50 && type <= 60) colorToUse = '#e5f500';
+    else if (type > 60 && type <= 70) colorToUse = '#afe000';
+    else if (type > 70 && type <= 80) colorToUse = '#83cf00';
+    else if (type > 80 && type <= 90) colorToUse = '#5aba00';
+    else if (type > 90 && type <= 100) colorToUse = '#308f00';
+
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleGeoIndex(feature) {
+    type = feature.properties.G_I_MEAN;
+    var colorToUse;
+    if (type >= 0 && type <= 10) colorToUse = '#e60000';
+    else if (type > 10 && type <= 20) colorToUse = '#ff3700';
+    else if (type > 20 && type <= 30) colorToUse = '#ff7300';
+    else if (type > 30 && type <= 40) colorToUse = '#ffaa00';
+    else if (type > 40 && type <= 50) colorToUse = '#ffe100';
+    else if (type > 50 && type <= 60) colorToUse = '#e5f500';
+    else if (type > 60 && type <= 70) colorToUse = '#afe000';
+    else if (type > 70 && type <= 80) colorToUse = '#83cf00';
+    else if (type > 80 && type <= 90) colorToUse = '#5aba00';
+    else if (type > 90 && type <= 100) colorToUse = '#308f00';
+
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleConIndex(feature) {
+    type = feature.properties.C_I_MEAN;
+    var colorToUse;
+    if (type >= 0 && type <= 10) colorToUse = '#e60000';
+    else if (type > 10 && type <= 20) colorToUse = '#ff3700';
+    else if (type > 20 && type <= 30) colorToUse = '#ff7300';
+    else if (type > 30 && type <= 40) colorToUse = '#ffaa00';
+    else if (type > 40 && type <= 50) colorToUse = '#ffe100';
+    else if (type > 50 && type <= 60) colorToUse = '#e5f500';
+    else if (type > 60 && type <= 70) colorToUse = '#afe000';
+    else if (type > 70 && type <= 80) colorToUse = '#83cf00';
+    else if (type > 80 && type <= 90) colorToUse = '#5aba00';
+    else if (type > 90 && type <= 100) colorToUse = '#308f00';
+
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleWQIndex(feature) {
+    type = feature.properties.W_I_MEAN;
+    var colorToUse;
+    if (type >= 0 && type <= 10) colorToUse = '#e60000';
+    else if (type > 10 && type <= 20) colorToUse = '#ff3700';
+    else if (type > 20 && type <= 30) colorToUse = '#ff7300';
+    else if (type > 30 && type <= 40) colorToUse = '#ffaa00';
+    else if (type > 40 && type <= 50) colorToUse = '#ffe100';
+    else if (type > 50 && type <= 60) colorToUse = '#e5f500';
+    else if (type > 60 && type <= 70) colorToUse = '#afe000';
+    else if (type > 70 && type <= 80) colorToUse = '#83cf00';
+    else if (type > 80 && type <= 90) colorToUse = '#5aba00';
+    else if (type > 90 && type <= 100) colorToUse = '#308f00';
+
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleCombIndex(feature) {
+    type = feature.properties.A_I_MEAN;
+    var colorToUse;
+    if (type >= 0 && type <= 10) colorToUse = '#e60000';
+    else if (type > 10 && type <= 20) colorToUse = '#ff3700';
+    else if (type > 20 && type <= 30) colorToUse = '#ff7300';
+    else if (type > 30 && type <= 40) colorToUse = '#ffaa00';
+    else if (type > 40 && type <= 50) colorToUse = '#ffe100';
+    else if (type > 50 && type <= 60) colorToUse = '#e5f500';
+    else if (type > 60 && type <= 70) colorToUse = '#afe000';
+    else if (type > 70 && type <= 80) colorToUse = '#83cf00';
+    else if (type > 80 && type <= 90) colorToUse = '#5aba00';
+    else if (type > 90 && type <= 100) colorToUse = '#308f00';
+
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
 
 ////*** Functions to change Opacity on Layers ****\\\\\
 
