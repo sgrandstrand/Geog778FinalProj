@@ -24,12 +24,6 @@ L.control.zoom({
     position: 'bottomright'
 }).addTo(map);
 
-// LEAFLET EASY PRINT
-//L.easyPrint({
-//    title: 'Print Map',
-//    position: 'bottomright',
-//    sizeModes: ['A4Portrait', 'A4Landscape']
-//}).addTo(map);
 
 // Leaflet Browser Print
 
@@ -50,14 +44,9 @@ L.control.browserPrint({
 
 var a_hwkCreekBndry = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/2"; // Hawk Creek Boundary 
 var a_cnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/1"; // county layer
-var a_huc2 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/3"; // USGS HUC 2
-var a_huc4 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/4"; //USGS HUC 4
-var a_huc6 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/5"; //USGS HUC 6
 var a_huc8 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/6"; //USGS HUC 8
 var a_huc10 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/7"; //USGS HUC 10
 var a_huc12 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/8"; //USGS HUC 12
-var a_huc14 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/9"; //USGS HUC 14
-var a_huc16 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/10"; //USGS HUC 16
 
 var a_fEMAflood = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/18"; // 100 year flood plain from FEMA
 var a_imptStrm = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/31"; //Impaired streams
@@ -101,6 +90,7 @@ var a_nitrTwn = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/servic
 // Get ESRI WFS as GeoJSON and Add to Map
 
 /////*** BOUNDARY LAYERS ****\\\\
+
 var hawkcreekbndry = L.esri.featureLayer({
     url: a_hwkCreekBndry,
     style: function () {
@@ -120,57 +110,89 @@ var cnty = L.esri.featureLayer({
     }
 })
 
-var huc2 = L.esri.featureLayer({
-    url: a_huc2,
-});
 
-var huc4 = L.esri.featureLayer({
-    url: a_huc4,
-});
-var huc6 = L.esri.featureLayer({
-    url: a_huc6,
-});
 var huc8 = L.esri.featureLayer({
     url: a_huc8,
+    style: function () {
+        return {
+            color: "#a6cee3",
+            weight: 2
+        };
+    }
 });
 var huc10 = L.esri.featureLayer({
     url: a_huc10,
+    style: function () {
+        return {
+            color: "#fb9a99",
+            weight: 2
+        };
+    }
 });
 var huc12 = L.esri.featureLayer({
     url: a_huc12,
+    style: function () {
+        return {
+            color: "#fdbf6f",
+            weight: 2
+        };
+    }
 });
-var huc14 = L.esri.featureLayer({
-    url: a_huc14,
-});
-var huc16 = L.esri.featureLayer({
-    url: a_huc16,
-});
-
 
 
 ////// *** hydrography layers *** /////
 
 var fEMAflood = L.esri.featureLayer({
     url: a_fEMAflood,
+    where: "FLD_ZONE = 'A' OR FLD_ZONE = 'AE' OR FLD_ZONE = 'AH' OR FLD_ZONE = 'AD'",
+    style: function () {
+        return {
+            color: "#ffff00",
+            weight: 2
+        };
+    }
 });
 
 var imptStrm = L.esri.featureLayer({
     url: a_imptStrm,
+    style: function () {
+        return {
+            color: "#8c0007",
+        };
+    }
 });
 var impLks = L.esri.featureLayer({
     url: a_impLks,
+    style: function () {
+        return {
+            color: "#002366",
+        };
+    }
 });
 var altwtr = L.esri.featureLayer({
     url: a_altwtr,
+    where: "AWEvtType = 1 OR AWEvtType = 2 OR AWEvtType = 3 OR AWEvtType = 4",
+    style: styleAltWtr,
 });
 var phos = L.esri.featureLayer({
     url: a_phos,
+    style: stylePhos,
 });
 var trout = L.esri.featureLayer({
     url: a_trout,
+    style: function () {
+        return {
+            color: "#f781bf",
+        };
+    }
 });
 var wellhead = L.esri.featureLayer({
     url: a_wellhead,
+    style: function () {
+        return {
+            color: "#a65628",
+        };
+    }
 });
 var wtrVul = L.esri.featureLayer({
     url: a_wtrVul,
@@ -181,6 +203,7 @@ var wtrVul = L.esri.featureLayer({
 
 var gAP_DNR = L.esri.featureLayer({
     url: a_gAP_DNR,
+    style: styleGAP_DNR,
 });
 var gAP_State = L.esri.featureLayer({
     url: a_gAP_State,
@@ -270,7 +293,66 @@ function styleWtrVul(feature) {
     else if (level === "Moderate") colorToUse = '#ffffbe';
     else if (level === "Low") colorToUse = '#d3ffbe';
     else if (level === "Very Low") colorToUse = '#bed2ff';
-    else colorToUse - "transparent";
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleAltWtr(feature) {
+    type = feature.properties.AWEvtType;
+    var colorToUse;
+    if (type === 1) colorToUse = '#f5605d';
+    else if (type === 2) colorToUse = '#38a800';
+    else if (level === 3) colorToUse = '#c300ff';
+    else if (level === 4) colorToUse = '#9c9c9c';
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 1,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function stylePhos(feature) {
+    type = feature.properties.LPSS_CLASS;
+    var colorToUse;
+    if (type === "Highest") colorToUse = '#002673';
+    else if (type === "Higher") colorToUse = '#005ce6';
+    else if (level === "High") colorToUse = '#a1ceff';
+    else if (level === "Impaired") colorToUse = '#9c9c9c';
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleGAP_DNR(feature) {
+    type = feature.properties.AGENCY_NAM;
+    var colorToUse;
+    if (type === "Division of Ecological Services") colorToUse = '#d3ffbe';
+    else if (type === "Division of Enforcement") colorToUse = '#b4d79e';
+    else if (type === "Division of Fish and Wildlife") colorToUse = '#a5f57a';
+    else if (type === "Division of Forestry") colorToUse = '#88cd66';
+    else if (type === "Division of Lands and Minerals") colorToUse = '#abcd66';
+    else if (type === "Division of Parks and Recreation") colorToUse = '#66cdab';
+    else if (type === "Division of Trails and Waterways") colorToUse = '#448970';
+    else if (type === "Division of Waters") colorToUse = '#5c8944';
+    else if (type === "Minnesota DNR (Undifferentiated)") colorToUse = '#267300';
+    else colorToUse = "transparent";
 
     return {
         "color": colorToUse,
@@ -282,13 +364,20 @@ function styleWtrVul(feature) {
 }
 
 
+
 ////*** Functions to change Opacity on Layers ****\\\\\
 
 
 function updateOpacity(val, layer) {
     layer.setStyle({
+        //        opacity: val,
+        fillOpacity: val,
+    });
+}
+
+function updateOpacityBound(val, layer) {
+    layer.setStyle({
         opacity: val,
-        fillOpacity: val
     });
 }
 
