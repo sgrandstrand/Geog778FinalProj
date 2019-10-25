@@ -18,13 +18,12 @@ var imagery = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/
     id: 'mapbox.satellite',
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
 });
-//                       mapbox://styles/mapbox/dark-v10
-//                       mapbox://styles/mapbox/satellite-v9
+
 
 var mapOptions = {
     zoomControl: false,
-    center: [45.90, -92],
-    zoom: 6,
+    center: [46.35, -93.5],
+    zoom: 6.25,
     minZoom: 3,
     maxZoom: 18,
     layers: [light]
@@ -64,16 +63,65 @@ L.control.browserPrint({
     position: 'topright'
 }).addTo(map);
 
-//map.on("browser-print-start", function (e) {
-//    L.control.scale({
-//        position: 'bottomright',
-//        metric: false,
-//        maxWidth: 200
-//    }).addTo(e.printMap);
-//    L.control.
-//});
+var legend = L.control({
+    position: 'bottomright'
+});
 
+map.on("browser-print-start", function (e) {
+    L.control.scale({
+        position: 'bottomright',
+        metric: false,
+        maxWidth: 200
+    }).addTo(e.printMap);
+    L.latlngGraticule({
+        showLabel: true,
+        dashArray: [5, 5],
+        zoomInterval: [
+            {
+                start: 3,
+                end: 3,
+                interval: 30
+            },
+            {
+                start: 4,
+                end: 5,
+                interval: 20
+            },
+            {
+                start: 5,
+                end: 7,
+                interval: 10
+                },
+            {
+                start: 7,
+                end: 9,
+                interval: 1
+                },
+            {
+                start: 9,
+                end: 11.25,
+                interval: .5
+                },
+            {
+                start: 11.25,
+                end: 14,
+                interval: .1
+                },
 
+            {
+                start: 14,
+                end: 15,
+                interval: .05
+        },
+            {
+                start: 15,
+                end: 18,
+                interval: .005
+        }
+                            ]
+    }).addTo(e.printMap);
+
+});
 
 
 //// URL's for Layers ////
@@ -118,7 +166,7 @@ var a_bedrockPoll = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/se
 var a_nitrCnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/29"; //Nitrate rates by county
 var a_nitrTwn = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/30"; //Nitrate rates by township
 var a_easemnts = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/6" // 11 Boundary rin con easements? 
-var a_gSSURGO = "" // WHAT IS THIS? 
+var a_gSSURGO = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/33" // WHAT IS THIS? 
 
 /// *** RASTER LAYERS ***////
 
@@ -325,26 +373,28 @@ var natPlnt = L.esri.featureLayer({
 
 var mBSbio = L.esri.featureLayer({
     url: a_mBSbio,
+    style: styleMBSBio,
 });
 var cONUS = L.esri.featureLayer({
     url: a_cONUS,
+    style: styleCONUS,
 });
 var dNRCatch = L.esri.featureLayer({
     url: a_dNRCatch,
+    style: styleDNRCatch,
 });
 var bedrockPoll = L.esri.featureLayer({
     url: a_bedrockPoll,
-    style: function () {
-        return {
-            color: "#bf324c",
-        };
-    }
+    style: styleBedrockPoll,
+
 });
 var nitrCnty = L.esri.featureLayer({
     url: a_nitrCnty,
+    style: styleNitrCnty,
 });
 var nitrTwn = L.esri.featureLayer({
     url: a_nitrTwn,
+    style: styleNitrTwn,
 });
 var easemnts = L.esri.featureLayer({
     url: a_easemnts,
@@ -357,6 +407,10 @@ var easemnts = L.esri.featureLayer({
 
 var gSSURGO = L.esri.featureLayer({
     url: a_gSSURGO,
+    style: styleGSSURGO,
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><b> Hydrological Group: </b>' + feature.properties.muaggatt_h + '</p>');
+    },
 });
 
 
@@ -366,14 +420,12 @@ var gSSURGO = L.esri.featureLayer({
 //    url: a_soil,
 //});
 
-//map.createPane("boundaryPane").style.zIndex = 250;
-//map.createPane("countyPane").style.zIndex = 260;
-//map.createPane("wqindexPane").style.zIndex = 270;
-//map.createPane("hydrindexPane").style.zIndex = 280;
-////map.createPane("hu6Pane").style.zIndex = 290;
-//map.createPane("hu8Pane").style.zIndex = 300;
-//map.createPane("markerPane").style.zIndex = 450;
-//map.createPane("popupPane").style.zIndex = 700;
+
+//get unique values method
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
+
 
 /// STYLE FUNCTIONS
 
@@ -402,8 +454,8 @@ function styleAltWtr(feature) {
     var colorToUse;
     if (type === 1) colorToUse = '#f5605d';
     else if (type === 2) colorToUse = '#38a800';
-    else if (level === 3) colorToUse = '#c300ff';
-    else if (level === 4) colorToUse = '#9c9c9c';
+    else if (type === 3) colorToUse = '#c300ff';
+    else if (type === 4) colorToUse = '#9c9c9c';
     else colorToUse = "transparent";
 
     return {
@@ -420,8 +472,8 @@ function stylePhos(feature) {
     var colorToUse;
     if (type === "Highest") colorToUse = '#002673';
     else if (type === "Higher") colorToUse = '#005ce6';
-    else if (level === "High") colorToUse = '#a1ceff';
-    else if (level === "Impaired") colorToUse = '#9c9c9c';
+    else if (type === "High") colorToUse = '#a1ceff';
+    else if (type === "Impaired") colorToUse = '#9c9c9c';
     else colorToUse = "transparent";
 
     return {
@@ -669,8 +721,8 @@ function styleDNRCatch(feature) {
     var colorToUse;
     if (type === "VIGILANCE") colorToUse = '#002673';
     else if (type === "NEEDS PROTECTION") colorToUse = '#005ce6';
-    else if (level === "FULL RESTORATION") colorToUse = '#a1ceff';
-    else if (level === "PARTIAL RESTORATION") colorToUse = '#9c9c9c';
+    else if (type === "FULL RESTORATION") colorToUse = '#a1ceff';
+    else if (type === "PARTIAL RESTORATION") colorToUse = '#9c9c9c';
     else colorToUse = "transparent";
     return {
         "color": colorToUse,
@@ -680,12 +732,147 @@ function styleDNRCatch(feature) {
         "fillOpacity": 0.8
     };
 }
+
+function styleBedrockPoll(feature) {
+    type = feature.properties.RATING;
+    var colorToUse;
+    if (type === "VH") colorToUse = '#f26f52';
+    else if (type === "H") colorToUse = '#ffcd4e';
+    else if (type === "M") colorToUse = '#fff34f';
+    else if (type === "L") colorToUse = '#d4e9ca';
+    else if (type === "VL") colorToUse = '#81c99d';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+
+
+
+function styleMBSBio(feature) {
+    type = feature.properties.biodiv_sig;
+    var colorToUse;
+    if (type === "Outstanding") colorToUse = '#00cd00';
+    else if (type === "High") colorToUse = '#267300';
+    else if (type === "Moderate") colorToUse = '#d3ffbe';
+    else if (type === "Below") colorToUse = '#b2b2b2';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleCONUS(feature) {
+    type = feature.properties.WETLAND_TY;
+    var colorToUse;
+    if (type === "Freshwater Emergent Wetland") colorToUse = '#2884ed';
+    else if (type === "Freshwater Forested/Shrub Wetland") colorToUse = '#1b6e45';
+    else if (type === "Freshwater Pond") colorToUse = '#9ebbd7';
+    else if (type === "Lake") colorToUse = '#446589';
+    else if (type === "Riverine") colorToUse = '#ff00c3';
+    else if (type === "Other") colorToUse = '#88cd66';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+
+function styleNitrCnty(feature) {
+    type = feature.properties.Percent_of;
+    var colorToUse;
+    if (type <= 5) colorToUse = '#38a800';
+    else if (type > 5 && type <= 10) colorToUse = '#ffff00';
+    else if (type > 10) colorToUse = '#ff0000';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleNitrTwn(feature) {
+    type = feature.properties.InitNRange;
+    var colorToUse;
+    if (type === "<5%") colorToUse = '#38a800';
+    else if (type === "5<10%") colorToUse = '#ffff00';
+    else if (type === "≥10%") colorToUse = '#ff0000';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
+
+
+function styleGSSURGO(feature) {
+    type = feature.properties.muaggatt_h;
+    //    var attributes = {
+    //        'A': '#aaff00',
+    //        'A/D': '#9f57f7',
+    //        'B': '#4ecdd9',
+    //        'C': '#f5e56c',
+    //        'C/D': '#f0599d',
+    //        'D': '#4d7300'
+    //    };
+    //    console.log(attributes)
+    //    console.log(attributes.length);
+    //    var title = "Hydrologic Group - Dominant Conditions"
+    var colorToUse;
+    if (type === "A") colorToUse = '#aaff00';
+    else if (type === "A/D") colorToUse = '#9f57f7';
+    else if (type === "B") colorToUse = '#4ecdd9';
+    else if (type === "B/D") colorToUse = '#38538a';
+    else if (type === "C") colorToUse = '#f5e56c';
+    else if (type === "C/D") colorToUse = '#f0599d';
+    else if (type === "D") colorToUse = '#4d7300';
+    else colorToUse = "#9c9c9c";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+    //    var attributes = {
+    //        'A': '#aaff00',
+    //        'A/D': '#9f57f7',
+    //        'B': '#4ecdd9',
+    //        'C': '#f5e56c',
+    //        'C/D': '#f0599d',
+    //        'D': '#4d7300'
+    //    };
+    //    console.log(attributes.length);
+    //    var title = "Hydrologic Group - Dominant Conditions"
+    //    createlegend(attributes, title);
+
+}
+
+///// **** END OF STYLE FUNCTIONS *** \\\\\
+
+
+
 ////*** Functions to change Opacity on Layers ****\\\\\
 
 
 function updateOpacity(val, layer) {
     layer.setStyle({
-        //        opacity: val,
         fillOpacity: val,
     });
 }
@@ -699,6 +886,31 @@ function updateOpacityBound(val, layer) {
 
 
 // Legend Controls 
+
+//function createLegend(attributes, title) {
+//    $("div.info.legend.leaflet-control").remove();
+//    //Container
+//    var div = L.DomUtil.create('div', 'info legend');
+//    //Make control
+//    var LegendControl = L.Control.extend({
+//        options: {
+//            position: 'bottomright'
+//        },
+//        onAdd: function () {
+//            var labels = ['<strong>' + title + '</strong>']
+//
+//            attributes.forEach((k, v) => div.innerHTML += labels.push('<i class="circle" style="background:' + $ {
+//                v
+//            } + '"></i> ' + $ {
+//                k
+//            }));
+//            div.innerHTML = labels.join('<br>');
+//            return div;
+//        }
+//    });
+//    map.addControl(new LegendControl());
+//}
+
 
 
 
@@ -725,10 +937,78 @@ $(document).ready(function () {
         });
     });
 
-    /// CHANGE opacity of layer
+
+
+
+    //    legend.onAdd = function (map) {
+    //
+    //        var div = L.DomUtil.create('div', 'info legend'),
+    //            grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+    //            labels = [],
+    //            from, to;
+    //
+    //        // loop through our density intervals and generate a label with a colored square for each interval
+    //        for (var i = 0; i < grades.length; i++) {
+    //            from = grades[i];
+    //            to = grades[i + 1];
+    //
+    //            labels.push(
+    //                '<i style="background:' + getColor(from + 1) + '"></i> ' +
+    //                from + (to ? '&ndash;' + to : '+'));
+    //        }
+    //
+    //
+    //        div.innerHTML = labels.join('<br>');
+    //        return div;
+    //    };
+    //
+    //    legend.addTo(map);
+
+
+
 
 
 });
+
+
+
+
+// this still gave undefined  
+//    layer.on("load", function (e)) {
+//        var lookup = {};
+//        var items = cONUS.properties.WETLAND_TY;
+//        var result = [];
+//
+//        for (var item, i = 0; item = items[i++];) {
+//            var name = item.name;
+//
+//            if (!(name in lookup)) {
+//                lookup[name] = 1;
+//                result.push(name);
+//            }
+//        }
+//        console.log(result);
+//    }
+
+
+
+//Iterate through features, but features can't do that until they are loaded. weird quality with esri leaflet
+//    .on('load')
+//        var lookup = {};
+//    var items = feature.properties.WETLAND_TY;
+//    var result = [];
+//
+//    for (var item, i = 0; item = items[i++];) {
+//        var name = item.name;
+//
+//        if (!(name in lookup)) {
+//            lookup[name] = 1;
+//            result.push(name);
+//        }
+//    }
+//    console.log(result);
+
+
 // to call what is loaded on load of page
 //        $(document).ready(function () {
 //            getData();

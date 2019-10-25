@@ -71,6 +71,23 @@ body {
     overflow-y: auto;
 }
 
+
+/* custom legend. didn't look great. if have time try again*/
+span.legendbutton {
+    background: url('legend2.svg') no-repeat;
+    background-size: contain;
+    background-color: white;
+    cursor: pointer;
+    display: inline-block;
+    border: none;
+    height: 15px;
+    width: 15px;
+}
+
+p {
+    margin-bottom: 0;
+}
+
 /*
 #mapid {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -138,11 +155,19 @@ body {
 }
 
 .sidebar-header {
+    display: block;
     background: #A5A16D;
     font-size: 1.7em;
+    text-align: center;
 
     /*    background-image: linear-gradient(to bottom, #3498db, #2980b9);*/
 }
+
+/*
+.sidebar-close {
+    float: right;
+}
+*/
 
 .title {
     display: none;
@@ -150,6 +175,7 @@ body {
 
 .sub-content {
     display: none;
+
 }
 
 .slider {
