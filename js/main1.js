@@ -36,9 +36,13 @@ L.control.scale({
     position: 'bottomright'
 }).addTo(map);
 
-L.control.zoom({
+//L.control.zoom({
+//    position: 'bottomright'
+//}).addTo(map);
+var zoomHome = L.Control.zoomHome({
     position: 'bottomright'
-}).addTo(map);
+});
+zoomHome.addTo(map);
 
 
 var baseMaps = {
@@ -163,14 +167,33 @@ var a_mBSbio = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/service
 var a_cONUS = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/7"; //12NWI CONUS_wet_poly
 var a_dNRCatch = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/9"; //13 DNR catchments 
 var a_bedrockPoll = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/12"; // 17bedrock surface pollution sensitivity
-var a_nitrCnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/29"; //Nitrate rates by county
 var a_nitrTwn = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/30"; //Nitrate rates by township
 var a_easemnts = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/6" // 11 Boundary rin con easements? 
 var a_gSSURGO = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/33" // WHAT IS THIS? 
 
+var a_buffwetlnds = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/5" //Buffer Protection of Lakes, reservoirs, and wetlands
+
+var a_buffwtrcrse = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/34" //Buffer Protection of watercourse
+
+var a_rWI = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/35" //Restorable Wetland Inventory
+
+var a_mask = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/36" //mask of state for printing purposes
+
+
 /// *** RASTER LAYERS ***////
 
-// var a_soil = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekRast/MapServer/0"
+var a_nLCD = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/services/NCLD_HawkCreek/MapServer"
+// national land cover data 2016
+
+var a_wildLife = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/services/WildlifeQual_HawkCreek/MapServer" // Wildlife Habitat Quality Risk
+
+var a_pollsens = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/services/PollutionSens_HawkCreek/MapServer" //Pollution Sensitivity of Near-Surface Materials
+
+var a_waterQual = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/services/WQ_HawkCreek/MapServer" //Water Quality Risk
+
+var a_soil = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/services/SoilRisk_HawkCreek/MapServer" //Soil Erosion Risk
+
+var a_envBen = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/services/EnvBen_HawkCreek/MapServer" //Environmental Risk Index
 
 
 // Get ESRI WFS as GeoJSON and Add to Map
@@ -299,19 +322,43 @@ var wtrVul = L.esri.featureLayer({
 
 var gAP_DNR = L.esri.featureLayer({
     url: a_gAP_DNR,
-    style: styleGAP_DNR,
+    style: function () {
+        return {
+            "color": '#88cd66',
+            "fillColor": '#88cd66',
+            "weight": 2,
+        };
+    }
 });
 var gAP_State = L.esri.featureLayer({
     url: a_gAP_State,
-    style: styleGAP_State,
+    style: function () {
+        return {
+            "color": '#e8beff',
+            "fillColor": '#e8beff',
+            "weight": 2,
+        };
+    }
 });
 var gAP_Cnty = L.esri.featureLayer({
     url: a_gAP_Cnty,
-    style: styleGAP_Cnty,
+    style: function () {
+        return {
+            "color": '#ffff73',
+            "fillColor": '#ffff73',
+            "weight": 2,
+        };
+    }
 });
 var gAP_Fed = L.esri.featureLayer({
     url: a_gAP_Fed,
-    style: styleGAP_Fed,
+    style: function () {
+        return {
+            "color": '#bee8ff',
+            "fillColor": '#bee8ff',
+            "weight": 2,
+        };
+    }
 });
 var natPra = L.esri.featureLayer({
     url: a_natPra,
@@ -377,6 +424,7 @@ var mBSbio = L.esri.featureLayer({
 });
 var cONUS = L.esri.featureLayer({
     url: a_cONUS,
+    where: "WETLAND_TY = 'Freshwater Emergent Wetland' OR WETLAND_TY = 'Freshwater Forested/Shrub Wetland'",
     style: styleCONUS,
 });
 var dNRCatch = L.esri.featureLayer({
@@ -387,10 +435,6 @@ var bedrockPoll = L.esri.featureLayer({
     url: a_bedrockPoll,
     style: styleBedrockPoll,
 
-});
-var nitrCnty = L.esri.featureLayer({
-    url: a_nitrCnty,
-    style: styleNitrCnty,
 });
 var nitrTwn = L.esri.featureLayer({
     url: a_nitrTwn,
@@ -414,11 +458,65 @@ var gSSURGO = L.esri.featureLayer({
 });
 
 
-//*** RASTER LAYERS ***///
+var buffwetlnds = L.esri.featureLayer({
+    url: a_buffwetlnds,
+    style: function () {
+        return {
+            color: "#",
+        };
+    }
+});
 
-//var soil = L.esri.tiledMapLayer({
-//    url: a_soil,
-//});
+var buffwtrcrse = L.esri.featureLayer({
+    url: a_buffwtrcrse,
+    style: function () {
+        return {
+            color: "#",
+        };
+    }
+});
+
+var rWI = L.esri.featureLayer({
+    url: a_rWI,
+    style: function () {
+        return {
+            color: "#",
+        };
+    }
+});
+
+var mask = L.esri.featureLayer({
+    url: a_mask,
+    style: function () {
+        return {
+            color: "#",
+        };
+    }
+});
+
+/// *** RASTER LAYERS ***////
+
+var nLCD = L.esri.tiledMapLayer({
+    url: a_nLCD,
+});
+
+var wildLife = L.esri.tiledMapLayer({
+    url: a_wildLife,
+});
+var pollsens = L.esri.tiledMapLayer({
+    url: a_pollsens,
+});
+var waterQual = L.esri.tiledMapLayer({
+    url: a_waterQual,
+});
+
+var soil = L.esri.tiledMapLayer({
+    url: a_soil,
+});
+
+var envBen = L.esri.tiledMapLayer({
+    url: a_envBen,
+});
 
 
 //get unique values method
@@ -485,87 +583,6 @@ function stylePhos(feature) {
     };
 }
 
-function styleGAP_DNR(feature) {
-    type = feature.properties.AGENCY_NAM;
-    var colorToUse;
-    if (type === "Division of Ecological Services") colorToUse = '#d3ffbe';
-    else if (type === "Division of Enforcement") colorToUse = '#b4d79e';
-    else if (type === "Division of Fish and Wildlife") colorToUse = '#a5f57a';
-    else if (type === "Division of Forestry") colorToUse = '#88cd66';
-    else if (type === "Division of Lands and Minerals") colorToUse = '#abcd66';
-    else if (type === "Division of Parks and Recreation") colorToUse = '#66cdab';
-    else if (type === "Division of Trails and Waterways") colorToUse = '#448970';
-    else if (type === "Division of Waters") colorToUse = '#5c8944';
-    else if (type === "Minnesota DNR (Undifferentiated)") colorToUse = '#267300';
-    else colorToUse = "transparent";
-
-    return {
-        "color": colorToUse,
-        "fillColor": colorToUse,
-        "weight": 2,
-        //        "opacity": ,
-        "fillOpacity": 0.8
-    };
-}
-
-function styleGAP_State(feature) {
-    type = feature.properties.AGENCY_NAM;
-    var colorToUse;
-    if (type === "Department of Agriculture") colorToUse = '#ffd37f';
-    else if (type === "Department of Corrections") colorToUse = '#e8beff';
-    else if (type === "Department of Military Affairs") colorToUse = '#ff00c3';
-    else if (type === "Department of Transportation") colorToUse = '#898944';
-    else if (type === "State (Undifferentiated)") colorToUse = '#897044';
-    else colorToUse = "transparent";
-
-    return {
-        "color": colorToUse,
-        "fillColor": colorToUse,
-        "weight": 2,
-        //        "opacity": ,
-        "fillOpacity": 0.8
-    };
-}
-
-function styleGAP_Cnty(feature) {
-    type = feature.properties.AGENCY_NAM;
-    var colorToUse;
-    if (type === "County") colorToUse = '#ffffbe';
-    else if (type === "County Admin/State Forest") colorToUse = '#ffff73';
-    else if (type === "County Admin/State Owned") colorToUse = '#d7d79e';
-    else if (type === "County Admin/State Park") colorToUse = '#cdcd66';
-    else colorToUse = "transparent";
-
-    return {
-        "color": colorToUse,
-        "fillColor": colorToUse,
-        "weight": 2,
-        //        "opacity": ,
-        "fillOpacity": 0.8
-    };
-}
-
-function styleGAP_Fed(feature) {
-    type = feature.properties.AGENCY_NAM;
-    var colorToUse;
-    if (type === "U.S. Army Corps of Engineers") colorToUse = '#bee8ff';
-    else if (type === "U.S. Department of Agriculture") colorToUse = '#73deff';
-    else if (type === "U.S. Forest Service") colorToUse = '#00c3ff';
-    else if (type === "U.S. Fish and Wildlife Service") colorToUse = '#73b2ff';
-    else if (type === "U.S. Park Service") colorToUse = '#005ce6';
-    else if (type === "Bureau of Indian Affairs") colorToUse = '#004da8';
-    else if (type === "Bureau of Land Management") colorToUse = '#446589';
-    else if (type === "Farmers Home Administration") colorToUse = '#002673';
-    else colorToUse = "transparent";
-
-    return {
-        "color": colorToUse,
-        "fillColor": colorToUse,
-        "weight": 2,
-        //        "opacity": ,
-        "fillOpacity": 0.8
-    };
-}
 
 function styleBioIndex(feature) {
     type = feature.properties.B_I_MEAN;
@@ -776,10 +793,6 @@ function styleCONUS(feature) {
     var colorToUse;
     if (type === "Freshwater Emergent Wetland") colorToUse = '#2884ed';
     else if (type === "Freshwater Forested/Shrub Wetland") colorToUse = '#1b6e45';
-    else if (type === "Freshwater Pond") colorToUse = '#9ebbd7';
-    else if (type === "Lake") colorToUse = '#446589';
-    else if (type === "Riverine") colorToUse = '#ff00c3';
-    else if (type === "Other") colorToUse = '#88cd66';
     else colorToUse = "transparent";
     return {
         "color": colorToUse,
@@ -883,6 +896,13 @@ function updateOpacityBound(val, layer) {
     });
 }
 
+function updateOpacityTile(val, layer) {
+    layer.setOpacity({
+        opacity: val,
+    });
+}
+
+
 
 
 // Legend Controls 
@@ -912,7 +932,22 @@ function updateOpacityBound(val, layer) {
 //}
 
 
+/// Zoom to Layer
+//function zoomToFeature(e) {
+//    map.fitBounds(e.getBounds());
+//}
 
+//var zoomtoWtershd = L.easyButton({
+//    icon: "<icon:'fas fa-crosshairs'>",
+//    position: 'topright',
+//    onClick: function (btn, map) {
+//        map.fitBounds(hawkcreekbndry.getBounds());
+//    }
+//});
+//zoomtoWtershd.addTo(map);
+//L.easyButton('fa-crosshairs fa-lg', function (btn, map) {
+//    map.fitBounds(hawkcreekbndry.getBounds());
+//}).addTo(map);
 
 
 $(document).ready(function () {
