@@ -282,6 +282,8 @@ var impLks = L.esri.featureLayer({
     style: function () {
         return {
             color: "#002366",
+            fillColor: "#002366",
+            fillOpacity: 0.8,
         };
     }
 });
@@ -447,6 +449,8 @@ var easemnts = L.esri.featureLayer({
     style: function () {
         return {
             color: "#f28f24",
+            fillColor: "#f28f24",
+            fillOpacity: 0.8,
         };
     }
 });
@@ -464,7 +468,9 @@ var buffwetlnds = L.esri.featureLayer({
     url: a_buffwetlnds,
     style: function () {
         return {
-            color: "#",
+            color: "#7e8be6",
+            "fillColor": '#7e8be6',
+            "weight": 2,
         };
     }
 });
@@ -473,7 +479,7 @@ var buffwtrcrse = L.esri.featureLayer({
     url: a_buffwtrcrse,
     style: function () {
         return {
-            color: "#",
+            color: "#674d6e",
         };
     }
 });
@@ -482,7 +488,7 @@ var rWI = L.esri.featureLayer({
     url: a_rWI,
     style: function () {
         return {
-            color: "#",
+            color: "#f5a37a",
         };
     }
 });
@@ -491,7 +497,7 @@ var mask = L.esri.featureLayer({
     url: a_mask,
     style: function () {
         return {
-            color: "#",
+            color: "black",
         };
     }
 });

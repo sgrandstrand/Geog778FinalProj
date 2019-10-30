@@ -468,6 +468,8 @@
                     <input type="checkbox" value="buffwetlnds"> Public Waters<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsebuffwetlnds" aria-expanded="false" aria-controls="collapsebuffwetlnds">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#buffwetlndsLegend" aria-expanded="false" aria-controls="buffwetlndsLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsebuffwetlnds">
                         <div class="card card-body">
@@ -477,23 +479,41 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, buffwetlnds)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="buffwetlndsLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#7e8be6; stroke-width:2; stroke:#7e8be6; fill-opacity:0.8" />
+                                </svg>Public Waters
+                            </p>
+                        </div>
+                    </div>
                     <br>
-                    <input type="checkbox" value="buffwetlnds"> Public Ditches<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsebuffwtrcrse" aria-expanded="false" aria-controls="collapsebuffwtrcrse">
+                    <input type="checkbox" value="buffwtrcrse"> Public Ditches<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsebuffwtrcrse" aria-expanded="false" aria-controls="collapsebuffwtrcrse">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#buffwtrcrseLegend" aria-expanded="false" aria-controls="buffwtrcrseLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsebuffwtrcrse">
                         <div class="card card-body">
-                            <p>Opacity Fill
+                            <p>Opacity
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, buffwtrcrse)"></p>
-                            <p>Opacity Boundary
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, buffwtrcrse)"></p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="buffwtrcrseLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="5" style="fill:#674d6e;" />
+                                </svg>Public Ditches
+                            </p>
                         </div>
                     </div>
                     <br>
                     <input type="checkbox" value="rWI"> Restorable Wetland Inventory<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapserWI" aria-expanded="false" aria-controls="collapserWI">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#rWILegend" aria-expanded="false" aria-controls="rWILegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapserWI">
                         <div class="card card-body">
@@ -503,6 +523,15 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, rWI)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="rWILegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#f5a37a; stroke-width:2; stroke:#f5a37a; fill-opacity:0.8" />
+                                </svg>Restorable Wetland Inventory
+                            </p>
+                        </div>
+                    </div>
+
                     <br>
 
                     <!--   Surface Water Quality -->
@@ -512,6 +541,8 @@
                     <input type="checkbox" value="imptStrm"> Impaired Streams<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseimptStrm" aria-expanded="false" aria-controls="collapseimptStrm">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#imptStrmLegend" aria-expanded="false" aria-controls="imptStrmLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapseimptStrm">
                         <div class="card card-body">
@@ -519,10 +550,20 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, imptStrm)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="imptStrmLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="5" style="fill:#8c0007;" />
+                                </svg>Impaired Streams
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="impLks"> Impaired Lakes<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseimpLks" aria-expanded="false" aria-controls="collapseimpLks">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#impLksLegend" aria-expanded="false" aria-controls="impLksLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapseimpLks">
                         <div class="card card-body">
@@ -532,12 +573,21 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, impLks)"></p>
                         </div>
                     </div>
-
+                    <div class="collapse" id="impLksLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#002366; stroke-width:2; stroke:#002366; fill-opacity:0.8" />
+                                </svg>Impaired Lakes
+                            </p>
+                        </div>
+                    </div>
 
                     <br>
                     <input type="checkbox" value="phos"> Lake Phosophorus Sensitivity Significance <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsephos" aria-expanded="false" aria-controls="collapsephos">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#phosLegend" aria-expanded="false" aria-controls="phosLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsephos">
                         <div class="card card-body">
@@ -545,6 +595,23 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, phos)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, phos)"></p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="phosLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#002673; stroke-width:2; stroke:#002673; fill-opacity:0.8" />
+                                </svg>Highest <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#005ce6; stroke-width:2; stroke:#005ce6; fill-opacity:0.8" />
+                                </svg>Higher <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#a1ceff; stroke-width:2; stroke:#a1ceff; fill-opacity:0.8" />
+                                </svg>High <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#9c9c9c;stroke-width:2; stroke:#9c9c9c; fill-opacity:0.8" />
+                                </svg>Impaired <br>
+                            </p>
                         </div>
                     </div>
                     <br>
@@ -558,6 +625,8 @@
                     <input type="checkbox" value="trout"> Trout Streams<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsetrout" aria-expanded="false" aria-controls="collapsetrout">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#troutLegend" aria-expanded="false" aria-controls="troutLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsetrout">
                         <div class="card card-body">
@@ -565,10 +634,21 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, trout)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="troutLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="5" style="fill:#f781bf;" />
+                                </svg>Trout Streams
+                            </p>
+                        </div>
+                    </div>
+
                     <br>
                     <input type="checkbox" value="natPra"> Native Prairies<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsenatPra" aria-expanded="false" aria-controls="collapsenatPra">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#natPraLegend" aria-expanded="false" aria-controls="natPraLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsenatPra">
                         <div class="card card-body">
@@ -578,11 +658,21 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, natPra)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="natPraLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#735100; stroke-width:2; stroke:#735100; fill-opacity:0.8" />
+                                </svg>Native Prairies
+                            </p>
+                        </div>
+                    </div>
 
                     <br>
                     <input type="checkbox" value="natPlnt"> Native Plant Communities<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsenatPlnt" aria-expanded="false" aria-controls="collapsenatPlnt">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#natPlntLegend" aria-expanded="false" aria-controls="natPlntLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsenatPlnt">
                         <div class="card card-body">
@@ -592,10 +682,20 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, natPlnt)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="natPlntLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#71c98d; stroke-width:2; stroke:#71c98d; fill-opacity:0.8" />
+                                </svg>Native Plant Communities
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="mBSbio"> MBS Sites of Biodiversity Significance <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsemBSbio" aria-expanded="false" aria-controls="collapsemBSbio">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#mBSbioLegend" aria-expanded="false" aria-controls="mBSbioLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsemBSbio">
                         <div class="card card-body">
@@ -605,7 +705,23 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, mBSbio)"></p>
                         </div>
                     </div>
-
+                    <div class="collapse" id="mBSbioLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#00cd00; stroke-width:2; stroke:#00cd00; fill-opacity:0.8" />
+                                </svg>Outstanding <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#267300; stroke-width:2; stroke:#267300; fill-opacity:0.8" />
+                                </svg>High <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#d3ffbe; stroke-width:2; stroke:#d3ffbe; fill-opacity:0.8" />
+                                </svg>Moderate <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#b2b2b2;stroke-width:2; stroke:#b2b2b2; fill-opacity:0.8" />
+                                </svg>Below
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <!--   Land Use/Cover Layers -->
 
@@ -614,6 +730,8 @@
                     <input type="checkbox" value="gAP_DNR"> GAP DNR Lands<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegAP_DNR" aria-expanded="false" aria-controls="collapsegAP_DNR">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#gAP_DNRLegend" aria-expanded="false" aria-controls="gAP_DNRLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsegAP_DNR">
                         <div class="card card-body">
@@ -623,11 +741,21 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, gAP_DNR)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="gAP_DNRLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#88cd66; stroke-width:2; stroke:#88cd66; fill-opacity:0.8" />
+                                </svg>DNR Lands
+                            </p>
+                        </div>
+                    </div>
 
                     <br>
                     <input type="checkbox" value="gAP_State"> GAP State Lands<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegAP_State" aria-expanded="false" aria-controls="collapsegAP_State">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#gAP_StateLegend" aria-expanded="false" aria-controls="gAP_StateLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsegAP_State">
                         <div class="card card-body">
@@ -637,11 +765,20 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, gAP_State)"></p>
                         </div>
                     </div>
-
+                    <div class="collapse" id="gAP_StateLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#e8beff; stroke-width:2; stroke:#e8beff; fill-opacity:0.8" />
+                                </svg>State Lands
+                            </p>
+                        </div>
+                    </div>
                     <br>
-                    <input type="checkbox" value="gAP_Cntyr"> GAP County Lands<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegAP_Cnty" aria-expanded="false" aria-controls="collapsegAP_Cnty">
+                    <input type="checkbox" value="gAP_Cnty"> GAP County Lands<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegAP_Cnty" aria-expanded="false" aria-controls="collapsegAP_Cnty">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#gAP_CntyLegend" aria-expanded="false" aria-controls="gAP_CntyLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsegAP_Cnty">
                         <div class="card card-body">
@@ -651,11 +788,20 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, gAP_Cnty)"></p>
                         </div>
                     </div>
-
+                    <div class="collapse" id="gAP_CntyLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffff73; stroke-width:2; stroke:#ffff73; fill-opacity:0.8" />
+                                </svg>County Lands
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="gAP_Fed"> GAP Federal Lands<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegAP_Fed" aria-expanded="false" aria-controls="collapsegAP_Fed">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#gAP_FedLegend" aria-expanded="false" aria-controls="gAP_FedLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsegAP_Fed">
                         <div class="card card-body">
@@ -665,10 +811,20 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, gAP_Fed)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="gAP_FedLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#bee8ff; stroke-width:2; stroke:#bee8ff; fill-opacity:0.8" />
+                                </svg>Federal Lands
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="easemnts"> Easements<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseeasemnts" aria-expanded="false" aria-controls="collapseeasemnts">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#easemntsLegend" aria-expanded="false" aria-controls="easemntsLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapseeasemnts">
                         <div class="card card-body">
@@ -678,15 +834,75 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, easemnts)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="easemntsLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#f28f24; stroke-width:2; stroke:#f28f24; fill-opacity:0.8" />
+                                </svg>Easements
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="nLCD"> NLCD<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsenLCD" aria-expanded="false" aria-controls="collapsenLCD">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#nLCDLegend" aria-expanded="false" aria-controls="nLCDLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsenLCD">
                         <div class="card card-body">
                             <p>Opacity
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, nLCD)"></p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="nLCDLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#466b9f;" />
+                                </svg>Open Water <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#dec5c5;" />
+                                </svg>Developed, Open Space <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#d99282;" />
+                                </svg>Developed, Low Intensity <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#eb0000;" />
+                                </svg>Developed, Medium Intensity <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ab0000;" />
+                                </svg>Developed, High Intensity <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#b3ac9f;" />
+                                </svg>Barren Land <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#68ab5f;" />
+                                </svg>Deciduous Forest <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#1c5f2c;" />
+                                </svg>Evergreen Forest <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#b5c58f;" />
+                                </svg>Mixed Forest <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ccb879;" />
+                                </svg>Shrub/Scrub <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#dfdfc2;" />
+                                </svg>Herbaceuous <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#dcd939;" />
+                                </svg>Hay/Pasture <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ab6c28;" />
+                                </svg>Cultivated Crops <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#b8d9eb;" />
+                                </svg>Woody Wetlands <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#6c9fb8;" />
+                                </svg>Emergent Herbaceuous Wetlands
+                            </p>
                         </div>
                     </div>
 
@@ -695,6 +911,8 @@
                     <input type="checkbox" value="gSSURGO"> GSSURGO<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegSSURGO" aria-expanded="false" aria-controls="collapsegSSURGO">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#gSSURGOLegend" aria-expanded="false" aria-controls="gSSURGOLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsegSSURGO">
                         <div class="card card-body">
@@ -702,6 +920,33 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, gSSURGO)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, gSSURGO)"></p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="gSSURGOLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#aaff00; stroke-width:2; stroke:#aaff00; fill-opacity:0.8" />
+                                </svg>A <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#9f57f7; stroke-width:2; stroke:#9f57f7; fill-opacity:0.8" />
+                                </svg>A/D <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#4ecdd9; stroke-width:2; stroke:#4ecdd9; fill-opacity:0.8" />
+                                </svg>B <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#38538a; stroke-width:2; stroke:#38538a; fill-opacity:0.8" />
+                                </svg>B/D <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#f5e56c; stroke-width:2; stroke:#f5e56c; fill-opacity:0.8" />
+                                </svg>C <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#f0599d; stroke-width:2; stroke:#f0599d; fill-opacity:0.8" />
+                                </svg>C/D <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#4d7300; stroke-width:2; stroke:#4d7300; fill-opacity:0.8" />
+                                </svg>D
+
+                            </p>
                         </div>
                     </div>
                     <br>
@@ -712,6 +957,8 @@
                     <input type="checkbox" value="bioIndex"> Bio Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsebioIndex" aria-expanded="false" aria-controls="collapsebioIndex">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#bioIndexLegend" aria-expanded="false" aria-controls="bioIndexLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsebioIndex">
                         <div class="card card-body">
@@ -721,10 +968,48 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, bioIndex)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="bioIndexLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#e60000; stroke-width:2; stroke:#e60000; fill-opacity:0.8" />
+                                </svg>0-10 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff3700; stroke-width:2; stroke:#ff3700; fill-opacity:0.8" />
+                                </svg>11-20 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff7300; stroke-width:2; stroke:#ff7300; fill-opacity:0.8" />
+                                </svg>21-30 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffaa00; stroke-width:2; stroke:#ffaa00; fill-opacity:0.8" />
+                                </svg>31-40 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffe100; stroke-width:2; stroke:#ffe100; fill-opacity:0.8" />
+                                </svg>41-50 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#e5f500; stroke-width:2; stroke:#e5f500; fill-opacity:0.8" />
+                                </svg>51-60 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#afe000; stroke-width:2; stroke:#afe000; fill-opacity:0.8" />
+                                </svg>61-70 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#83cf00; stroke-width:2; stroke:#83cf00; fill-opacity:0.8" />
+                                </svg>71-80 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#5aba00; stroke-width:2; stroke:#5aba00; fill-opacity:0.8" />
+                                </svg>81-90 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#308f00; stroke-width:2; stroke:#308f00; fill-opacity:0.8" />
+                                </svg>91-100
+                            </p>
+                        </div>
+                    </div>
                     <br>
+
                     <input type="checkbox" value="conIndex"> Con Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseconIndex" aria-expanded="false" aria-controls="collapseconIndex">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#conIndexLegend" aria-expanded="false" aria-controls="conIndexLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapseconIndex">
                         <div class="card card-body">
@@ -734,10 +1019,47 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, conIndex)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="conIndexLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#e60000; stroke-width:2; stroke:#e60000; fill-opacity:0.8" />
+                                </svg>0-10 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff3700; stroke-width:2; stroke:#ff3700; fill-opacity:0.8" />
+                                </svg>11-20 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff7300; stroke-width:2; stroke:#ff7300; fill-opacity:0.8" />
+                                </svg>21-30 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffaa00; stroke-width:2; stroke:#ffaa00; fill-opacity:0.8" />
+                                </svg>31-40 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffe100; stroke-width:2; stroke:#ffe100; fill-opacity:0.8" />
+                                </svg>41-50 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#e5f500; stroke-width:2; stroke:#e5f500; fill-opacity:0.8" />
+                                </svg>51-60 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#afe000; stroke-width:2; stroke:#afe000; fill-opacity:0.8" />
+                                </svg>61-70 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#83cf00; stroke-width:2; stroke:#83cf00; fill-opacity:0.8" />
+                                </svg>71-80 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#5aba00; stroke-width:2; stroke:#5aba00; fill-opacity:0.8" />
+                                </svg>81-90 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#308f00; stroke-width:2; stroke:#308f00; fill-opacity:0.8" />
+                                </svg>91-100
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="hydIndex"> Hyd Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehydIndex" aria-expanded="false" aria-controls="collapsehydIndex">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#hydIndexLegend" aria-expanded="false" aria-controls="hydIndexLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsehydIndex">
                         <div class="card card-body">
@@ -747,10 +1069,47 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, hydIndex)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="hydIndexLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#e60000; stroke-width:2; stroke:#e60000; fill-opacity:0.8" />
+                                </svg>0-10 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff3700; stroke-width:2; stroke:#ff3700; fill-opacity:0.8" />
+                                </svg>11-20 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff7300; stroke-width:2; stroke:#ff7300; fill-opacity:0.8" />
+                                </svg>21-30 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffaa00; stroke-width:2; stroke:#ffaa00; fill-opacity:0.8" />
+                                </svg>31-40 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffe100; stroke-width:2; stroke:#ffe100; fill-opacity:0.8" />
+                                </svg>41-50 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#e5f500; stroke-width:2; stroke:#e5f500; fill-opacity:0.8" />
+                                </svg>51-60 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#afe000; stroke-width:2; stroke:#afe000; fill-opacity:0.8" />
+                                </svg>61-70 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#83cf00; stroke-width:2; stroke:#83cf00; fill-opacity:0.8" />
+                                </svg>71-80 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#5aba00; stroke-width:2; stroke:#5aba00; fill-opacity:0.8" />
+                                </svg>81-90 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#308f00; stroke-width:2; stroke:#308f00; fill-opacity:0.8" />
+                                </svg>91-100
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="geoIndex"> Geo Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegeoIndex" aria-expanded="false" aria-controls="collapsegeoIndex">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#geoIndexLegend" aria-expanded="false" aria-controls="geoIndexLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsegeoIndex">
                         <div class="card card-body">
@@ -760,10 +1119,47 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, geoIndex)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="geoIndexLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#e60000; stroke-width:2; stroke:#e60000; fill-opacity:0.8" />
+                                </svg>0-10 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff3700; stroke-width:2; stroke:#ff3700; fill-opacity:0.8" />
+                                </svg>11-20 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff7300; stroke-width:2; stroke:#ff7300; fill-opacity:0.8" />
+                                </svg>21-30 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffaa00; stroke-width:2; stroke:#ffaa00; fill-opacity:0.8" />
+                                </svg>31-40 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffe100; stroke-width:2; stroke:#ffe100; fill-opacity:0.8" />
+                                </svg>41-50 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#e5f500; stroke-width:2; stroke:#e5f500; fill-opacity:0.8" />
+                                </svg>51-60 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#afe000; stroke-width:2; stroke:#afe000; fill-opacity:0.8" />
+                                </svg>61-70 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#83cf00; stroke-width:2; stroke:#83cf00; fill-opacity:0.8" />
+                                </svg>71-80 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#5aba00; stroke-width:2; stroke:#5aba00; fill-opacity:0.8" />
+                                </svg>81-90 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#308f00; stroke-width:2; stroke:#308f00; fill-opacity:0.8" />
+                                </svg>91-100
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="wQIndex"> Water Quality Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewQIndex" aria-expanded="false" aria-controls="collapsewQIndex">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#wQIndexLegend" aria-expanded="false" aria-controls="wQIndexLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsewQIndex">
                         <div class="card card-body">
@@ -773,11 +1169,48 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, wQIndex)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="wQIndexLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#e60000; stroke-width:2; stroke:#e60000; fill-opacity:0.8" />
+                                </svg>0-10 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff3700; stroke-width:2; stroke:#ff3700; fill-opacity:0.8" />
+                                </svg>11-20 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff7300; stroke-width:2; stroke:#ff7300; fill-opacity:0.8" />
+                                </svg>21-30 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffaa00; stroke-width:2; stroke:#ffaa00; fill-opacity:0.8" />
+                                </svg>31-40 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffe100; stroke-width:2; stroke:#ffe100; fill-opacity:0.8" />
+                                </svg>41-50 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#e5f500; stroke-width:2; stroke:#e5f500; fill-opacity:0.8" />
+                                </svg>51-60 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#afe000; stroke-width:2; stroke:#afe000; fill-opacity:0.8" />
+                                </svg>61-70 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#83cf00; stroke-width:2; stroke:#83cf00; fill-opacity:0.8" />
+                                </svg>71-80 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#5aba00; stroke-width:2; stroke:#5aba00; fill-opacity:0.8" />
+                                </svg>81-90 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#308f00; stroke-width:2; stroke:#308f00; fill-opacity:0.8" />
+                                </svg>91-100
+                            </p>
+                        </div>
+                    </div>
                     <br>
 
                     <input type="checkbox" value="combIndex"> Combined Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsecombIndex" aria-expanded="false" aria-controls="collapsecombIndex">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#combIndexLegend" aria-expanded="false" aria-controls="combIndexLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsecombIndex">
                         <div class="card card-body">
@@ -787,11 +1220,48 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, combIndex)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="combIndexLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#e60000; stroke-width:2; stroke:#e60000; fill-opacity:0.8" />
+                                </svg>0-10 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff3700; stroke-width:2; stroke:#ff3700; fill-opacity:0.8" />
+                                </svg>11-20 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff7300; stroke-width:2; stroke:#ff7300; fill-opacity:0.8" />
+                                </svg>21-30 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffaa00; stroke-width:2; stroke:#ffaa00; fill-opacity:0.8" />
+                                </svg>31-40 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffe100; stroke-width:2; stroke:#ffe100; fill-opacity:0.8" />
+                                </svg>41-50 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#e5f500; stroke-width:2; stroke:#e5f500; fill-opacity:0.8" />
+                                </svg>51-60 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#afe000; stroke-width:2; stroke:#afe000; fill-opacity:0.8" />
+                                </svg>61-70 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#83cf00; stroke-width:2; stroke:#83cf00; fill-opacity:0.8" />
+                                </svg>71-80 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#5aba00; stroke-width:2; stroke:#5aba00; fill-opacity:0.8" />
+                                </svg>81-90 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#308f00; stroke-width:2; stroke:#308f00; fill-opacity:0.8" />
+                                </svg>91-100
+                            </p>
+                        </div>
+                    </div>
                     <br>
 
                     <input type="checkbox" value="wildLife"> Wildlife Habitat Quality Risk<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewildLife" aria-expanded="false" aria-controls="collapsewildLife">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#wildLifeLegend" aria-expanded="false" aria-controls="wildLifeLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsewildLife">
                         <div class="card card-body">
@@ -799,10 +1269,32 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, wildLife)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="wildLifeLegend">
+                        <div class="card card-body">
+                            <p><svg width="125" height="60">
+                                    <defs>
+                                        <linearGradient id="Gradient" x1="0" x2="0" y1="0" y2="1">
+                                            <stop offset="0%" stop-color="white" />
+                                            <stop offset="100%" stop-color="black" />
+                                        </linearGradient>
+                                    </defs>
+
+                                    <rect x="50" y="10" width="15" height="50" fill="url(#Gradient)" />
+                                    <text fill="black" font-size="10" font-family="Verdana" x="70" y="15">
+                                        High: 82</text>
+                                    <text fill="black" font-size="10" font-family="Verdana" x="70" y="60">
+                                        Low: 10</text>
+
+                                </svg>
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="envBen"> Environmental Benefits Index<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseenvBen" aria-expanded="false" aria-controls="collapseenvBen">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#envBenLegend" aria-expanded="false" aria-controls="envBenLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapseenvBen">
                         <div class="card card-body">
@@ -810,10 +1302,30 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, envBen)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="envBenLegend">
+                        <div class="card card-body">
+                            <p><svg width="125" height="60">
+                                    <defs>
+                                        <linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
+                                            <stop offset="0%" stop-color="white" />
+                                            <stop offset="100%" stop-color="black" />
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="50" y="10" width="15" height="50" fill="url(#Gradient1)" />
+                                    <text fill="black" font-size="10" font-family="Verdana" x="70" y="15">
+                                        High: 90</text>
+                                    <text fill="black" font-size="10" font-family="Verdana" x="70" y="60">
+                                        Low: 5</text>
+                                </svg>
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="waterQual"> Water Quality Risk<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewaterQual" aria-expanded="false" aria-controls="collapsewaterQual">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#waterQualLegend" aria-expanded="false" aria-controls="waterQualLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsewaterQual">
                         <div class="card card-body">
@@ -821,15 +1333,53 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, waterQual)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="waterQualLegend">
+                        <div class="card card-body">
+                            <p><svg width="125" height="60">
+                                    <defs>
+                                        <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
+                                            <stop offset="0%" stop-color="white" />
+                                            <stop offset="100%" stop-color="black" />
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="50" y="10" width="15" height="50" fill="url(#Gradient2)" />
+                                    <text fill="black" font-size="10" font-family="Verdana" x="70" y="15">
+                                        High: 100</text>
+                                    <text fill="black" font-size="10" font-family="Verdana" x="70" y="60">
+                                        Low: 4</text>
+                                </svg>
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="soil"> Soil Erosion Risk<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsesoil" aria-expanded="false" aria-controls="collapsesoil">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#soilLegend" aria-expanded="false" aria-controls="soilLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsesoil">
                         <div class="card card-body">
                             <p>Opacity
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, soil)"></p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="soilLegend">
+                        <div class="card card-body">
+                            <p><svg width="125" height="60">
+                                    <defs>
+                                        <linearGradient id="Gradient3" x1="0" x2="0" y1="0" y2="1">
+                                            <stop offset="0%" stop-color="white" />
+                                            <stop offset="100%" stop-color="black" />
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="50" y="10" width="15" height="50" fill="url(#Gradient3)" />
+                                    <text fill="black" font-size="10" font-family="Verdana" x="70" y="15">
+                                        High: 100</text>
+                                    <text fill="black" font-size="10" font-family="Verdana" x="70" y="60">
+                                        Low: 1</text>
+                                </svg>
+                            </p>
                         </div>
                     </div>
                     <br>
@@ -839,6 +1389,8 @@
                     <input type="checkbox" value="mask"> Planning Area Mask<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsemask" aria-expanded="false" aria-controls="collapsemask">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#maskLegend" aria-expanded="false" aria-controls="maskLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsemask">
                         <div class="card card-body">
@@ -848,10 +1400,18 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, mask)"></p>
                         </div>
                     </div>
-                </p>
-            </div>
-        </div>
-    </div>
+                    <div class="collapse" id="maskLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:black; stroke-width:2; stroke:black; fill-opacity:0.8" />
+                                </svg>Mask
+                            </p>
+                        </div>
+                    </div>
+                </p><!--            End of Map layers list-->
+            </div> <!-- Side bar Pane end-->
+        </div> <!-- Side bar Content end-->
+    </div> <!-- Sidebar end-->
 
 
     <div class="sidebar-map" id="mapid"></div>
@@ -890,7 +1450,6 @@
             padding-left: 10px;
             color: white;
         }
-
     </style>
 
 
@@ -929,9 +1488,7 @@
     <script type="text/javascript" src="js/L.Control.Sidebar.js"></script>
     <script type="text/javascript" src="js/main1.js"></script>
 
-</body>
-
-</html>
+</body></html>
 
 
 
