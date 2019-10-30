@@ -159,6 +159,7 @@ p {
     background: #A5A16D;
     font-size: 1.7em;
     text-align: center;
+    color: whitesmoke;
 
     /*    background-image: linear-gradient(to bottom, #3498db, #2980b9);*/
 }
@@ -211,6 +212,8 @@ p {
 .categoryHead {
     margin-top: 5px;
     font-size: 1.3em;
+    color: #042440;
+    /*    #A5A16D;*/
 }
 
 /*Leaflet Zoom Home plugin code*/

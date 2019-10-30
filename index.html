@@ -80,8 +80,10 @@
                 <br>
 
                 <!--                Boundary Layers -->
+
                 <h5 class="categoryHead">Boundaries</h5>
                 <p><input type="checkbox" value="hawkcreekbndry" checked> Planning Area
+                    <!--                Buttons -->
                     <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseBndry" aria-expanded="false" aria-controls="collapseBndry">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
@@ -89,12 +91,10 @@
                     <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#BndryLegend" aria-expanded="false" aria-controls="BndryLegend"> <span class="sr-only">Toggle Legend </span>
                         <span class="fab fa-elementor"></span></button>
 
-<!--
-                    <button class="btn-xs btn-outline-primary" type="button" onclick="zoomToFeature(hawkcreekbndry)"> <span class="sr-only">Zoom to feature </span>
+                    <button class="btn-xs btn-outline-primary" type="button" onclick="zoomToFeature(a_hwkCreekBndry)"> <span class="sr-only">Zoom to feature </span>
                         <span class="fas fa-crosshairs"></span></button>
--->
 
-
+                    <!--                Collapsed Div's -->
                     <div class="collapse" id="collapseBndry">
                         <div class="card card-body">
                             <p>Opacity Fill<input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, hawkcreekbndry)"></p>
@@ -104,22 +104,23 @@
                     <div class="collapse" id="BndryLegend">
                         <div class="card card-body">
                             <p><svg width="20" height="10">
-                                    <rect width="15" height="10" style="fill:#70ca49;" />
-                                </svg>Hawk Creek Boundary</p>
+                                    <rect width="15" height="10" style="fill:#70ca49; stroke-width:2; stroke:#70ca49; fill-opacity:0.5" />
+                                </svg>Planning Area Boundary</p>
 
                         </div>
                     </div>
-
+                    <!--END HAWK CREEK BOUNDARY-->
                     <input type="checkbox" value="cnty"> Counties
+
+                    <!--                Buttons -->
                     <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseCnty" aria-expanded="false" aria-controls="collapseCnty">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
 
-                    <button class="btn-xs btn-outline-primary" type="button">
-                        <span class="sr-only">toggle legend </span>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#cntyLegend" aria-expanded="false" aria-controls="cntyLegend"> <span class="sr-only">Toggle Legend </span>
                         <span class="fab fa-elementor"></span></button>
 
-
+                    <!--Collapsed Div's-->
                     <div class="collapse" id="collapseCnty">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -128,10 +129,24 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, cnty)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="cntyLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#7256E8; stroke-width:2; stroke:#7256E8; fill-opacity:0.5" />
+                                </svg>County Boundaries</p>
+
+                        </div>
+                    </div>
+                    <!--                END County -->
                     <br>
-                    <input type="checkbox" value="huc8"> Major Watershed (HUC 8)<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehuc8" aria-expanded="false" aria-controls="collapseExample">
+                    <input type="checkbox" value="huc8"> Major Watershed (HUC 8)
+                    <!--                Buttons -->
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehuc8" aria-expanded="false" aria-controls="collapseExample">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#huc8Legend" aria-expanded="false" aria-controls="huc8Legend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsehuc8">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -140,11 +155,26 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, huc8)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="huc8Legend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#a6cee3; stroke-width:2; stroke:#a6cee3; fill-opacity:0.5" />
+                                </svg>Major Watershed HUC 8 Boundaries</p>
 
+                        </div>
+                    </div>
+                    <!--End HUC 8 -->
                     <br>
-                    <input type="checkbox" value="huc10"> HUC 10 <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehuc10" aria-expanded="false" aria-controls="collapsehuc10">
+                    <input type="checkbox" value="huc10"> HUC 10
+                    <!--                BUTTONS-->
+
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehuc10" aria-expanded="false" aria-controls="collapsehuc10">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#huc10Legend" aria-expanded="false" aria-controls="huc10Legend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
+
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsehuc10">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -153,11 +183,22 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, huc10)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="huc10Legend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#fb9a99; stroke-width:2; stroke:#fb9a99; fill-opacity:0.5" />
+                                </svg>HUC 10 Boundaries</p>
+
+                        </div>
+                    </div>
 
                     <br>
                     <input type="checkbox" value="huc12"> HUC 12<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehuc12" aria-expanded="false" aria-controls="collapsehuc12">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#huc12Legend" aria-expanded="false" aria-controls="huc12Legend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsehuc12">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -166,16 +207,44 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, huc12)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="huc12Legend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#fdbf6f; stroke-width:2; stroke:#fdbf6f; fill-opacity:0.5" />
+                                </svg>HUC 12 Boundaries</p>
+
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="dNRCatch"> DNR Catchments<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsedNRCatch" aria-expanded="false" aria-controls="collapsedNRCatch">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#dNRCatchLegend" aria-expanded="false" aria-controls="dNRCatchLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsedNRCatch">
                         <div class="card card-body">
                             <p>Opacity Fill
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, dNRCatch)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, dNRCatch)"></p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="dNRCatchLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#002673; stroke-width:2; stroke:#002673; fill-opacity:0.8" />
+                                </svg>Vigilance<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#005ce6; stroke-width:2; stroke:#005ce6; fill-opacity:0.8" />
+                                </svg>Needs Protection<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#a1ceff; stroke-width:2; stroke:#a1ceff; fill-opacity:0.8" />
+                                </svg>Full Restoration<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#9c9c9c; stroke-width:2; stroke:#9c9c9c; fill-opacity:0.8" />
+                                </svg>Partial Restoration<br>
+                            </p>
                         </div>
                     </div>
                     <br>
@@ -185,6 +254,9 @@
                     <input type="checkbox" value="wtrVul"> DWSMA Vulnerability<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewtrVul" aria-expanded="false" aria-controls="collapseExample">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#wtrVulLegend" aria-expanded="false" aria-controls="wtrVulLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsewtrVul">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -193,10 +265,31 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, wtrVul)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="wtrVulLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff7f7f; stroke-width:2; stroke:#ff7f7f; fill-opacity:0.8" />
+                                </svg>Very High<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffd27f; stroke-width:2; stroke:#ffd27f; fill-opacity:0.8" />
+                                </svg>High<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffffbe; stroke-width:2; stroke:#ffffbe; fill-opacity:0.8" />
+                                </svg>Moderate<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#d3ffbe; stroke-width:2; stroke:#d3ffbe; fill-opacity:0.8" />
+                                </svg>Low<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#bed2ff; stroke-width:2; stroke:#bed2ff; fill-opacity:0.8" />
+                                </svg>Very Low<br>
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="wellhead"> Well Head Protection Areas<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewellhead" aria-expanded="false" aria-controls="collapsewellhead">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsewellhead">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -205,6 +298,7 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, wellhead)"></p>
                         </div>
                     </div>
+
                     <br>
                     <input type="checkbox" value="bedrockPoll"> Bedrock Surface Pollution Sensitivity<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsebedrockPoll" aria-expanded="false" aria-controls="collapsebedrockPoll">
                         <span class="sr-only">Expand to Edit </span>
@@ -221,6 +315,7 @@
                     <input type="checkbox" value="nitrTwn"> Nitrate Rates by Township<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsenitrTwn" aria-expanded="false" aria-controls="collapsenitrTwn">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsenitrTwn">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -233,6 +328,7 @@
                     <input type="checkbox" value="pollsens"> Pollution Sensitivity of Near-Surface Materials<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsepollsens" aria-expanded="false" aria-controls="collapsepollsens">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsepollsens">
                         <div class="card card-body">
                             <p>Opacity
@@ -240,12 +336,13 @@
                         </div>
                     </div>
                     <br>
-                    <!--                Hyrology Layers-->
-                    <h5 class="categoryHead">Hyrology</h5>
+                    <!--                Hydrology Layers-->
+                    <h5 class="categoryHead">Hydrology</h5>
 
                     <input type="checkbox" value="fEMAflood"> 100 Year Flood Plain<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsefEMAflood" aria-expanded="false" aria-controls="collapsefEMAflood">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsefEMAflood">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -258,40 +355,19 @@
                     <input type="checkbox" value="altwtr"> Altered Watercourse<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsealtwtr" aria-expanded="false" aria-controls="collapsealtwtr">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsealtwtr">
                         <div class="card card-body">
                             <p>Opacity
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, altwtr)"></p>
                         </div>
                     </div>
-                    <br>
-                    <input type="checkbox" value="hydIndex"> Hyd Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehydIndex" aria-expanded="false" aria-controls="collapsehydIndex">
-                        <span class="sr-only">Expand to Edit </span>
-                        <span class="fa fa-edit"></span></button>
-                    <div class="collapse" id="collapsehydIndex">
-                        <div class="card card-body">
-                            <p>Opacity Fill
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, hydIndex)"></p>
-                            <p>Opacity Boundary
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, hydIndex)"></p>
-                        </div>
-                    </div>
-                    <br>
-                    <input type="checkbox" value="geoIndex"> Geo Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegeoIndex" aria-expanded="false" aria-controls="collapsegeoIndex">
-                        <span class="sr-only">Expand to Edit </span>
-                        <span class="fa fa-edit"></span></button>
-                    <div class="collapse" id="collapsegeoIndex">
-                        <div class="card card-body">
-                            <p>Opacity Fill
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, geoIndex)"></p>
-                            <p>Opacity Boundary
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, geoIndex)"></p>
-                        </div>
-                    </div>
+
                     <br>
                     <input type="checkbox" value="cONUS"> NWI<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsecONUS" aria-expanded="false" aria-controls="collapsecONUS">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsecONUS">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -301,21 +377,11 @@
                         </div>
                     </div>
                     <br>
-                    <input type="checkbox" value="gSSURGO"> GSSURGO<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegSSURGO" aria-expanded="false" aria-controls="collapsegSSURGO">
-                        <span class="sr-only">Expand to Edit </span>
-                        <span class="fa fa-edit"></span></button>
-                    <div class="collapse" id="collapsegSSURGO">
-                        <div class="card card-body">
-                            <p>Opacity Fill
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, gSSURGO)"></p>
-                            <p>Opacity Boundary
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, gSSURGO)"></p>
-                        </div>
-                    </div>
-                    <br>
+
                     <input type="checkbox" value="buffwetlnds"> Public Waters<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsebuffwetlnds" aria-expanded="false" aria-controls="collapsebuffwetlnds">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsebuffwetlnds">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -328,6 +394,7 @@
                     <input type="checkbox" value="buffwetlnds"> Public Ditches<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsebuffwtrcrse" aria-expanded="false" aria-controls="collapsebuffwtrcrse">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsebuffwtrcrse">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -340,6 +407,7 @@
                     <input type="checkbox" value="rWI"> Restorable Wetland Inventory<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapserWI" aria-expanded="false" aria-controls="collapserWI">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapserWI">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -357,6 +425,7 @@
                     <input type="checkbox" value="imptStrm"> Impaired Streams<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseimptStrm" aria-expanded="false" aria-controls="collapseimptStrm">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapseimptStrm">
                         <div class="card card-body">
                             <p>Opacity
@@ -367,6 +436,7 @@
                     <input type="checkbox" value="impLks"> Impaired Lakes<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseimpLks" aria-expanded="false" aria-controls="collapseimpLks">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapseimpLks">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -381,6 +451,7 @@
                     <input type="checkbox" value="phos"> Lake Phosophorus Sensitivity Significance <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsephos" aria-expanded="false" aria-controls="collapsephos">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsephos">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -390,38 +461,8 @@
                         </div>
                     </div>
                     <br>
-                    <input type="checkbox" value="wQIndex"> Water Quality Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewQIndex" aria-expanded="false" aria-controls="collapsewQIndex">
-                        <span class="sr-only">Expand to Edit </span>
-                        <span class="fa fa-edit"></span></button>
-                    <div class="collapse" id="collapsewQIndex">
-                        <div class="card card-body">
-                            <p>Opacity Fill
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, wQIndex)"></p>
-                            <p>Opacity Boundary
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, wQIndex)"></p>
-                        </div>
-                    </div>
-                    <br>
-                    <input type="checkbox" value="waterQual"> Water Quality Risk<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewaterQual" aria-expanded="false" aria-controls="collapsewaterQual">
-                        <span class="sr-only">Expand to Edit </span>
-                        <span class="fa fa-edit"></span></button>
-                    <div class="collapse" id="collapsewaterQual">
-                        <div class="card card-body">
-                            <p>Opacity
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, waterQual)"></p>
-                        </div>
-                    </div>
-                    <br>
-                    <input type="checkbox" value="soil"> Soil Erosion Risk<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsesoil" aria-expanded="false" aria-controls="collapsesoil">
-                        <span class="sr-only">Expand to Edit </span>
-                        <span class="fa fa-edit"></span></button>
-                    <div class="collapse" id="collapsesoil">
-                        <div class="card card-body">
-                            <p>Opacity
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, soil)"></p>
-                        </div>
-                    </div>
-                    <br>
+
+
 
                     <!--   Biodiversity Layers -->
 
@@ -430,6 +471,7 @@
                     <input type="checkbox" value="trout"> Trout Streams<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsetrout" aria-expanded="false" aria-controls="collapsetrout">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsetrout">
                         <div class="card card-body">
                             <p>Opacity
@@ -440,6 +482,7 @@
                     <input type="checkbox" value="natPra"> Native Prairies<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsenatPra" aria-expanded="false" aria-controls="collapsenatPra">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsenatPra">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -448,34 +491,12 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, natPra)"></p>
                         </div>
                     </div>
-                    <br>
-                    <input type="checkbox" value="bioIndex"> Bio Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsebioIndex" aria-expanded="false" aria-controls="collapsebioIndex">
-                        <span class="sr-only">Expand to Edit </span>
-                        <span class="fa fa-edit"></span></button>
-                    <div class="collapse" id="collapsebioIndex">
-                        <div class="card card-body">
-                            <p>Opacity Fill
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, bioIndex)"></p>
-                            <p>Opacity Boundary
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, bioIndex)"></p>
-                        </div>
-                    </div>
-                    <br>
-                    <input type="checkbox" value="conIndex"> Con Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseconIndex" aria-expanded="false" aria-controls="collapseconIndex">
-                        <span class="sr-only">Expand to Edit </span>
-                        <span class="fa fa-edit"></span></button>
-                    <div class="collapse" id="collapseconIndex">
-                        <div class="card card-body">
-                            <p>Opacity Fill
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, conIndex)"></p>
-                            <p>Opacity Boundary
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, conIndex)"></p>
-                        </div>
-                    </div>
+
                     <br>
                     <input type="checkbox" value="natPlnt"> Native Plant Communities<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsenatPlnt" aria-expanded="false" aria-controls="collapsenatPlnt">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsenatPlnt">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -488,6 +509,7 @@
                     <input type="checkbox" value="mBSbio"> MBS Sites of Biodiversity Significance <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsemBSbio" aria-expanded="false" aria-controls="collapsemBSbio">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsemBSbio">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -498,26 +520,6 @@
                     </div>
 
                     <br>
-                    <input type="checkbox" value="wildLife"> Wildlife Habitat Quality Risk<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewildLife" aria-expanded="false" aria-controls="collapsewildLife">
-                        <span class="sr-only">Expand to Edit </span>
-                        <span class="fa fa-edit"></span></button>
-                    <div class="collapse" id="collapsewildLife">
-                        <div class="card card-body">
-                            <p>Opacity
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, wildLife)"></p>
-                        </div>
-                    </div>
-                    <br>
-                    <input type="checkbox" value="envBen"> Environmental Risk Index<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseenvBen" aria-expanded="false" aria-controls="collapseenvBen">
-                        <span class="sr-only">Expand to Edit </span>
-                        <span class="fa fa-edit"></span></button>
-                    <div class="collapse" id="collapseenvBen">
-                        <div class="card card-body">
-                            <p>Opacity
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, envBen)"></p>
-                        </div>
-                    </div>
-                    <br>
                     <!--   Land Use/Cover Layers -->
 
                     <h5 class="categoryHead">Land Use/Cover</h5>
@@ -525,6 +527,7 @@
                     <input type="checkbox" value="gAP_DNR"> GAP DNR Lands<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegAP_DNR" aria-expanded="false" aria-controls="collapsegAP_DNR">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsegAP_DNR">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -538,6 +541,7 @@
                     <input type="checkbox" value="gAP_State"> GAP State Lands<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegAP_State" aria-expanded="false" aria-controls="collapsegAP_State">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsegAP_State">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -551,6 +555,7 @@
                     <input type="checkbox" value="gAP_Cntyr"> GAP County Lands<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegAP_Cnty" aria-expanded="false" aria-controls="collapsegAP_Cnty">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsegAP_Cnty">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -564,6 +569,7 @@
                     <input type="checkbox" value="gAP_Fed"> GAP Federal Lands<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegAP_Fed" aria-expanded="false" aria-controls="collapsegAP_Fed">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsegAP_Fed">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -576,6 +582,7 @@
                     <input type="checkbox" value="easemnts"> Easements<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseeasemnts" aria-expanded="false" aria-controls="collapseeasemnts">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapseeasemnts">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -588,6 +595,7 @@
                     <input type="checkbox" value="nLCD"> NLCD<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsenLCD" aria-expanded="false" aria-controls="collapsenLCD">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsenLCD">
                         <div class="card card-body">
                             <p>Opacity
@@ -596,13 +604,94 @@
                     </div>
 
                     <br>
-                    <!--   Miscellaneous Layers -->
 
-                    <h5 class="categoryHead">Miscellaneous Layers</h5>
+                    <input type="checkbox" value="gSSURGO"> GSSURGO<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegSSURGO" aria-expanded="false" aria-controls="collapsegSSURGO">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsegSSURGO">
+                        <div class="card card-body">
+                            <p>Opacity Fill
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, gSSURGO)"></p>
+                            <p>Opacity Boundary
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, gSSURGO)"></p>
+                        </div>
+                    </div>
+                    <br>
+
+                    <!--            Watershed Characterization Layers -->
+                    <h5 class="categoryHead">Watershed Characterization</h5>
+
+                    <input type="checkbox" value="bioIndex"> Bio Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsebioIndex" aria-expanded="false" aria-controls="collapsebioIndex">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsebioIndex">
+                        <div class="card card-body">
+                            <p>Opacity Fill
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, bioIndex)"></p>
+                            <p>Opacity Boundary
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, bioIndex)"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="checkbox" value="conIndex"> Con Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseconIndex" aria-expanded="false" aria-controls="collapseconIndex">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapseconIndex">
+                        <div class="card card-body">
+                            <p>Opacity Fill
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, conIndex)"></p>
+                            <p>Opacity Boundary
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, conIndex)"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="checkbox" value="hydIndex"> Hyd Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehydIndex" aria-expanded="false" aria-controls="collapsehydIndex">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsehydIndex">
+                        <div class="card card-body">
+                            <p>Opacity Fill
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, hydIndex)"></p>
+                            <p>Opacity Boundary
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, hydIndex)"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="checkbox" value="geoIndex"> Geo Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsegeoIndex" aria-expanded="false" aria-controls="collapsegeoIndex">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsegeoIndex">
+                        <div class="card card-body">
+                            <p>Opacity Fill
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, geoIndex)"></p>
+                            <p>Opacity Boundary
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, geoIndex)"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="checkbox" value="wQIndex"> Water Quality Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewQIndex" aria-expanded="false" aria-controls="collapsewQIndex">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsewQIndex">
+                        <div class="card card-body">
+                            <p>Opacity Fill
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, wQIndex)"></p>
+                            <p>Opacity Boundary
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, wQIndex)"></p>
+                        </div>
+                    </div>
+                    <br>
 
                     <input type="checkbox" value="combIndex"> Combined Index Mean<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsecombIndex" aria-expanded="false" aria-controls="collapsecombIndex">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsecombIndex">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -612,9 +701,58 @@
                         </div>
                     </div>
                     <br>
+
+                    <input type="checkbox" value="wildLife"> Wildlife Habitat Quality Risk<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewildLife" aria-expanded="false" aria-controls="collapsewildLife">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsewildLife">
+                        <div class="card card-body">
+                            <p>Opacity
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, wildLife)"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="checkbox" value="envBen"> Environmental Benefits Index<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseenvBen" aria-expanded="false" aria-controls="collapseenvBen">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapseenvBen">
+                        <div class="card card-body">
+                            <p>Opacity
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, envBen)"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="checkbox" value="waterQual"> Water Quality Risk<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewaterQual" aria-expanded="false" aria-controls="collapsewaterQual">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsewaterQual">
+                        <div class="card card-body">
+                            <p>Opacity
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, waterQual)"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="checkbox" value="soil"> Soil Erosion Risk<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsesoil" aria-expanded="false" aria-controls="collapsesoil">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsesoil">
+                        <div class="card card-body">
+                            <p>Opacity
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, soil)"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <!--   OTHER Layers -->
+
+                    <h5 class="categoryHead">Other</h5>
                     <input type="checkbox" value="mask"> Planning Area Mask<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsemask" aria-expanded="false" aria-controls="collapsemask">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsemask">
                         <div class="card card-body">
                             <p>Opacity Fill

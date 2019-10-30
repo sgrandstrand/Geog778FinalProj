@@ -33,7 +33,8 @@ var mapOptions = {
 var map = L.map('mapid', mapOptions);
 
 L.control.scale({
-    position: 'bottomright'
+    position: 'bottomright',
+    metric: false
 }).addTo(map);
 
 //L.control.zoom({
@@ -165,7 +166,7 @@ var a_combIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/serv
 var a_natPlnt = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/21"; //26DNR native plant communities
 var a_mBSbio = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/28"; //MBS sites of biodiversity significance 
 var a_cONUS = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/7"; //12NWI CONUS_wet_poly
-var a_dNRCatch = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/9"; //13 DNR catchments 
+var a_dNRCatch = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/8"; //13 DNR catchments 
 var a_bedrockPoll = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/12"; // 17bedrock surface pollution sensitivity
 var a_nitrTwn = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/30"; //Nitrate rates by township
 var a_easemnts = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/6" // 11 Boundary rin con easements? 
@@ -499,6 +500,7 @@ var mask = L.esri.featureLayer({
 var nLCD = L.esri.tiledMapLayer({
     url: a_nLCD,
 });
+
 
 var wildLife = L.esri.tiledMapLayer({
     url: a_wildLife,
@@ -900,6 +902,7 @@ function updateOpacityTile(val, layer) {
     layer.setOpacity({
         opacity: val,
     });
+    console.log(layer);
 }
 
 
@@ -933,21 +936,32 @@ function updateOpacityTile(val, layer) {
 
 
 /// Zoom to Layer
-//function zoomToFeature(e) {
-//    map.fitBounds(e.getBounds());
-//}
+function zoomToFeature(urlLayer) {
+    var query = L.esri.query({
+        url: urlLayer,
+    });
+    query.bounds(function (error, latLngBounds, response) {
+        if (error) {
+            console.log(error);
+            return;
+        }
+        map.fitBounds(latLngBounds);
+    });
+}
 
-//var zoomtoWtershd = L.easyButton({
-//    icon: "<icon:'fas fa-crosshairs'>",
-//    position: 'topright',
-//    onClick: function (btn, map) {
-//        map.fitBounds(hawkcreekbndry.getBounds());
-//    }
-//});
-//zoomtoWtershd.addTo(map);
-//L.easyButton('fa-crosshairs fa-lg', function (btn, map) {
-//    map.fitBounds(hawkcreekbndry.getBounds());
-//}).addTo(map);
+
+L.easyButton('fa-crosshairs fa-lg', function (btn, map) {
+    var query = L.esri.query({
+        url: a_hwkCreekBndry
+    });
+    query.bounds(function (error, latLngBounds, response) {
+        if (error) {
+            console.log(error);
+            return;
+        }
+        map.fitBounds(latLngBounds);
+    });
+}).addTo(map);
 
 
 $(document).ready(function () {
