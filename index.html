@@ -289,6 +289,8 @@
                     <input type="checkbox" value="wellhead"> Well Head Protection Areas<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewellhead" aria-expanded="false" aria-controls="collapsewellhead">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#wellheadLegend" aria-expanded="false" aria-controls="wellheadLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsewellhead">
                         <div class="card card-body">
@@ -298,11 +300,22 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, wellhead)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="wellheadLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#a65628; stroke-width:2; stroke:#a65628; fill-opacity:0.5" />
+                                </svg>Well Head Protection Areas</p>
+
+                        </div>
+                    </div>
 
                     <br>
                     <input type="checkbox" value="bedrockPoll"> Bedrock Surface Pollution Sensitivity<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsebedrockPoll" aria-expanded="false" aria-controls="collapsebedrockPoll">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#bedrockPollLegend" aria-expanded="false" aria-controls="bedrockPollLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
+                    <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsebedrockPoll">
                         <div class="card card-body">
                             <p>Opacity Fill
@@ -311,10 +324,26 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, bedrockPoll)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="bedrockPollLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#f26f52; stroke-width:2; stroke:#f26f52; fill-opacity:0.8" />
+                                </svg>Very High<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffcd4e; stroke-width:2; stroke:#ffcd4e; fill-opacity:0.8" />
+                                </svg>High<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#fff34f; stroke-width:2; stroke:#fff34f; fill-opacity:0.8" />
+                                </svg>Moderate<br>
+                            </p>
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="nitrTwn"> Nitrate Rates by Township<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsenitrTwn" aria-expanded="false" aria-controls="collapsenitrTwn">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#nitrTwnLegend" aria-expanded="false" aria-controls="nitrTwnLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsenitrTwn">
                         <div class="card card-body">
@@ -322,6 +351,21 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, nitrTwn)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, nitrTwn)"></p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="nitrTwnLegend">
+                        <div class="card card-body">
+                            <p>Percent of Wells ≥10mg/L Nitrate-N <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#38a800; stroke-width:2; stroke:#38a800; fill-opacity:0.8" />
+                                </svg> &#60; 5% <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffff00; stroke-width:2; stroke:#ffff00; fill-opacity:0.8" />
+                                </svg>5 &lt; 10%<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff0000; stroke-width:2; stroke:#ff0000; fill-opacity:0.8" />
+                                </svg>≥ 10%<br>
+                            </p>
                         </div>
                     </div>
                     <br>
@@ -342,6 +386,8 @@
                     <input type="checkbox" value="fEMAflood"> 100 Year Flood Plain<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsefEMAflood" aria-expanded="false" aria-controls="collapsefEMAflood">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#fEMAfloodLegend" aria-expanded="false" aria-controls="fEMAfloodLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsefEMAflood">
                         <div class="card card-body">
@@ -351,10 +397,20 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, fEMAflood)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="fEMAfloodLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="5" style="fill:#ffff00; stroke-width:2; stroke:#ffff00;" />
+                                </svg>100 Year Flood Areas</p>
+
+                        </div>
+                    </div>
                     <br>
                     <input type="checkbox" value="altwtr"> Altered Watercourse<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsealtwtr" aria-expanded="false" aria-controls="collapsealtwtr">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#altwtrLegend" aria-expanded="false" aria-controls="altwtrLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsealtwtr">
                         <div class="card card-body">
@@ -362,11 +418,31 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, altwtr)"></p>
                         </div>
                     </div>
+                    <div class="collapse" id="altwtrLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="5" style="fill:#f5605d;" />
+                                </svg>Altered <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="5" style="fill:#38a800;" />
+                                </svg>Natural <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="5" style="fill:#c300ff;" />
+                                </svg>Impounded <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="5" style="fill:#9c9c9c;" />
+                                </svg>No Definable Channel <br>
+                            </p>
+
+                        </div>
+                    </div>
 
                     <br>
                     <input type="checkbox" value="cONUS"> NWI<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsecONUS" aria-expanded="false" aria-controls="collapsecONUS">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#cONUSLegend" aria-expanded="false" aria-controls="cONUSLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsecONUS">
                         <div class="card card-body">
@@ -374,6 +450,17 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, cONUS)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, cONUS)"></p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="cONUSLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#2884ed; stroke-width:2; stroke:#2884ed; fill-opacity:0.8" />
+                                </svg>Freshwater Emergent Wetland<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#1b6e45; stroke-width:2; stroke:#1b6e45; fill-opacity:0.8" />
+                                </svg>Freshwater Forested/Shrub Wetland <br>
+                            </p>
                         </div>
                     </div>
                     <br>
@@ -803,6 +890,7 @@
             padding-left: 10px;
             color: white;
         }
+
     </style>
 
 

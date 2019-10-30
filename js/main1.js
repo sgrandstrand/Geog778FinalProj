@@ -205,7 +205,7 @@ var hawkcreekbndry = L.esri.featureLayer({
     url: a_hwkCreekBndry,
     style: function () {
         return {
-            color: "#70ca49"
+            color: "red"
         };
     },
     onEachFeature: function (feature, layer) {
@@ -434,6 +434,7 @@ var dNRCatch = L.esri.featureLayer({
 });
 var bedrockPoll = L.esri.featureLayer({
     url: a_bedrockPoll,
+    where: "RATING = 'VH' OR RATING = 'H' OR RATING = 'M'",
     style: styleBedrockPoll,
 
 });
@@ -560,10 +561,7 @@ function styleAltWtr(feature) {
 
     return {
         "color": colorToUse,
-        "fillColor": colorToUse,
-        "weight": 1,
         //        "opacity": ,
-        "fillOpacity": 0.8
     };
 }
 
@@ -758,8 +756,6 @@ function styleBedrockPoll(feature) {
     if (type === "VH") colorToUse = '#f26f52';
     else if (type === "H") colorToUse = '#ffcd4e';
     else if (type === "M") colorToUse = '#fff34f';
-    else if (type === "L") colorToUse = '#d4e9ca';
-    else if (type === "VL") colorToUse = '#81c99d';
     else colorToUse = "transparent";
     return {
         "color": colorToUse,
@@ -805,21 +801,6 @@ function styleCONUS(feature) {
     };
 }
 
-
-function styleNitrCnty(feature) {
-    type = feature.properties.Percent_of;
-    var colorToUse;
-    if (type <= 5) colorToUse = '#38a800';
-    else if (type > 5 && type <= 10) colorToUse = '#ffff00';
-    else if (type > 10) colorToUse = '#ff0000';
-    else colorToUse = "transparent";
-    return {
-        "color": colorToUse,
-        "fillColor": colorToUse,
-        "weight": 2,
-        "fillOpacity": 0.8
-    };
-}
 
 function styleNitrTwn(feature) {
     type = feature.properties.InitNRange;
@@ -899,10 +880,8 @@ function updateOpacityBound(val, layer) {
 }
 
 function updateOpacityTile(val, layer) {
-    layer.setOpacity({
-        opacity: val,
-    });
-    console.log(layer);
+    layer.setOpacity(val);
+    //    console.log(layer);
 }
 
 
