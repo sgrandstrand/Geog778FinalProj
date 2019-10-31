@@ -23,7 +23,7 @@ var imagery = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/
 var mapOptions = {
     zoomControl: false,
     center: [46.35, -93.5],
-    zoom: 6.25,
+    zoom: 6.5,
     minZoom: 3,
     maxZoom: 18,
     layers: [light]
@@ -196,6 +196,7 @@ var a_soil = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/servic
 
 var a_envBen = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/services/EnvBen_HawkCreek/MapServer" //Environmental Risk Index
 
+var a_cultcrops = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/services/CultvCrops_HawkCreek/MapServer"
 
 // Get ESRI WFS as GeoJSON and Add to Map
 
@@ -234,7 +235,10 @@ var huc8 = L.esri.featureLayer({
             color: "#a6cee3",
             weight: 2
         };
-    }
+    },
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><i> HUC 8 Name: ' + feature.properties.HU_8_Name + '</i></p>');
+    },
 });
 var huc10 = L.esri.featureLayer({
     url: a_huc10,
@@ -243,7 +247,10 @@ var huc10 = L.esri.featureLayer({
             color: "#fb9a99",
             weight: 2
         };
-    }
+    },
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><i> HUC 10 Name: ' + feature.properties.HU_10_Name + '</i></p>');
+    },
 });
 var huc12 = L.esri.featureLayer({
     url: a_huc12,
@@ -252,7 +259,10 @@ var huc12 = L.esri.featureLayer({
             color: "#fdbf6f",
             weight: 2
         };
-    }
+    },
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><i> HUC 12 Name: ' + feature.properties.HU_12_Name + '</i></p>');
+    },
 });
 
 
@@ -271,6 +281,7 @@ var fEMAflood = L.esri.featureLayer({
 
 var imptStrm = L.esri.featureLayer({
     url: a_imptStrm,
+    where: "NOT AFFECTED_U = 'AQC'",
     style: function () {
         return {
             color: "#8c0007",
@@ -279,6 +290,7 @@ var imptStrm = L.esri.featureLayer({
 });
 var impLks = L.esri.featureLayer({
     url: a_impLks,
+    where: "NOT AFFECTED_U = 'AQC'",
     style: function () {
         return {
             color: "#002366",
@@ -295,10 +307,6 @@ var altwtr = L.esri.featureLayer({
 var phos = L.esri.featureLayer({
     url: a_phos,
     style: stylePhos,
-    onEachFeature: function (feature, layer) {
-        layer.bindPopup('<p><b> Phosphorus Priority Class: </b>' + feature.properties.LPSS_CLASS + '</p>');
-    },
-
 });
 var trout = L.esri.featureLayer({
     url: a_trout,
@@ -314,7 +322,12 @@ var wellhead = L.esri.featureLayer({
         return {
             color: "#a65628",
         };
-    }
+    },
+    //    onEachFeature: function (feature, layer) {
+    //        layer.on("mouseover", function (e) {
+    //
+    //        })
+    //    }
 });
 var wtrVul = L.esri.featureLayer({
     url: a_wtrVul,
@@ -385,14 +398,23 @@ var bioIndex = L.esri.featureLayer({
 var hydIndex = L.esri.featureLayer({
     url: a_hydIndex,
     style: styleHydIndex,
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><b> Hyd Index Mean: ' + feature.properties.H_I_MEAN + '</b></p>');
+    },
 });
 var geoIndex = L.esri.featureLayer({
     url: a_geoIndex,
     style: styleGeoIndex,
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><b> Geo Index Mean: ' + feature.properties.G_I_MEAN + '</b></p>');
+    },
 });
 var conIndex = L.esri.featureLayer({
     url: a_conIndex,
     style: styleConIndex,
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><b> Con Index Mean: ' + feature.properties.C_I_MEAN + '</b></p>');
+    },
 });
 var wQIndex = L.esri.featureLayer({
     url: a_wQIndex,
@@ -404,9 +426,10 @@ var wQIndex = L.esri.featureLayer({
 var combIndex = L.esri.featureLayer({
     url: a_combIndex,
     style: styleCombIndex,
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><b> Combined Index Mean: ' + feature.properties.A_I_MEAN + '</b></p>');
+    },
 });
-
-
 
 
 
@@ -458,9 +481,6 @@ var easemnts = L.esri.featureLayer({
 var gSSURGO = L.esri.featureLayer({
     url: a_gSSURGO,
     style: styleGSSURGO,
-    onEachFeature: function (feature, layer) {
-        layer.bindPopup('<p><b> Hydrological Group: </b>' + feature.properties.muaggatt_h + '</p>');
-    },
 });
 
 
@@ -489,6 +509,7 @@ var rWI = L.esri.featureLayer({
     style: function () {
         return {
             color: "#f5a37a",
+            fillColor: "#f5a37a",
         };
     }
 });
@@ -526,12 +547,30 @@ var soil = L.esri.tiledMapLayer({
 var envBen = L.esri.tiledMapLayer({
     url: a_envBen,
 });
+var cultcrops = L.esri.tiledMapLayer({
+    url: a_cultcrops,
+})
+
+
+
+
+//var htmlLegend2 = L.control.htmllegend({
+//    position: 'bottomright',
+//    legends: [{
+//        name: 'Counties',
+//        elements: [{
+//            html: document.querySelector('#cntyLegend').innerHTML
+//        }]
+//}],
+//    detectStretched: true,
+//})
+//map.addControl(htmlLegend2)
 
 
 //get unique values method
-function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
-}
+//function onlyUnique(value, index, self) {
+//    return self.indexOf(value) === index;
+//}
 
 
 /// STYLE FUNCTIONS
@@ -772,9 +811,6 @@ function styleBedrockPoll(feature) {
     };
 }
 
-
-
-
 function styleMBSBio(feature) {
     type = feature.properties.biodiv_sig;
     var colorToUse;
@@ -948,8 +984,33 @@ L.easyButton('fa-crosshairs fa-lg', function (btn, map) {
     });
 }).addTo(map);
 
+//Create sidebar function
+function createSidebar() {
+    var sidebar = L.control.sidebar('sidebar').addTo(map);
+    sidebar.open('home');
+}
+
+//var legendlayer = L.control.htmllegend({
+//    position:'bottomright'
+//})
+
+function addLegend(id, title) {
+    var legendlayer = L.control.htmllegend({
+        position: 'bottomright',
+        legends: [{
+            name: title,
+            elements: [{
+                html: document.querySelector(id).innerHTML
+            }]
+        }],
+        detectStretched: true,
+    })
+    map.addControl(legendlayer)
+}
+
 
 $(document).ready(function () {
+    createSidebar();
 
     $('input[type="checkbox"]').click(function () {
         layerClicked = window[event.target.value];
@@ -960,16 +1021,23 @@ $(document).ready(function () {
             map.removeLayer(layerClicked);
         }
     });
-    $('#toggleSidebar').click(function () {
-        $("#features").toggle(function () {
 
-        });
-    });
-    $('#closeSidebar').click(function () {
-        $("#features").toggle(function () {
 
-        });
-    });
+
+
+
+
+
+    //    $('#toggleSidebar').click(function () {
+    //        $("#home").toggle(function () {
+    //
+    //        });
+    //    });
+    //    $('#closeSidebar').click(function () {
+    //        $("#home").toggle(function () {
+    //
+    //        });
+    //    });
 
 
 
