@@ -991,12 +991,15 @@ function createSidebar() {
 }
 
 //var legendlayer = L.control.htmllegend({
-//    position:'bottomright'
+//    position: 'bottomright'
 //})
 
 function addLegend(id, title) {
+
+    //    legendlayer.onAdd
     var legendlayer = L.control.htmllegend({
         position: 'bottomright',
+        layer: title,
         legends: [{
             name: title,
             elements: [{
@@ -1021,6 +1024,7 @@ $(document).ready(function () {
             map.removeLayer(layerClicked);
         }
     });
+
 
 
 
