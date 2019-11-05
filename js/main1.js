@@ -51,7 +51,7 @@ var baseMaps = {
     "Dark": dark,
     "Imagery": imagery
 }
-L.control.layers(null, baseMaps).addTo(map);
+L.control.layers(baseMaps, null).addTo(map);
 
 // Leaflet Browser Print
 
@@ -68,9 +68,9 @@ L.control.browserPrint({
     position: 'topright'
 }).addTo(map);
 
-var legend = L.control({
-    position: 'bottomright'
-});
+//var legend = L.control({
+//    position: 'bottomright'
+//});
 
 map.on("browser-print-start", function (e) {
     L.control.scale({
@@ -595,6 +595,25 @@ function styleWtrVul(feature) {
     };
 }
 
+function styleGradientWtrVul(feature) {
+    level = feature.properties.dws_vul;
+    var colorToUse;
+    if (level === "Very High") colorToUse = '#edf8e9';
+    else if (level === "High") colorToUse = '#bae4b3';
+    else if (level === "Moderate") colorToUse = '#74c476';
+    else if (level === "Low") colorToUse = '#31a354';
+    else if (level === "Very Low") colorToUse = '#006d2c';
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
 function styleAltWtr(feature) {
     type = feature.properties.AWEvtType;
     var colorToUse;
@@ -928,7 +947,6 @@ function updateOpacityTile(val, layer) {
 
 
 
-
 // Legend Controls 
 
 //function createLegend(attributes, title) {
@@ -1011,6 +1029,37 @@ function addLegend(id, title) {
     map.addControl(legendlayer)
 }
 
+
+var wtrVulChange = L.esri.featureLayer({
+    url: a_wtrVul,
+    style: styleGradientWtrVul,
+});
+
+function updateOpacityBoundWtrVul(val) {
+    var checkVal = document.getElementById("wtrVulGrad").checked;
+    if (checkVal === true) {
+        wtrVulChange.setStyle({
+            opacity: val,
+        });
+    } else {
+        wtrVul.setStyle({
+            opacity: val,
+        });
+    }
+}
+
+function updateOpacityWtrVul(val) {
+    var checkVal = document.getElementById("wtrVulGrad").checked;
+    if (checkVal === true) {
+        wtrVulChange.setStyle({
+            fillOpacity: val,
+        });
+    } else {
+        wtrVul.setStyle({
+            fillOpacity: val,
+        });
+    }
+}
 
 $(document).ready(function () {
     createSidebar();

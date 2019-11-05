@@ -27,6 +27,9 @@ body {
     padding-top: 45px;
 }
 
+
+
+
 /*
 body {
     height of .navbar,
@@ -49,44 +52,71 @@ body {
 }
 */
 
+/*// Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+    #sidebar {
+        margin-top: 3.3em;
 
-#sidebar {
-    margin-top: 3em;
+    }
+
 }
+
+/*// Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    #sidebar {
+        margin-top: 2.38em;
+
+    }
+}
+
+@media (max-width: 575.98px) {
+    #sidebar {
+        margin-top: 3.3em;
+
+    }
+}
+
+/*// Large devices (desktops, 992px and up)*/
+/*@media (min-width: 992px) { #sidebar {
+    
+    margin-top: 2.38em;
+
+} }*/
+
+/*// Extra large devices (large desktops, 1200px and up)*/
+/*@media (min-width: 1200px) { #sidebar {
+    
+    margin-top: 2.38em;
+
+}... }*/
+
+
+/*
+#sidebar {
+    
+    margin-top: 3.2em;
+}
+*/
 
 .sidebar-left {
     left: 0px;
 }
 
-/*
 .sidebar-tabs > li > a,
-.sidebar-tabs > ul > li > a {
-    color: whitesmoke;
+.sidebar-tabs > ul > li {
+    color: #042440;
 }
-*/
+
 .sidebar-tabs > li.active,
 .sidebar-tabs > ul > li.active {
     color: whitesmoke;
 }
 
-/*
-#sidebar {
-    float: left;
-    height: 90%;
-    max-width: 100%;
-    width: 35%;
-    padding-left: 1%;
-    margin-top: 3.2em;
-    box-shadow: none;
-    overflow: hidden;
 
-    maybe remove
-}
-*/
 
 .sidebar-tabs {
     background: #A5A16D;
-    /*    #16558C;*/
+    /*    ;*/
 }
 
 .sidebar.collapsed > .sidebar-content {
@@ -95,45 +125,17 @@ body {
 }
 
 
-/* custom legend. didn't look great. if have time try again*/
-span.legendbutton {
-    background: url('legend2.svg') no-repeat;
-    background-size: contain;
-    background-color: white;
-    cursor: pointer;
-    display: inline-block;
-    border: none;
-    height: 15px;
-    width: 15px;
+.sidebar-tabs a:hover {
+    color: whitesmoke;
 }
+
+
 
 p {
     margin-bottom: 0;
 }
 
-/*
-#mapid {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    height: 100%;
-    width: auto;
-}
-*/
 
-/*
-.sidebar-wrapper {
-    height: 100%;
-    position: relative;
-    width: 100%;
-}
-*/
-
-/*
-@media (max-width: 767px) {
-    #sidebar {
-        display: none;
-    }
-}
-*/
 
 .btn-outline-primary {
     background-color: transparent;
@@ -141,41 +143,22 @@ p {
 }
 
 
-
-/*
-.navbar-default {
-    background-color: royalblue;
-    border: none;
-}
-
-.navbar .navbar-nav li a {
-    color: whitesmoke;
-}
-
-.navbar .navbar-nav li a:hover {
-    color: slategrey;
-}
-*/
 .navbar {
     background-color: #042440;
 }
 
 .navbar a:hover {
-    color: #A5A16D;
+    color: whitesmoke;
 }
 
 .navbar-brand {
-    padding-left: 5%;
+    padding-left: 2%;
     color: whitesmoke;
+    font: 14pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
-.nav-link {
-    color: whitesmoke;
-}
 
-.nav-item a:hover {
-    color: #A5A16D;
-}
 
 .sidebar-header {
     display: block;
@@ -187,11 +170,6 @@ p {
     /*    background-image: linear-gradient(to bottom, #3498db, #2980b9);*/
 }
 
-/*
-.sidebar-close {
-    float: right;
-}
-*/
 
 .title {
     display: none;
@@ -251,6 +229,28 @@ a.leaflet-control-zoomhome-out {
 }
 
 /*END Leaflet Zoom Home plugin code*/
+
+.card-link {
+    font: bold,
+}
+
+.slider {
+    box-shadow: 1px 1px 1px #220000, 0px 0px 1px #3c0000;
+
+}
+
+.categoryHead {
+    font-style: bold;
+    font-weight: 700;
+    margin-top: 15px;
+    color: #042440;
+}
+
+/* access to color gradient thing
+p.color-scheme {
+    color: black;
+
+*/
 
 
 
@@ -359,5 +359,88 @@ END OF SLIDER OPTION
 
 #features .panel-info p {
     margin: 0px 0px 0px 0px;
+}
+*/
+
+
+
+/*
+.navbar-default {
+    background-color: royalblue;
+    border: none;
+}
+
+.navbar .navbar-nav li a {
+    color: whitesmoke;
+}
+
+.navbar .navbar-nav li a:hover {
+    color: slategrey;
+}
+*/
+
+/*
+.sidebar-close {
+    float: right;
+}
+*/
+
+
+/* custom legend. didn't look great. if have time try again*/
+/*
+span.legendbutton {
+    background: url('legend2.svg') no-repeat;
+    background-size: contain;
+    background-color: white;
+    cursor: pointer;
+    display: inline-block;
+    border: none;
+    height: 15px;
+    width: 15px;
+}
+*/
+
+/*
+#mapid {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: auto;
+}
+*/
+
+/*
+.sidebar-wrapper {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+*/
+
+/*
+@media (max-width: 767px) {
+    #sidebar {
+        display: none;
+    }
+}
+*/
+
+/*
+#sidebar {
+    float: left;
+    height: 90%;
+    max-width: 100%;
+    width: 35%;
+    padding-left: 1%;
+    margin-top: 3.2em;
+    box-shadow: none;
+    overflow: hidden;
+
+    maybe remove
+}
+*/
+
+/*
+.nav-link {
+    color: whitesmoke;
 }
 */

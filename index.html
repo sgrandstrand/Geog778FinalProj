@@ -38,10 +38,13 @@
 
 <body>
 
+
+
     <!--Navigation Bar -->
 
     <nav class="navbar fixed-top navbar-expand-lg">
         <a class="navbar-brand" href="#"><span class="lg-view">Hawk Creek Watershed</span></a>
+        <!--
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fa fa-bars"></span>
         </button>
@@ -62,6 +65,7 @@
                 </li>
             </ul>
         </div>
+-->
     </nav>
     <!--Navigation Bar End -->
 
@@ -70,11 +74,19 @@
         <div class="sidebar-tabs">
             <ul role="tablist">
                 <li>
-                    <a href="#home" role="tab"><i id="toggleSidebar" class="fa fa-bars"></i></a></li>
+                    <a href="#home" role="tab"><i class="far fa-map"></i></a></li>
+                <li>
+                    <a href="#metadata" role="tab"><i class="fas fa-info"></i></a></li>
+                <li>
+                    <a href="#help" role="tab"><i class="far fa-question-circle"></i></a></li>
+
+                <!--
+                  <li>
+                    <a href="#help" role="tab"><i id="toggleSidebar3" class="fas fa-question"></i></a></li>
+-->
             </ul>
 
         </div>
-
         <div class="sidebar-content">
             <div id="home" class="sidebar-pane">
                 <h1 class="sidebar-header" id="closeSidebar">Map Layers<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
@@ -85,11 +97,11 @@
                 <h5 class="categoryHead">Boundaries</h5>
                 <p><input type="checkbox" value="hawkcreekbndry" checked> Planning Area
                     <!--                Buttons -->
-                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseBndry" aria-expanded="false" aria-controls="collapseBndry">
+                    <button class="btn-xs btn-light" type="button" data-toggle="collapse" data-target="#collapseBndry" aria-expanded="false" aria-controls="collapseBndry">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
 
-                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#BndryLegend" aria-expanded="false" aria-controls="BndryLegend" onclick="addLegend('#BndryLegend', 'Planning Area')"> <span class="sr-only">Toggle Legend </span>
+                    <button class="btn-xs btn-secondary" type="button" data-toggle="collapse" data-target="#BndryLegend" aria-expanded="false" aria-controls="BndryLegend" onclick="addLegend('#BndryLegend', 'Planning Area')"> <span class="sr-only">Toggle Legend </span>
                         <span class="fab fa-elementor"></span></button>
 
                     <button class="btn-xs btn-outline-primary" type="button" onclick="zoomToFeature(a_hwkCreekBndry)"> <span class="sr-only">Zoom to feature </span>
@@ -145,7 +157,7 @@
                     <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehuc8" aria-expanded="false" aria-controls="collapseExample">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
-                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#huc8Legend" aria-expanded="false" aria-controls="huc8Legend"> <span class="sr-only">Toggle Legend </span>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#huc8Legend" aria-expanded="false" aria-controls="huc8Legend" onclick="addLegend('#huc8Legend','Major Watershed (HUC 8)')"> <span class="sr-only">Toggle Legend </span>
                         <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsehuc8">
@@ -261,9 +273,14 @@
                     <div class="collapse" id="collapsewtrVul">
                         <div class="card card-body">
                             <p>Opacity Fill
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, wtrVul)"></p>
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityWtrVul(this.value)"></p>
                             <p>Opacity Boundary
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, wtrVul)"></p>
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBoundWtrVul(this.value)"></p> <br> <br>
+
+                            <p class="color-scheme"><input type="checkbox" id="wtrVulGrad" value="wtrVulChange"> Change Color Scheme to Gradient</p>
+
+
+                            <!--                                <button type="button" value="wtrVul" onclick="changeStyle(this.value, wtrVul)"></p>-->
                         </div>
                     </div>
                     <div class="collapse" id="wtrVulLegend">
@@ -530,7 +547,7 @@
                         <div class="card card-body">
                             <p><svg width="20" height="10">
                                     <rect width="15" height="5" style="fill:#674d6e;" />
-                                </svg>Public Ditches
+                                </svg>Public Ditches (16.5ft and 50ft)
                             </p>
                         </div>
                     </div>
@@ -564,7 +581,7 @@
 
                     <h5 class="categoryHead">Surface Water Quality</h5>
 
-                    <input type="checkbox" value="imptStrm"> Impaired Streams<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseimptStrm" aria-expanded="false" aria-controls="collapseimptStrm">
+                    <input type="checkbox" value="imptStrm"> Impaired Streams (Proposed)<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseimptStrm" aria-expanded="false" aria-controls="collapseimptStrm">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
                     <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#imptStrmLegend" aria-expanded="false" aria-controls="imptStrmLegend"> <span class="sr-only">Toggle Legend </span>
@@ -580,12 +597,12 @@
                         <div class="card card-body">
                             <p><svg width="20" height="10">
                                     <rect width="15" height="5" style="fill:#8c0007;" />
-                                </svg>Impaired Streams
+                                </svg>Impaired Streams (Proposed)
                             </p>
                         </div>
                     </div>
                     <br>
-                    <input type="checkbox" value="impLks"> Impaired Lakes<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseimpLks" aria-expanded="false" aria-controls="collapseimpLks">
+                    <input type="checkbox" value="impLks"> Impaired Lakes (Proposed)<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseimpLks" aria-expanded="false" aria-controls="collapseimpLks">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
                     <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#impLksLegend" aria-expanded="false" aria-controls="impLksLegend"> <span class="sr-only">Toggle Legend </span>
@@ -603,7 +620,7 @@
                         <div class="card card-body">
                             <p><svg width="20" height="10">
                                     <rect width="15" height="10" style="fill:#002366; stroke-width:2; stroke:#002366; fill-opacity:0.8" />
-                                </svg>Impaired Lakes
+                                </svg>Impaired Lakes (Proposed)
                             </p>
                         </div>
                     </div>
@@ -1459,8 +1476,78 @@
                         </div>
                     </div>
                 </p><!--            End of Map layers list-->
-            </div> <!-- Side bar Pane end-->
+            </div> <!-- Side bar Pane map layers end-->
+            <div class="sidebar-pane" id="metadata">
+                <h1 class="sidebar-header"> Metadata<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                <br>
+
+
+                <div class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#metadataHUC">
+                            Major Watershed (HUC 8), HUC 10, HUC 12
+                        </a>
+                    </div>
+                    <div id="metadataHUC" class="collapse show">
+                        <div class="card-body">
+                            Source: USGS Hydrologic Unit Boundaries
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#metadataDNRCatch">
+                            DNR Catchments
+                        </a>
+                    </div>
+                    <div id="metadataDNRCatch" class="collapse">
+                        <div class="card-body">
+                            Source: Lake Watershed strategies from DNR Fish Habitat Plan
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#metadataDWSV">
+                            Drinking Water Supply Vulnerability
+                        </a>
+                    </div>
+                    <div id="metadataDWSV" class="collapse">
+                        <div class="card-body">
+                            <p>Source: MN Department of Health</p><br>
+                            <p>Description: Drinking water supply management area (DWSMA) vulnerability is an assessment of the likelihood for a potential contaminant source within the drinking water supply management area to contaminate a public water supply well based on the aquifer's inherent geologic sensitivity; and the chemical and isotopic composition of the groundwater.</p><br>
+                            <p>Publication: 07/15/2019</p><br>
+                            <p>More information: <a href="https://www.health.state.mn.us/communities/environment/water/swp/maps/index.html" target="_blank">https://www.health.state.mn.us/communities/environment/water/swp/maps/index.html</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#metadataWellHead">
+                            Well Head Protection Areas
+                        </a>
+                    </div>
+                    <div id="metadataWellHead" class="collapse">
+                        <div class="card-body">
+                            <p>Source: MN Department of Health </p><br>
+                            <p>Description: Wellhead Protection Area (WHPA) is the Minnesota Department of Health (MDH) approved surface and subsurface area surrounding a public water supply well or well field that supplies a public water system, through which contaminants are likely to move toward and reach the well or well field. </p><br>
+                            <p>Publication: 07/15/2019</p><br>
+                            <p>More information: <a href=" https://gisdata.mn.gov/dataset/activity/water-wellhead-protection-areas" target="_blank"> https://gisdata.mn.gov/dataset/activity/water-wellhead-protection-areas</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Side bar Pane Metadata end-->
+            <div class="sidebar-pane" id="help">
+                <h1 class="sidebar-header"> User Guide<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                <br>
+                <p>
+                    Here enter description of how to use app
+                </p>
+            </div> <!-- Side bar Pane Metadata end-->
         </div> <!-- Side bar Content end-->
+
+
+
     </div> <!-- Sidebar end-->
 
 
@@ -1500,7 +1587,6 @@
             padding-left: 10px;
             color: white;
         }
-
     </style>
 
 
@@ -1541,9 +1627,7 @@
     <!--    <script type="text/javascript" src="js/L.Control.Sidebar.js"></script>-->
     <script type="text/javascript" src="js/main1.js"></script>
 
-</body>
-
-</html>
+</body></html>
 
 
 
