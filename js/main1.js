@@ -53,6 +53,19 @@ var baseMaps = {
 }
 L.control.layers(baseMaps, null).addTo(map);
 
+L.easyButton('fa-crosshairs fa-lg', function (btn, map) {
+    var query = L.esri.query({
+        url: a_hwkCreekBndry
+    });
+    query.bounds(function (error, latLngBounds, response) {
+        if (error) {
+            console.log(error);
+            return;
+        }
+        map.fitBounds(latLngBounds);
+    });
+}).addTo(map);
+
 // Leaflet Browser Print
 
 L.control.browserPrint({
@@ -318,11 +331,7 @@ var trout = L.esri.featureLayer({
 });
 var wellhead = L.esri.featureLayer({
     url: a_wellhead,
-    style: function () {
-        return {
-            color: "#a65628",
-        };
-    },
+    style: stylewellhead,
     //    onEachFeature: function (feature, layer) {
     //        layer.on("mouseover", function (e) {
     //
@@ -575,6 +584,18 @@ var cultcrops = L.esri.tiledMapLayer({
 
 /// STYLE FUNCTIONS
 
+function stylewellhead(feature) {
+    return {
+        color: "#a65628",
+    };
+}
+
+function styleGradientwellhead(feature) {
+    return {
+        color: "#006d2c",
+    };
+}
+
 // Water vulnerability
 function styleWtrVul(feature) {
     level = feature.properties.dws_vul;
@@ -598,11 +619,11 @@ function styleWtrVul(feature) {
 function styleGradientWtrVul(feature) {
     level = feature.properties.dws_vul;
     var colorToUse;
-    if (level === "Very High") colorToUse = '#edf8e9';
-    else if (level === "High") colorToUse = '#bae4b3';
+    if (level === "Very High") colorToUse = '#006d2c';
+    else if (level === "High") colorToUse = '#31a354';
     else if (level === "Moderate") colorToUse = '#74c476';
-    else if (level === "Low") colorToUse = '#31a354';
-    else if (level === "Very Low") colorToUse = '#006d2c';
+    else if (level === "Low") colorToUse = '#bae4b3';
+    else if (level === "Very Low") colorToUse = '#edf8e9';
     else colorToUse = "transparent";
 
     return {
@@ -613,6 +634,7 @@ function styleGradientWtrVul(feature) {
         "fillOpacity": 0.8
     };
 }
+
 
 function styleAltWtr(feature) {
     type = feature.properties.AWEvtType;
@@ -830,6 +852,21 @@ function styleBedrockPoll(feature) {
     };
 }
 
+function styleGradientbedrockPoll(feature) {
+    type = feature.properties.RATING;
+    var colorToUse;
+    if (type === "VH") colorToUse = '#2ca25f';
+    else if (type === "H") colorToUse = '#99d8c9';
+    else if (type === "M") colorToUse = '#e5f5f9';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
+
 function styleMBSBio(feature) {
     type = feature.properties.biodiv_sig;
     var colorToUse;
@@ -878,20 +915,23 @@ function styleNitrTwn(feature) {
     };
 }
 
+function styleGradientNitrTwn(feature) {
+    type = feature.properties.InitNRange;
+    var colorToUse;
+    if (type === "<5%") colorToUse = '#e5f5f9';
+    else if (type === "5<10%") colorToUse = '#99d8c9';
+    else if (type === "≥10%") colorToUse = '#2ca25f';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
 
 function styleGSSURGO(feature) {
     type = feature.properties.muaggatt_h;
-    //    var attributes = {
-    //        'A': '#aaff00',
-    //        'A/D': '#9f57f7',
-    //        'B': '#4ecdd9',
-    //        'C': '#f5e56c',
-    //        'C/D': '#f0599d',
-    //        'D': '#4d7300'
-    //    };
-    //    console.log(attributes)
-    //    console.log(attributes.length);
-    //    var title = "Hydrologic Group - Dominant Conditions"
     var colorToUse;
     if (type === "A") colorToUse = '#aaff00';
     else if (type === "A/D") colorToUse = '#9f57f7';
@@ -907,18 +947,6 @@ function styleGSSURGO(feature) {
         "weight": 2,
         "fillOpacity": 0.8
     };
-    //    var attributes = {
-    //        'A': '#aaff00',
-    //        'A/D': '#9f57f7',
-    //        'B': '#4ecdd9',
-    //        'C': '#f5e56c',
-    //        'C/D': '#f0599d',
-    //        'D': '#4d7300'
-    //    };
-    //    console.log(attributes.length);
-    //    var title = "Hydrologic Group - Dominant Conditions"
-    //    createlegend(attributes, title);
-
 }
 
 ///// **** END OF STYLE FUNCTIONS *** \\\\\
@@ -988,20 +1016,6 @@ function zoomToFeature(urlLayer) {
     });
 }
 
-
-L.easyButton('fa-crosshairs fa-lg', function (btn, map) {
-    var query = L.esri.query({
-        url: a_hwkCreekBndry
-    });
-    query.bounds(function (error, latLngBounds, response) {
-        if (error) {
-            console.log(error);
-            return;
-        }
-        map.fitBounds(latLngBounds);
-    });
-}).addTo(map);
-
 //Create sidebar function
 function createSidebar() {
     var sidebar = L.control.sidebar('sidebar').addTo(map);
@@ -1011,6 +1025,16 @@ function createSidebar() {
 //var legendlayer = L.control.htmllegend({
 //    position: 'bottomright'
 //})
+//coordsLeg = [43.465951, -96.348829]
+//styleLeg = {
+//    color: 'red'
+//}
+//
+//legendBndry = L.circle(coordsLeg, styleLeg);
+//legendCnty = L.circle(coordsLeg, styleLeg);
+//legendHUC8 = L.circle(coordsLeg, styleLeg);
+//
+//var legendlayerBndry = L.control.htmllegend({})
 
 function addLegend(id, title) {
 
@@ -1030,50 +1054,75 @@ function addLegend(id, title) {
 }
 
 
-var wtrVulChange = L.esri.featureLayer({
-    url: a_wtrVul,
-    style: styleGradientWtrVul,
-});
 
-function updateOpacityBoundWtrVul(val) {
-    var checkVal = document.getElementById("wtrVulGrad").checked;
-    if (checkVal === true) {
-        wtrVulChange.setStyle({
-            opacity: val,
-        });
-    } else {
-        wtrVul.setStyle({
-            opacity: val,
-        });
-    }
+function changeStyle(val, layer) {
+    console.log(val);
+    layer.setStyle(val);
 }
 
-function updateOpacityWtrVul(val) {
-    var checkVal = document.getElementById("wtrVulGrad").checked;
-    if (checkVal === true) {
-        wtrVulChange.setStyle({
-            fillOpacity: val,
-        });
-    } else {
-        wtrVul.setStyle({
-            fillOpacity: val,
-        });
-    }
+function changeToOrigStyle(val, layer) {
+    console.log(val);
+    layer.setStyle(val);
 }
+
+
+
 
 $(document).ready(function () {
     createSidebar();
 
+
+    ///change this to switch statements so the layer for gradients is removed. 
+
     $('input[type="checkbox"]').click(function () {
         layerClicked = window[event.target.value];
-        if ($(this).is(":checked")) {
+        colorGradeID = window[event.target.id]; // the function name of the style for gradient color scheme 
+        colorOrigID = window[event.target.name]; //the original color scheme function
+        if ($(this).is(":checked") && $(this).hasClass('colorGrade')) {
+            changeStyle(colorGradeID, layerClicked); //calls function to change the style
+        } else if ($(this).is(":not(:checked)") && $(this).hasClass('colorGrade')) {
+            changeToOrigStyle(colorOrigID, layerClicked);
+        } else if ($(this).is(":checked")) {
+            console.log("using 3rd choice")
+            console.log(layerClicked);
             map.addLayer(layerClicked);
         } else if ($(this).is(":not(:checked)")) {
-
             map.removeLayer(layerClicked);
         }
     });
 
+
+    //        $('input[type="checkbox"]').click(function () {
+    //        layerClicked = window[event.target.value];
+    //        if ($(this).is(":checked")) {
+    //            map.addLayer(layerClicked);
+    //        } else if ($(this).is(":not(:checked)")) {
+    //            map.removeLayer(layerClicked);
+    //        }
+    //    });
+
+
+
+
+    //    $('input[type="checkbox"]').click(function () {
+    //        layerClicked = window[event.target.value];
+    //        layerLegendID = this.name;
+    //        if ($(this).is(":checked") && $(this).hasClass('showLegend')) {
+    //            map.addLayer(layerClicked);
+    //            addLegend(layerLegendID, layerClicked);
+    //        } else if ($(this).is(":not(:checked)") && $(this).hasClass('showLegend')) {
+    //            map.removeLayer(layerClicked);
+    //        } else if ($(this).is(":checked")) {
+    //            map.addLayer(layerClicked);
+    //        } else if ($(this).is(":not(:checked)")) {
+    //            map.removeLayer(layerClicked);
+    //        }
+    //    });
+    //    $('.showLegend').click(function () {
+    //        if ($(this).is(":checked")) {
+    //            addLegend
+    //        }
+    //    })
 
 
 
@@ -1190,3 +1239,35 @@ $(document).ready(function () {
 //    }).addTo(map);
 //
 //};
+
+//// gradient layer for mapping scheme
+////var wtrVulChange = L.esri.featureLayer({
+////    url: a_wtrVul,
+////    style: styleGradientWtrVul,
+////});
+//
+//function updateOpacityBoundWtrVul(val) {
+//    var checkVal = document.getElementById("wtrVulGrad").checked;
+//    if (checkVal === true) {
+//        wtrVulChange.setStyle({
+//            opacity: val,
+//        });
+//    } else {
+//        wtrVul.setStyle({
+//            opacity: val,
+//        });
+//    }
+//}
+//
+//function updateOpacityWtrVul(val) {
+//    var checkVal = document.getElementById("wtrVulGrad").checked;
+//    if (checkVal === true) {
+//        wtrVulChange.setStyle({
+//            fillOpacity: val,
+//        });
+//    } else {
+//        wtrVul.setStyle({
+//            fillOpacity: val,
+//        });
+//    }
+//}

@@ -93,7 +93,6 @@
                 <br>
 
                 <!--                Boundary Layers -->
-
                 <h5 class="categoryHead">Boundaries</h5>
                 <p><input type="checkbox" value="hawkcreekbndry" checked> Planning Area
                     <!--                Buttons -->
@@ -104,14 +103,13 @@
                     <button class="btn-xs btn-secondary" type="button" data-toggle="collapse" data-target="#BndryLegend" aria-expanded="false" aria-controls="BndryLegend" onclick="addLegend('#BndryLegend', 'Planning Area')"> <span class="sr-only">Toggle Legend </span>
                         <span class="fab fa-elementor"></span></button>
 
-                    <button class="btn-xs btn-outline-primary" type="button" onclick="zoomToFeature(a_hwkCreekBndry)"> <span class="sr-only">Zoom to feature </span>
-                        <span class="fas fa-crosshairs"></span></button>
 
                     <!--                Collapsed Div's -->
                     <div class="collapse" id="collapseBndry">
                         <div class="card card-body">
                             <p>Opacity Fill<input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, hawkcreekbndry)"></p>
-                            <p>Opacity Boundary<input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, hawkcreekbndry)"></p>
+                            <p>Opacity Boundary<input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, hawkcreekbndry)"></p> <br>
+                            <p><input type="checkbox" name="#BndryLegend" class="showLegend" value="legendBndry"> Show Legend</p>
                         </div>
                     </div>
                     <div class="collapse" id="BndryLegend">
@@ -119,7 +117,6 @@
                             <p><svg width="20" height="10">
                                     <rect width="15" height="10" style="fill:red; stroke-width:2; stroke:red; fill-opacity:0.5" />
                                 </svg>Planning Area Boundary</p>
-
                         </div>
                     </div>
                     <!--END HAWK CREEK BOUNDARY-->
@@ -273,11 +270,11 @@
                     <div class="collapse" id="collapsewtrVul">
                         <div class="card card-body">
                             <p>Opacity Fill
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityWtrVul(this.value)"></p>
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, wtrVul)"></p>
                             <p>Opacity Boundary
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBoundWtrVul(this.value)"></p> <br> <br>
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, wtrVul)"></p>
 
-                            <p class="color-scheme"><input type="checkbox" id="wtrVulGrad" value="wtrVulChange"> Change Color Scheme to Gradient</p>
+                            <p class="color-scheme"><input type="checkbox" name="styleWtrVul" class="colorGrade" id="styleGradientWtrVul" value="wtrVul"> Change to Gradient Color Scheme</p>
 
 
                             <!--                                <button type="button" value="wtrVul" onclick="changeStyle(this.value, wtrVul)"></p>-->
@@ -316,6 +313,7 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, wellhead)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, wellhead)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="stylewellhead" class="colorGrade" id="styleGradientwellhead" value="wellhead"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="wellheadLegend">
@@ -340,6 +338,7 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, bedrockPoll)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, bedrockPoll)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="styleBedrockPoll" class="colorGrade" id="styleGradientbedrockPoll" value="bedrockPoll"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="bedrockPollLegend">
@@ -369,6 +368,7 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, nitrTwn)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, nitrTwn)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="styleNitrTwn" class="colorGrade" id="styleGradientNitrTwn" value="nitrTwn"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="nitrTwnLegend">

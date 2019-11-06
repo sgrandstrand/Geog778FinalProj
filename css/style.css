@@ -246,6 +246,10 @@ a.leaflet-control-zoomhome-out {
     color: #042440;
 }
 
+.color-scheme {
+    padding-top: 20px;
+}
+
 /* access to color gradient thing
 p.color-scheme {
     color: black;
