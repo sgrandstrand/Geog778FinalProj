@@ -1036,6 +1036,10 @@ function createSidebar() {
 //
 //var legendlayerBndry = L.control.htmllegend({})
 
+//make button to add layer but don't see the layer 
+// make a random point somewhere for each layer. don't add style. associate the legend to
+// not sure how to work this with printing but maybe add a part where this will add to the div for on print 
+
 function addLegend(id, title) {
 
     //    legendlayer.onAdd
