@@ -14,6 +14,7 @@
     <link href="lib/leaflet/leaflet.css" rel="stylesheet">
     <link href="css/Leaflet.EasyButton.css" rel="stylesheet">
 
+    <link href="lib/leaflet.MiniMap/Control.MiniMap.css" rel="stylesheet">
     <link href="lib/leaflet.HtmlLegend/L.Control.HtmlLegend.css" rel="stylesheet">
     <!--    <link href="css/bootstrap.css" rel="stylesheet">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -225,42 +226,13 @@
 
                         </div>
                     </div>
-                    <br>
-                    <input type="checkbox" value="dNRCatch"> DNR Catchments<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsedNRCatch" aria-expanded="false" aria-controls="collapsedNRCatch">
-                        <span class="sr-only">Expand to Edit </span>
-                        <span class="fa fa-edit"></span></button>
-                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#dNRCatchLegend" aria-expanded="false" aria-controls="dNRCatchLegend"> <span class="sr-only">Toggle Legend </span>
-                        <span class="fab fa-elementor"></span></button>
-                    <!--                COLLAPSED DIV'S-->
-                    <div class="collapse" id="collapsedNRCatch">
-                        <div class="card card-body">
-                            <p>Opacity Fill
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, dNRCatch)"></p>
-                            <p>Opacity Boundary
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, dNRCatch)"></p>
-                        </div>
-                    </div>
-                    <div class="collapse" id="dNRCatchLegend">
-                        <div class="card card-body">
-                            <p><svg width="20" height="10">
-                                    <rect width="15" height="10" style="fill:#002673; stroke-width:2; stroke:#002673; fill-opacity:0.8" />
-                                </svg>Vigilance<br>
-                                <svg width="20" height="10">
-                                    <rect width="15" height="10" style="fill:#005ce6; stroke-width:2; stroke:#005ce6; fill-opacity:0.8" />
-                                </svg>Needs Protection<br>
-                                <svg width="20" height="10">
-                                    <rect width="15" height="10" style="fill:#a1ceff; stroke-width:2; stroke:#a1ceff; fill-opacity:0.8" />
-                                </svg>Full Restoration<br>
-                                <svg width="20" height="10">
-                                    <rect width="15" height="10" style="fill:#9c9c9c; stroke-width:2; stroke:#9c9c9c; fill-opacity:0.8" />
-                                </svg>Partial Restoration<br>
-                            </p>
-                        </div>
-                    </div>
+
                     <br>
 
                     <!--                Groundwater Layers -->
+
                     <h5 class="categoryHead">Groundwater</h5>
+
                     <input type="checkbox" value="wtrVul"> DWSMA Vulnerability<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsewtrVul" aria-expanded="false" aria-controls="collapseExample">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
@@ -396,7 +368,8 @@
                     <div class="collapse" id="collapsepollsens">
                         <div class="card card-body">
                             <p>Opacity
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, pollsens)"></p>
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTilepollsens(this.value)"></p>
+                            <p class="color-scheme"><input type="checkbox" class="pollution-sens" id="pollsensGradient" value="pollsens"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="pollsensLegend">
@@ -423,7 +396,9 @@
                         </div>
                     </div>
                     <br>
-                    <!--                Hydrology Layers-->
+
+                    <!--------          Hydrology Layers       -------->
+
                     <h5 class="categoryHead">Hydrology</h5>
 
                     <input type="checkbox" value="fEMAflood"> 100 Year Flood Plain<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsefEMAflood" aria-expanded="false" aria-controls="collapsefEMAflood">
@@ -438,6 +413,7 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, fEMAflood)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, fEMAflood)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="stylefEMAflood" class="colorGrade" id="styleGradientfEMAflood" value="fEMAflood"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="fEMAfloodLegend">
@@ -459,6 +435,7 @@
                         <div class="card card-body">
                             <p>Opacity
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, altwtr)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="styleAltwtr" class="colorGrade" id="styleGradientAltwtr" value="altwtr"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="altwtrLegend">
@@ -493,6 +470,7 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, cONUS)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, cONUS)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="styleCONUS" class="colorGrade" id="styleGradientCONUS" value="cONUS"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="cONUSLegend">
@@ -520,6 +498,7 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, buffwetlnds)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, buffwetlnds)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="stylebuffwetlnds" class="colorGrade" id="styleGradientbuffwetlnds" value="buffwetlnds"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="buffwetlndsLegend">
@@ -541,6 +520,7 @@
                         <div class="card card-body">
                             <p>Opacity
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, buffwtrcrse)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="stylebuffwtrcrse" class="colorGrade" id="styleGradientbuffwtrcrse" value="buffwtrcrse"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="buffwtrcrseLegend">
@@ -564,6 +544,7 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, rWI)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, rWI)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="stylerWI" class="colorGrade" id="styleGradientrWI" value="rWI"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="rWILegend">
@@ -591,6 +572,7 @@
                         <div class="card card-body">
                             <p>Opacity
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, imptStrm)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="styleimptStrm" class="colorGrade" id="styleGradientimptStrm" value="imptStrm"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="imptStrmLegend">
@@ -614,6 +596,7 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, impLks)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, impLks)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="styleimpLks" class="colorGrade" id="styleGradientimpLks" value="impLks"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="impLksLegend">
@@ -638,8 +621,10 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, phos)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, phos)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="stylePhos" class="colorGrade" id="styleGradientPhos" value="phos"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
+                    <br>
                     <div class="collapse" id="phosLegend">
                         <div class="card card-body">
                             <p><svg width="20" height="10">
@@ -658,7 +643,150 @@
                         </div>
                     </div>
                     <br>
-
+                    <input type="checkbox" value="hPSF_TSS"> HPSF TSS<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehPSF_TSS" aria-expanded="false" aria-controls="collapsehPSF_TSS">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#hPSF_TSSLegend" aria-expanded="false" aria-controls="hPSF_TSSLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsehPSF_TSS">
+                        <div class="card card-body">
+                            <p>Opacity Fill
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, hPSF_TSS)"></p>
+                            <p>Opacity Boundary
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, hPSF_TSS)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="stylehPSF_TSS" class="colorGrade" id="styleGradienthPSF_TSS" value="hPSF_TSS"> Change to Gradient Color Scheme</p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="hPSF_TSSLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffff80; stroke-width:2; stroke:#ffff80; fill-opacity:0.8" />
+                                </svg>0.00 - .05 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#fad155; stroke-width:2; stroke:#fad155; fill-opacity:0.8" />
+                                </svg>0.06 - 0.50 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#f2a72e; stroke-width:2; stroke:#f2a72e; fill-opacity:0.8" />
+                                </svg>0.51 - 1.00 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ad5313; stroke-width:2; stroke:#ad5313; fill-opacity:0.8" />
+                                </svg>1.01 - 2.50 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#6b0000; stroke-width:2; stroke:#6b0000; fill-opacity:0.8" />
+                                </svg>2.51 - 12.25
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="checkbox" value="hPSF_TN"> HPSF TN<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehPSF_TN" aria-expanded="false" aria-controls="collapsehPSF_TN">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#hPSF_TNLegend" aria-expanded="false" aria-controls="hPSF_TNLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsehPSF_TN">
+                        <div class="card card-body">
+                            <p>Opacity Fill
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, hPSF_TN)"></p>
+                            <p>Opacity Boundary
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, hPSF_TN)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="stylehPSF_TN" class="colorGrade" id="styleGradienthPSF_TN" value="hPSF_TN"> Change to Gradient Color Scheme</p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="hPSF_TNLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffff80; stroke-width:2; stroke:#ffff80; fill-opacity:0.8" />
+                                </svg>0.00 - 5.00 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#fad155; stroke-width:2; stroke:#fad155; fill-opacity:0.8" />
+                                </svg>5.01 - 10.00 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#f2a72e; stroke-width:2; stroke:#f2a72e; fill-opacity:0.8" />
+                                </svg>10.01 - 15.00 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ad5313; stroke-width:2; stroke:#ad5313; fill-opacity:0.8" />
+                                </svg>15.01 - 20 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#6b0000; stroke-width:2; stroke:#6b0000; fill-opacity:0.8" />
+                                </svg>> 20
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="checkbox" value="hPSF_TP"> HPSF TP<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehPSF_TP" aria-expanded="false" aria-controls="collapsehPSF_TP">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#hPSF_TPLegend" aria-expanded="false" aria-controls="hPSF_TPLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsehPSF_TP">
+                        <div class="card card-body">
+                            <p>Opacity Fill
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, hPSF_TP)"></p>
+                            <p>Opacity Boundary
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, hPSF_TP)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="stylehPSF_TP" class="colorGrade" id="styleGradienthPSF_TP" value="hPSF_TP"> Change to Gradient Color Scheme</p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="hPSF_TPLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffff80; stroke-width:2; stroke:#ffff80; fill-opacity:0.8" />
+                                </svg>0.17 - 0.29 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#fad155; stroke-width:2; stroke:#fad155; fill-opacity:0.8" />
+                                </svg>0.30 - 0.43 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#f2a72e; stroke-width:2; stroke:#f2a72e; fill-opacity:0.8" />
+                                </svg>0.44 - 0.61 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ad5313; stroke-width:2; stroke:#ad5313; fill-opacity:0.8" />
+                                </svg>0.62 - 1.61 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#6b0000; stroke-width:2; stroke:#6b0000; fill-opacity:0.8" />
+                                </svg>1.62 - 5.67
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="checkbox" value="hPSF_Discharge"> HPSF Discharge<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsehPSF_Discharge" aria-expanded="false" aria-controls="collapsehPSF_Discharge">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#hPSF_DischargeLegend" aria-expanded="false" aria-controls="hPSF_DischargeLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsehPSF_Discharge">
+                        <div class="card card-body">
+                            <p>Opacity Fill
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, hPSF_Discharge)"></p>
+                            <p>Opacity Boundary
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, hPSF_Discharge)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="stylehPSF_Discharge" class="colorGrade" id="styleGradienthPSF_Discharge" value="hPSF_Discharge"> Change to Gradient Color Scheme</p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="hPSF_DischargeLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ffff80; stroke-width:2; stroke:#ffff80; fill-opacity:0.8" />
+                                </svg>0.28 - 0.33 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#fad155; stroke-width:2; stroke:#fad155; fill-opacity:0.8" />
+                                </svg>0.34 - 0.41 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#f2a72e; stroke-width:2; stroke:#f2a72e; fill-opacity:0.8" />
+                                </svg>0.42 - 0.51 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ad5313; stroke-width:2; stroke:#ad5313; fill-opacity:0.8" />
+                                </svg>0.51 - 0.73 <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#6b0000; stroke-width:2; stroke:#6b0000; fill-opacity:0.8" />
+                                </svg>0.74 - 0.98
+                            </p>
+                        </div>
+                    </div>
+                    <br>
 
 
                     <!--   Biodiversity Layers -->
@@ -675,6 +803,7 @@
                         <div class="card card-body">
                             <p>Opacity
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, trout)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="styletrout" class="colorGrade" id="styleGradienttrout" value="trout"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="troutLegend">
@@ -699,6 +828,7 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, natPra)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, natPra)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="stylenatPra" class="colorGrade" id="styleGradientnatPra" value="natPra"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="natPraLegend">
@@ -723,6 +853,7 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, natPlnt)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, natPlnt)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="stylenatPlnt" class="colorGrade" id="styleGradientnatPlnt" value="natPlnt"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="natPlntLegend">
@@ -746,6 +877,7 @@
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, mBSbio)"></p>
                             <p>Opacity Boundary
                                 <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, mBSbio)"></p>
+                            <p class="color-scheme"><input type="checkbox" name="styleMBSbio" class="colorGrade" id="styleGradientMBSbio" value="mBSbio"> Change to Gradient Color Scheme</p>
                         </div>
                     </div>
                     <div class="collapse" id="mBSbioLegend">
@@ -886,7 +1018,7 @@
                         </div>
                     </div>
                     <br>
-                    <input type="checkbox" value="nLCD"> NLCD<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsenLCD" aria-expanded="false" aria-controls="collapsenLCD">
+                    <input type="checkbox" value="nLCD"> NLCD 2016<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsenLCD" aria-expanded="false" aria-controls="collapsenLCD">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
                     <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#nLCDLegend" aria-expanded="false" aria-controls="nLCDLegend"> <span class="sr-only">Toggle Legend </span>
@@ -945,30 +1077,6 @@
                                 <svg width="20" height="10">
                                     <rect width="15" height="10" style="fill:#6c9fb8;" />
                                 </svg>Emergent Herbaceuous Wetlands
-                            </p>
-                        </div>
-                    </div>
-
-                    <br>
-                    <input type="checkbox" value="cultcrops"> NLCD - Cultivated Crops Only<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsecultcrops" aria-expanded="false" aria-controls="collapsecultcrops">
-                        <span class="sr-only">Expand to Edit </span>
-                        <span class="fa fa-edit"></span></button>
-                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#cultcropsLegend" aria-expanded="false" aria-controls="cultcropsLegend"> <span class="sr-only">Toggle Legend </span>
-                        <span class="fab fa-elementor"></span></button>
-                    <!--                COLLAPSED DIV'S-->
-                    <div class="collapse" id="collapsecultcrops">
-                        <div class="card card-body">
-                            <p>Opacity
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityTile(this.value, cultcrops)"></p>
-                        </div>
-                    </div>
-                    <div class="collapse" id="cultcropsLegend">
-                        <div class="card card-body">
-                            <p>
-                                <svg width="20" height="10">
-                                    <rect width="15" height="10" style="fill:#ab6c28;" />
-                                </svg>Cultivated Crops <br>
-
                             </p>
                         </div>
                     </div>
@@ -1450,6 +1558,40 @@
                         </div>
                     </div>
                     <br>
+                    <input type="checkbox" value="dNRCatch"> DNR Lake Habitat Strategy<button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsedNRCatch" aria-expanded="false" aria-controls="collapsedNRCatch">
+                        <span class="sr-only">Expand to Edit </span>
+                        <span class="fa fa-edit"></span></button>
+                    <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#dNRCatchLegend" aria-expanded="false" aria-controls="dNRCatchLegend"> <span class="sr-only">Toggle Legend </span>
+                        <span class="fab fa-elementor"></span></button>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsedNRCatch">
+                        <div class="card card-body">
+                            <p>Opacity Fill
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, dNRCatch)"></p>
+                            <p>Opacity Boundary
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, dNRCatch)"></p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="dNRCatchLegend">
+                        <div class="card card-body">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#002673; stroke-width:2; stroke:#002673; fill-opacity:0.8" />
+                                </svg>Vigilance<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#005ce6; stroke-width:2; stroke:#005ce6; fill-opacity:0.8" />
+                                </svg>Needs Protection<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#a1ceff; stroke-width:2; stroke:#a1ceff; fill-opacity:0.8" />
+                                </svg>Full Restoration<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#9c9c9c; stroke-width:2; stroke:#9c9c9c; fill-opacity:0.8" />
+                                </svg>Partial Restoration<br>
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+
+
                     <!--   OTHER Layers -->
 
                     <h5 class="categoryHead">Other</h5>
@@ -1490,19 +1632,19 @@
                     </div>
                     <div id="metadataHUC" class="collapse show">
                         <div class="card-body">
-                            Source: USGS Hydrologic Unit Boundaries
+                            <b>Source:</b> USGS Hydrologic Unit Boundaries
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-header">
                         <a class="collapsed card-link" data-toggle="collapse" href="#metadataDNRCatch">
-                            DNR Catchments
+                            DNR Lake Habitat Strategy
                         </a>
                     </div>
                     <div id="metadataDNRCatch" class="collapse">
                         <div class="card-body">
-                            Source: Lake Watershed strategies from DNR Fish Habitat Plan
+                            <b>Source:</b> Lake Watershed strategies from DNR Fish Habitat Plan
                         </div>
                     </div>
                 </div>
@@ -1514,10 +1656,10 @@
                     </div>
                     <div id="metadataDWSV" class="collapse">
                         <div class="card-body">
-                            <p>Source: MN Department of Health</p><br>
-                            <p>Description: Drinking water supply management area (DWSMA) vulnerability is an assessment of the likelihood for a potential contaminant source within the drinking water supply management area to contaminate a public water supply well based on the aquifer's inherent geologic sensitivity; and the chemical and isotopic composition of the groundwater.</p><br>
-                            <p>Publication: 07/15/2019</p><br>
-                            <p>More information: <a href="https://www.health.state.mn.us/communities/environment/water/swp/maps/index.html" target="_blank">https://www.health.state.mn.us/communities/environment/water/swp/maps/index.html</a></p>
+                            <p><b>Source:</b> MN Department of Health</p><br>
+                            <p><b>Description:</b> Drinking water supply management area (DWSMA) vulnerability is an assessment of the likelihood for a potential contaminant source within the drinking water supply management area to contaminate a public water supply well based on the aquifer's inherent geologic sensitivity; and the chemical and isotopic composition of the groundwater.</p><br>
+                            <p><b>Publication:</b> 07/15/2019</p><br>
+                            <p><b>More information:</b> <a href="https://www.health.state.mn.us/communities/environment/water/swp/maps/index.html" target="_blank">https://www.health.state.mn.us/communities/environment/water/swp/maps/index.html</a></p>
                         </div>
                     </div>
                 </div>
@@ -1529,10 +1671,39 @@
                     </div>
                     <div id="metadataWellHead" class="collapse">
                         <div class="card-body">
-                            <p>Source: MN Department of Health </p><br>
-                            <p>Description: Wellhead Protection Area (WHPA) is the Minnesota Department of Health (MDH) approved surface and subsurface area surrounding a public water supply well or well field that supplies a public water system, through which contaminants are likely to move toward and reach the well or well field. </p><br>
-                            <p>Publication: 07/15/2019</p><br>
-                            <p>More information: <a href=" https://gisdata.mn.gov/dataset/activity/water-wellhead-protection-areas" target="_blank"> https://gisdata.mn.gov/dataset/activity/water-wellhead-protection-areas</a></p>
+                            <p> <b>Source:</b> MN Department of Health </p><br>
+                            <p><b>Description:</b> Wellhead Protection Area (WHPA) is the Minnesota Department of Health (MDH) approved surface and subsurface area surrounding a public water supply well or well field that supplies a public water system, through which contaminants are likely to move toward and reach the well or well field. </p><br>
+                            <p><b>Publication:</b> 07/15/2019</p><br>
+                            <p><b>More information:</b><a href=" https://gisdata.mn.gov/dataset/activity/water-wellhead-protection-areas" target="_blank"> https://gisdata.mn.gov/dataset/activity/water-wellhead-protection-areas</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#metadatabedrockPoll">
+                            Bedrock Surface Pollution Sensitivity
+                        </a>
+                    </div>
+                    <div id="metadatabedrockPoll" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Department of Natural Resources (DNR), Ecological and Water Resources Division, County Geologic Atlas Program </p><br>
+                            <p><b>Description:</b> Pollution Sensitivity of the Bedrock Surface characterizes the relative rate of vertical travel time of a contaminant that moves conservatively with or within water from the land surface to the buried bedrock surface. Legacy maps from the County Geologic Atlas program were used and modified to reflect the bedrock surface since some legacy maps were created for specific units or aquifers. These data will be updated with every new atlas. </p><br>
+                            <p><b>Publication:</b> 02/11/2016</p><br>
+                            <p><b>More information:</b><a href=" https://www.dnr.state.mn.us/waters/programs/gw_section/mapping/platesum/mha_ps-bs.html" target="_blank"> https://www.dnr.state.mn.us/waters/programs/gw_section/mapping/platesum/mha_ps-bs.html</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#metadatapollsens">
+                            Pollution Sensitivity of Near-Surface Materials
+                        </a>
+                    </div>
+                    <div id="metadatapollsens" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Department of Natural Resources, County Geologic Atlas Program </p><br>
+                            <p><b>Description:</b> This dataset estimates the pollution sensitivity of near-surface materials from the transmission time of water through 3 feet of soil and 7 feet of surficial geology, to a depth of 10 feet from the land surface. </p><br>
+                            <p><b>Publication:</b> 10/31/2018</p><br>
                         </div>
                     </div>
                 </div>
@@ -1611,7 +1782,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-
+    <script src="lib/leaflet.MiniMap/Control.MiniMap.js" type="text/javascript"></script>
     <script src="lib/leaflet.HtmlLegend/L.Control.HtmlLegend.js" type="text/javascript"></script>
     <script src="js/jquery-sidebar.js" type="text/javascript"></script>
 

@@ -20,9 +20,11 @@ var imagery = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/
 });
 
 
+
 var mapOptions = {
     zoomControl: false,
-    center: [46.35, -93.5],
+    center: [46.35, -94.8], // large screens
+    //    center: [46.35, -93.5],
     zoom: 6.5,
     minZoom: 3,
     maxZoom: 18,
@@ -41,7 +43,7 @@ L.control.scale({
 //    position: 'bottomright'
 //}).addTo(map);
 var zoomHome = L.Control.zoomHome({
-    position: 'bottomright'
+    position: 'topleft'
 });
 zoomHome.addTo(map);
 
@@ -65,6 +67,7 @@ L.easyButton('fa-crosshairs fa-lg', function (btn, map) {
         map.fitBounds(latLngBounds);
     });
 }).addTo(map);
+
 
 // Leaflet Browser Print
 
@@ -193,6 +196,13 @@ var a_rWI = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/H
 
 var a_mask = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/36" //mask of state for printing purposes
 
+var a_hPSF_TSS = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/37" //HPSF loading for TSS
+
+var a_hPSF_TN = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/38" //HPSF loading for TN
+
+var a_hPSF_TP = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/39" //HPSF loading for TP
+
+var a_hPSF_Discharge = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/40" //HPSF loading for Discharge
 
 /// *** RASTER LAYERS ***////
 
@@ -209,7 +219,8 @@ var a_soil = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/servic
 
 var a_envBen = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/services/EnvBen_HawkCreek/MapServer" //Environmental Risk Index
 
-var a_cultcrops = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/services/CultvCrops_HawkCreek/MapServer"
+var a_pollsensGradient = "https://tiles.arcgis.com/tiles/HRPe58bUyBqyyiCt/arcgis/rest/services/PollutionSens_Gradient/MapServer"
+//Pollution Sensitivity of Near-Surface Materials Gradient
 
 // Get ESRI WFS as GeoJSON and Add to Map
 
@@ -219,7 +230,8 @@ var hawkcreekbndry = L.esri.featureLayer({
     url: a_hwkCreekBndry,
     style: function () {
         return {
-            color: "red"
+            color: "red",
+            fillOpacity: 0,
         };
     },
     onEachFeature: function (feature, layer) {
@@ -279,56 +291,13 @@ var huc12 = L.esri.featureLayer({
 });
 
 
-////// *** hydrography layers *** /////
+////// *** Groundwater Layers *** /////
 
-var fEMAflood = L.esri.featureLayer({
-    url: a_fEMAflood,
-    where: "FLD_ZONE = 'A' OR FLD_ZONE = 'AE' OR FLD_ZONE = 'AH' OR FLD_ZONE = 'AD'",
-    style: function () {
-        return {
-            color: "#ffff00",
-            weight: 2
-        };
-    }
+var wtrVul = L.esri.featureLayer({
+    url: a_wtrVul,
+    style: styleWtrVul,
 });
 
-var imptStrm = L.esri.featureLayer({
-    url: a_imptStrm,
-    where: "NOT AFFECTED_U = 'AQC'",
-    style: function () {
-        return {
-            color: "#8c0007",
-        };
-    }
-});
-var impLks = L.esri.featureLayer({
-    url: a_impLks,
-    where: "NOT AFFECTED_U = 'AQC'",
-    style: function () {
-        return {
-            color: "#002366",
-            fillColor: "#002366",
-            fillOpacity: 0.8,
-        };
-    }
-});
-var altwtr = L.esri.featureLayer({
-    url: a_altwtr,
-    where: "AWEvtType = 1 OR AWEvtType = 2 OR AWEvtType = 3 OR AWEvtType = 4",
-    style: styleAltWtr,
-});
-var phos = L.esri.featureLayer({
-    url: a_phos,
-    style: stylePhos,
-});
-var trout = L.esri.featureLayer({
-    url: a_trout,
-    style: function () {
-        return {
-            color: "#f781bf",
-        };
-    }
-});
 var wellhead = L.esri.featureLayer({
     url: a_wellhead,
     style: stylewellhead,
@@ -338,50 +307,81 @@ var wellhead = L.esri.featureLayer({
     //        })
     //    }
 });
-var wtrVul = L.esri.featureLayer({
-    url: a_wtrVul,
-    style: styleWtrVul,
+var bedrockPoll = L.esri.featureLayer({
+    url: a_bedrockPoll,
+    where: "RATING = 'VH' OR RATING = 'H' OR RATING = 'M'",
+    style: styleBedrockPoll,
+
+});
+var nitrTwn = L.esri.featureLayer({
+    url: a_nitrTwn,
+    style: styleNitrTwn,
+});
+var pollsens = L.esri.tiledMapLayer({
+    url: a_pollsens,
+});
+var pollsensGradient = L.esri.tiledMapLayer({
+    url: a_pollsensGradient,
+});
+////// *** Hydrology layers *** /////
+
+var fEMAflood = L.esri.featureLayer({
+    url: a_fEMAflood,
+    where: "FLD_ZONE = 'A' OR FLD_ZONE = 'AE' OR FLD_ZONE = 'AH' OR FLD_ZONE = 'AD'",
+    style: stylefEMAflood,
+});
+var altwtr = L.esri.featureLayer({
+    url: a_altwtr,
+    where: "AWEvtType = 1 OR AWEvtType = 2 OR AWEvtType = 3 OR AWEvtType = 4",
+    style: styleAltWtr,
 });
 
-////// *** landstatus layers *** /////
+var cONUS = L.esri.featureLayer({
+    url: a_cONUS,
+    where: "WETLAND_TY = 'Freshwater Emergent Wetland' OR WETLAND_TY = 'Freshwater Forested/Shrub Wetland'",
+    style: styleCONUS,
+});
 
-var gAP_DNR = L.esri.featureLayer({
-    url: a_gAP_DNR,
-    style: function () {
-        return {
-            "color": '#88cd66',
-            "fillColor": '#88cd66',
-            "weight": 2,
-        };
-    }
+var buffwetlnds = L.esri.featureLayer({
+    url: a_buffwetlnds,
+    style: stylebuffwetlnds,
 });
-var gAP_State = L.esri.featureLayer({
-    url: a_gAP_State,
-    style: function () {
-        return {
-            "color": '#e8beff',
-            "fillColor": '#e8beff',
-            "weight": 2,
-        };
-    }
+
+var buffwtrcrse = L.esri.featureLayer({
+    url: a_buffwtrcrse,
+    style: stylebuffwtrcrse,
 });
-var gAP_Cnty = L.esri.featureLayer({
-    url: a_gAP_Cnty,
-    style: function () {
-        return {
-            "color": '#ffff73',
-            "fillColor": '#ffff73',
-            "weight": 2,
-        };
-    }
+var rWI = L.esri.featureLayer({
+    url: a_rWI,
+    style: stylerWI,
 });
-var gAP_Fed = L.esri.featureLayer({
-    url: a_gAP_Fed,
+
+
+////// *** Surface Water Quality Layers *** /////
+
+var imptStrm = L.esri.featureLayer({
+    url: a_imptStrm,
+    where: "NOT AFFECTED_U = 'AQC'",
+    style: styleimptStrm,
+});
+var impLks = L.esri.featureLayer({
+    url: a_impLks,
+    where: "NOT AFFECTED_U = 'AQC'",
+    style: styleimpLks,
+});
+
+var phos = L.esri.featureLayer({
+    url: a_phos,
+    style: stylePhos,
+});
+
+////// *** Biodiversity Layers *** /////
+
+var trout = L.esri.featureLayer({
+    url: a_trout,
     style: function () {
         return {
-            "color": '#bee8ff',
-            "fillColor": '#bee8ff',
-            "weight": 2,
+            color: "#f781bf",
         };
     }
 });
@@ -394,8 +394,56 @@ var natPra = L.esri.featureLayer({
     }
 });
 
+var natPlnt = L.esri.featureLayer({
+    url: a_natPlnt,
+    style: function () {
+        return {
+            color: "#71c98d",
+        };
+    }
+});
 
-////// *** index layers *** /////
+var mBSbio = L.esri.featureLayer({
+    url: a_mBSbio,
+    style: styleMBSBio,
+});
+
+////// *** Land Use/Cover layers *** /////
+
+var gAP_DNR = L.esri.featureLayer({
+    url: a_gAP_DNR,
+    style: stylegAP_DNR,
+});
+var gAP_State = L.esri.featureLayer({
+    url: a_gAP_State,
+    style: stylegAP_State,
+});
+var gAP_Cnty = L.esri.featureLayer({
+    url: a_gAP_Cnty,
+    style: stylegAP_Cnty,
+});
+var gAP_Fed = L.esri.featureLayer({
+    url: a_gAP_Fed,
+    style: stylegAP_Fed,
+});
+
+var easemnts = L.esri.featureLayer({
+    url: a_easemnts,
+    style: styleeasemnts,
+});
+
+var nLCD = L.esri.tiledMapLayer({
+    url: a_nLCD,
+});
+
+var gSSURGO = L.esri.featureLayer({
+    url: a_gSSURGO,
+    style: styleGSSURGO,
+});
+
+
+
+////// *** Watershed Characterization Layers *** /////
 
 var bioIndex = L.esri.featureLayer({
     url: a_bioIndex,
@@ -440,111 +488,10 @@ var combIndex = L.esri.featureLayer({
     },
 });
 
-
-
-/////*** Misc. layers ***/////
-
-var natPlnt = L.esri.featureLayer({
-    url: a_natPlnt,
-    style: function () {
-        return {
-            color: "#71c98d",
-        };
-    }
-});
-
-var mBSbio = L.esri.featureLayer({
-    url: a_mBSbio,
-    style: styleMBSBio,
-});
-var cONUS = L.esri.featureLayer({
-    url: a_cONUS,
-    where: "WETLAND_TY = 'Freshwater Emergent Wetland' OR WETLAND_TY = 'Freshwater Forested/Shrub Wetland'",
-    style: styleCONUS,
-});
-var dNRCatch = L.esri.featureLayer({
-    url: a_dNRCatch,
-    style: styleDNRCatch,
-});
-var bedrockPoll = L.esri.featureLayer({
-    url: a_bedrockPoll,
-    where: "RATING = 'VH' OR RATING = 'H' OR RATING = 'M'",
-    style: styleBedrockPoll,
-
-});
-var nitrTwn = L.esri.featureLayer({
-    url: a_nitrTwn,
-    style: styleNitrTwn,
-});
-var easemnts = L.esri.featureLayer({
-    url: a_easemnts,
-    style: function () {
-        return {
-            color: "#f28f24",
-            fillColor: "#f28f24",
-            fillOpacity: 0.8,
-        };
-    }
-});
-
-var gSSURGO = L.esri.featureLayer({
-    url: a_gSSURGO,
-    style: styleGSSURGO,
-});
-
-
-var buffwetlnds = L.esri.featureLayer({
-    url: a_buffwetlnds,
-    style: function () {
-        return {
-            color: "#7e8be6",
-            "fillColor": '#7e8be6',
-            "weight": 2,
-        };
-    }
-});
-
-var buffwtrcrse = L.esri.featureLayer({
-    url: a_buffwtrcrse,
-    style: function () {
-        return {
-            color: "#674d6e",
-        };
-    }
-});
-
-var rWI = L.esri.featureLayer({
-    url: a_rWI,
-    style: function () {
-        return {
-            color: "#f5a37a",
-            fillColor: "#f5a37a",
-        };
-    }
-});
-
-var mask = L.esri.featureLayer({
-    url: a_mask,
-    style: function () {
-        return {
-            color: "black",
-        };
-    }
-});
-
-/// *** RASTER LAYERS ***////
-
-var nLCD = L.esri.tiledMapLayer({
-    url: a_nLCD,
-});
-
-
 var wildLife = L.esri.tiledMapLayer({
     url: a_wildLife,
 });
-var pollsens = L.esri.tiledMapLayer({
-    url: a_pollsens,
-});
+
 var waterQual = L.esri.tiledMapLayer({
     url: a_waterQual,
 });
@@ -556,10 +503,42 @@ var soil = L.esri.tiledMapLayer({
 var envBen = L.esri.tiledMapLayer({
     url: a_envBen,
 });
-var cultcrops = L.esri.tiledMapLayer({
-    url: a_cultcrops,
-})
 
+var dNRCatch = L.esri.featureLayer({
+    url: a_dNRCatch,
+    style: styleDNRCatch,
+});
+
+var hPSF_TSS = L.esri.featureLayer({
+    url: a_hPSF_TSS,
+    style: stylehPSF_TSS,
+});
+
+var hPSF_TN = L.esri.featureLayer({
+    url: a_hPSF_TN,
+    style: stylehPSF_TN,
+});
+
+var hPSF_TP = L.esri.featureLayer({
+    url: a_hPSF_TP,
+    style: stylehPSF_TP,
+});
+
+var hPSF_Discharge = L.esri.featureLayer({
+    url: a_hPSF_Discharge,
+    style: stylehPSF_Discharge,
+});
+
+/////*** Misc. layers ***/////
+
+var mask = L.esri.featureLayer({
+    url: a_mask,
+    style: function () {
+        return {
+            color: "black",
+        };
+    }
+});
 
 
 
@@ -586,13 +565,13 @@ var cultcrops = L.esri.tiledMapLayer({
 
 function stylewellhead(feature) {
     return {
-        color: "#a65628",
+        "color": "#a65628",
     };
 }
 
 function styleGradientwellhead(feature) {
     return {
-        color: "#006d2c",
+        "color": "#006d2c",
     };
 }
 
@@ -635,6 +614,17 @@ function styleGradientWtrVul(feature) {
     };
 }
 
+function stylefEMAflood(feature) {
+    return {
+        "color": "#ffff00",
+    };
+}
+
+function styleGradientfEMAflood(feature) {
+    return {
+        "color": "#084594",
+    };
+}
 
 function styleAltWtr(feature) {
     type = feature.properties.AWEvtType;
@@ -647,7 +637,112 @@ function styleAltWtr(feature) {
 
     return {
         "color": colorToUse,
+    };
+}
+
+function styleGradientAltWtr(feature) {
+    type = feature.properties.AWEvtType;
+    var colorToUse;
+    if (type === 1) colorToUse = '#084594';
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+    };
+}
+
+function styleCONUS(feature) {
+    type = feature.properties.WETLAND_TY;
+    var colorToUse;
+    if (type === "Freshwater Emergent Wetland") colorToUse = '#2884ed';
+    else if (type === "Freshwater Forested/Shrub Wetland") colorToUse = '#1b6e45';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
         //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleGradientCONUS(feature) {
+    return {
+        "color": "#084594",
+        "fillColor": "#084594",
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
+
+function stylebuffwetlnds(feature) {
+    return {
+        "color": "#7e8be6",
+        "fillColor": '#7e8be6',
+        "weight": 2,
+    };
+}
+
+function styleGradientbuffwetlnds(feature) {
+    return {
+        "color": "#084594",
+        "fillColor": '#084594',
+        "weight": 2,
+    };
+}
+
+function stylebuffwtrcrse(feature) {
+    return {
+        "color": "#674d6e",
+    };
+}
+
+function styleGradientbuffwtrcrse(feature) {
+    return {
+        "color": "#084594",
+    };
+}
+
+function stylerWI(feature) {
+    return {
+        "color": "#f5a37a",
+        "fillColor": "#f5a37a",
+    };
+}
+
+function styleGradientrWI(feature) {
+    return {
+        "color": "#084594",
+        "fillColor": "#084594",
+    };
+}
+
+
+function styleimptStrm(feature) {
+    return {
+        "color": "#8c0007",
+    };
+}
+
+function styleGradientimptStrm(feature) {
+    return {
+        "color": "#67000d",
+    };
+}
+
+function styleimpLks(feature) {
+    return {
+        "color": "#002366",
+        "fillColor": "#002366",
+        "fillOpacity": 0.8,
+    };
+}
+
+function styleGradientimpLks(feature) {
+    return {
+        "color": "#67000d",
+        "fillColor": "#67000d",
+        "fillOpacity": 0.8,
     };
 }
 
@@ -669,6 +764,287 @@ function stylePhos(feature) {
     };
 }
 
+function styleGradientPhos(feature) {
+    type = feature.properties.LPSS_CLASS;
+    var colorToUse;
+    if (type === "Highest") colorToUse = '#67000d';
+    else if (type === "Higher") colorToUse = '#fb6a4a';
+    else if (type === "High") colorToUse = '#fcbba1';
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+
+function stylehPSF_TSS(feature) {
+    type = feature.properties.TSS_Ton_Ac;
+    var colorToUse;
+    if (type >= 0 && type <= 0.05) colorToUse = '#ffff80';
+    else if (type > 0.05 && type <= .5) colorToUse = '#fad155';
+    else if (type > 0.5 && type <= 1) colorToUse = '#f2a72e';
+    else if (type > 1 && type <= 2.5) colorToUse = '#ad5313';
+    else if (type > 2.5 && type <= 12.25) colorToUse = '#6b0000';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleGradienthPSF_TSS(feature) {
+    type = feature.properties.TSS_Ton_Ac;
+    var colorToUse;
+    if (type >= 0 && type <= 0.05) colorToUse = '#fff5f0';
+    else if (type > 0.05 && type <= .5) colorToUse = '#fcbba1';
+    else if (type > 0.5 && type <= 1) colorToUse = '#fb6a4a';
+    else if (type > 1 && type <= 2.5) colorToUse = '#cb181d';
+    else if (type > 2.5 && type <= 12.25) colorToUse = '#67000d';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
+
+function stylehPSF_TN(feature) {
+    type = feature.properties.TN_Lb_Acre;
+    var colorToUse;
+    if (type >= 0 && type <= 5) colorToUse = '#ffff80';
+    else if (type > 5 && type <= 10) colorToUse = '#fad155';
+    else if (type > 10 && type <= 15) colorToUse = '#f2a72e';
+    else if (type > 15 && type <= 20) colorToUse = '#ad5313';
+    else if (type > 20) colorToUse = '#6b0000';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleGradienthPSF_TN(feature) {
+    type = feature.properties.TN_Lb_Acre;
+    var colorToUse;
+    if (type >= 0 && type <= 5) colorToUse = '#fff5f0';
+    else if (type > 5 && type <= 10) colorToUse = '#fcbba1';
+    else if (type > 10 && type <= 15) colorToUse = '#fb6a4a';
+    else if (type > 15 && type <= 20) colorToUse = '#cb181d';
+    else if (type > 20) colorToUse = '#67000d';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
+
+function stylehPSF_TP(feature) {
+    type = feature.properties.TP_Lb_Acre;
+    var colorToUse;
+    if (type >= 0.17 && type <= 0.29) colorToUse = '#ffff80';
+    else if (type > 0.29 && type <= 0.43) colorToUse = '#fad155';
+    else if (type > 0.43 && type <= 0.61) colorToUse = '#f2a72e';
+    else if (type > 0.61 && type <= 1.61) colorToUse = '#ad5313';
+    else if (type > 1.61 && type <= 5.67) colorToUse = '#6b0000';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleGradienthPSF_TP(feature) {
+    type = feature.properties.TP_Lb_Acre;
+    var colorToUse;
+    if (type >= 0.17 && type <= 0.29) colorToUse = '#fff5f0';
+    else if (type > 0.29 && type <= 0.43) colorToUse = '#fcbba1';
+    else if (type > 0.43 && type <= 0.61) colorToUse = '#fb6a4a';
+    else if (type > 0.61 && type <= 1.61) colorToUse = '#cb181d';
+    else if (type > 1.61 && type <= 5.67) colorToUse = '#67000d';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
+
+function stylehPSF_Discharge(feature) {
+    type = feature.properties.Q_Acft_Acr;
+    var colorToUse;
+    if (type >= 0.28 && type <= 0.33) colorToUse = '#ffff80';
+    else if (type > 0.33 && type <= 0.41) colorToUse = '#fad155';
+    else if (type > 0.41 && type <= 0.51) colorToUse = '#f2a72e';
+    else if (type > 0.51 && type <= 0.73) colorToUse = '#ad5313';
+    else if (type > 0.73 && type <= 0.98) colorToUse = '#6b0000';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleGradienthPSF_Discharge(feature) {
+    type = feature.properties.Q_Acft_Acr;
+    var colorToUse;
+    if (type >= 0.28 && type <= 0.33) colorToUse = '#fff5f0';
+    else if (type > 0.33 && type <= 0.41) colorToUse = '#fcbba1';
+    else if (type > 0.41 && type <= 0.51) colorToUse = '#fb6a4a';
+    else if (type > 0.51 && type <= 0.73) colorToUse = '#cb181d';
+    else if (type > 0.73 && type <= 0.98) colorToUse = '#67000d';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
+
+function styletrout(feature) {
+    return {
+        "color": "#f781bf",
+    };
+}
+
+function styleGradienttrout(feature) {
+    return {
+        "color": "#756bb1",
+    };
+}
+
+function stylenatPra(feature) {
+    return {
+        "color": "#735100",
+    };
+}
+
+function styleGradientnatPra(feature) {
+    return {
+        "color": "#756bb1",
+    };
+}
+
+function stylenatPlnt(feature) {
+    return {
+        "color": "#71c98d",
+    };
+}
+
+function styleGradientnatPlnt(feature) {
+    return {
+        "color": "#756bb1",
+    };
+}
+
+function styleMBSBio(feature) {
+    type = feature.properties.biodiv_sig;
+    var colorToUse;
+    if (type === "Outstanding") colorToUse = '#00cd00';
+    else if (type === "High") colorToUse = '#267300';
+    else if (type === "Moderate") colorToUse = '#d3ffbe';
+    else if (type === "Below") colorToUse = '#b2b2b2';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleGradientMBSBio(feature) {
+    type = feature.properties.biodiv_sig;
+    var colorToUse;
+    if (type === "Outstanding") colorToUse = '#756bb1';
+    else if (type === "High") colorToUse = '#bcbddc';
+    else if (type === "Moderate") colorToUse = '#efedf5';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        //        "opacity": ,
+        "fillOpacity": 0.8
+    };
+}
+
+function stylegAP_DNR(feature) {
+    return {
+        "color": '#88cd66',
+        "fillColor": '#88cd66',
+        "weight": 2,
+    };
+}
+
+function stylegAP_State(feature) {
+    return {
+        "color": '#e8beff',
+        "fillColor": '#e8beff',
+        "weight": 2,
+    };
+}
+
+function stylegAP_Cnty(feature) {
+    return {
+        "color": '#ffff73',
+        "fillColor": '#ffff73',
+        "weight": 2,
+    };
+}
+
+function stylegAP_Fed(feature) {
+    return {
+        "color": '#bee8ff',
+        "fillColor": '#bee8ff',
+        "weight": 2,
+    };
+}
+
+function styleeasemnts(feature) {
+    return {
+        "color": "#f28f24",
+        "fillColor": "#f28f24",
+        "fillOpacity": 0.8,
+    };
+}
+
+function styleGSSURGO(feature) {
+    type = feature.properties.muaggatt_h;
+    var colorToUse;
+    if (type === "A") colorToUse = '#aaff00';
+    else if (type === "A/D") colorToUse = '#9f57f7';
+    else if (type === "B") colorToUse = '#4ecdd9';
+    else if (type === "B/D") colorToUse = '#38538a';
+    else if (type === "C") colorToUse = '#f5e56c';
+    else if (type === "C/D") colorToUse = '#f0599d';
+    else if (type === "D") colorToUse = '#4d7300';
+    else colorToUse = "transparent";
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "fillOpacity": 0.8
+    };
+}
 
 function styleBioIndex(feature) {
     type = feature.properties.B_I_MEAN;
@@ -683,9 +1059,7 @@ function styleBioIndex(feature) {
     else if (type > 70 && type <= 80) colorToUse = '#83cf00';
     else if (type > 80 && type <= 90) colorToUse = '#5aba00';
     else if (type > 90 && type <= 100) colorToUse = '#308f00';
-
     else colorToUse = "transparent";
-
     return {
         "color": colorToUse,
         "fillColor": colorToUse,
@@ -708,9 +1082,7 @@ function styleHydIndex(feature) {
     else if (type > 70 && type <= 80) colorToUse = '#83cf00';
     else if (type > 80 && type <= 90) colorToUse = '#5aba00';
     else if (type > 90 && type <= 100) colorToUse = '#308f00';
-
     else colorToUse = "transparent";
-
     return {
         "color": colorToUse,
         "fillColor": colorToUse,
@@ -733,9 +1105,7 @@ function styleGeoIndex(feature) {
     else if (type > 70 && type <= 80) colorToUse = '#83cf00';
     else if (type > 80 && type <= 90) colorToUse = '#5aba00';
     else if (type > 90 && type <= 100) colorToUse = '#308f00';
-
     else colorToUse = "transparent";
-
     return {
         "color": colorToUse,
         "fillColor": colorToUse,
@@ -758,9 +1128,7 @@ function styleConIndex(feature) {
     else if (type > 70 && type <= 80) colorToUse = '#83cf00';
     else if (type > 80 && type <= 90) colorToUse = '#5aba00';
     else if (type > 90 && type <= 100) colorToUse = '#308f00';
-
     else colorToUse = "transparent";
-
     return {
         "color": colorToUse,
         "fillColor": colorToUse,
@@ -784,7 +1152,6 @@ function styleWQIndex(feature) {
     else if (type > 80 && type <= 90) colorToUse = '#5aba00';
     else if (type > 90 && type <= 100) colorToUse = '#308f00';
     else colorToUse = "transparent";
-
     return {
         "color": colorToUse,
         "fillColor": colorToUse,
@@ -807,9 +1174,7 @@ function styleCombIndex(feature) {
     else if (type > 70 && type <= 80) colorToUse = '#83cf00';
     else if (type > 80 && type <= 90) colorToUse = '#5aba00';
     else if (type > 90 && type <= 100) colorToUse = '#308f00';
-
     else colorToUse = "transparent";
-
     return {
         "color": colorToUse,
         "fillColor": colorToUse,
@@ -867,39 +1232,6 @@ function styleGradientbedrockPoll(feature) {
     };
 }
 
-function styleMBSBio(feature) {
-    type = feature.properties.biodiv_sig;
-    var colorToUse;
-    if (type === "Outstanding") colorToUse = '#00cd00';
-    else if (type === "High") colorToUse = '#267300';
-    else if (type === "Moderate") colorToUse = '#d3ffbe';
-    else if (type === "Below") colorToUse = '#b2b2b2';
-    else colorToUse = "transparent";
-    return {
-        "color": colorToUse,
-        "fillColor": colorToUse,
-        "weight": 2,
-        //        "opacity": ,
-        "fillOpacity": 0.8
-    };
-}
-
-function styleCONUS(feature) {
-    type = feature.properties.WETLAND_TY;
-    var colorToUse;
-    if (type === "Freshwater Emergent Wetland") colorToUse = '#2884ed';
-    else if (type === "Freshwater Forested/Shrub Wetland") colorToUse = '#1b6e45';
-    else colorToUse = "transparent";
-    return {
-        "color": colorToUse,
-        "fillColor": colorToUse,
-        "weight": 2,
-        //        "opacity": ,
-        "fillOpacity": 0.8
-    };
-}
-
-
 function styleNitrTwn(feature) {
     type = feature.properties.InitNRange;
     var colorToUse;
@@ -930,24 +1262,7 @@ function styleGradientNitrTwn(feature) {
     };
 }
 
-function styleGSSURGO(feature) {
-    type = feature.properties.muaggatt_h;
-    var colorToUse;
-    if (type === "A") colorToUse = '#aaff00';
-    else if (type === "A/D") colorToUse = '#9f57f7';
-    else if (type === "B") colorToUse = '#4ecdd9';
-    else if (type === "B/D") colorToUse = '#38538a';
-    else if (type === "C") colorToUse = '#f5e56c';
-    else if (type === "C/D") colorToUse = '#f0599d';
-    else if (type === "D") colorToUse = '#4d7300';
-    else colorToUse = "#9c9c9c";
-    return {
-        "color": colorToUse,
-        "fillColor": colorToUse,
-        "weight": 2,
-        "fillOpacity": 0.8
-    };
-}
+
 
 ///// **** END OF STYLE FUNCTIONS *** \\\\\
 
@@ -973,6 +1288,15 @@ function updateOpacityTile(val, layer) {
     //    console.log(layer);
 }
 
+//opacity slider for pollution sens
+function updateOpacityTilepollsens(val) {
+    var checkVal = document.getElementById("pollsensGradient").checked;
+    if (checkVal === true) {
+        pollsensGradient.setOpacity(val);
+    } else {
+        pollsens.setOpacity(val);
+    }
+}
 
 
 // Legend Controls 
@@ -1071,7 +1395,6 @@ function changeToOrigStyle(val, layer) {
 
 
 
-
 $(document).ready(function () {
     createSidebar();
 
@@ -1082,7 +1405,12 @@ $(document).ready(function () {
         layerClicked = window[event.target.value];
         colorGradeID = window[event.target.id]; // the function name of the style for gradient color scheme 
         colorOrigID = window[event.target.name]; //the original color scheme function
-        if ($(this).is(":checked") && $(this).hasClass('colorGrade')) {
+        if ($(this).is(":checked") && $(this).hasClass('pollution-sens')) {
+            map.removeLayer(layerClicked);
+            map.addLayer(colorGradeID);
+        } else if ($(this).is(":not(:checked)") && $(this).hasClass('pollution-sens')) {
+            map.removeLayer(colorGradeID);
+        } else if ($(this).is(":checked") && $(this).hasClass('colorGrade')) {
             changeStyle(colorGradeID, layerClicked); //calls function to change the style
         } else if ($(this).is(":not(:checked)") && $(this).hasClass('colorGrade')) {
             changeToOrigStyle(colorOrigID, layerClicked);
@@ -1094,6 +1422,20 @@ $(document).ready(function () {
             map.removeLayer(layerClicked);
         }
     });
+
+
+    if ($(window).width() < 414.1) {
+        map.setView([46.4, -91.99]);
+        map.setZoom(6)
+    } else if ($(window).width() < 768.1) {
+        map.setView([46.4, -95])
+    } else if ($(window).width() < 950) {
+        map.setView([46.35, -96.25])
+    } else if ($(window).width() < 1260) {
+        map.setView([46.35, -95.2])
+    }
+
+    //    console.log($(window).width());
 
 
     //        $('input[type="checkbox"]').click(function () {
