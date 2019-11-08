@@ -34,11 +34,23 @@ var mapOptions = {
 
 var map = L.map('mapid', mapOptions);
 
+
+//var light2 = new L.TileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2dyYW5kc3RyYW5kIiwiYSI6ImNqY3BtMm52MjJyZWsycXBmMDZremxsN3EifQ.3HVgf9jrNbmCSBBBlp5zlQ', {
+//    minZoom: 3,
+//    maxZoom: 18,
+//    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
+//});
+
+
+
 L.control.scale({
     position: 'bottomright',
     metric: false
 }).addTo(map);
 
+//var miniMap = new L.Control.MiniMap(light2, {
+//    toggleDisplay: true,
+//}).addTo(map);
 //L.control.zoom({
 //    position: 'bottomright'
 //}).addTo(map);
@@ -55,6 +67,13 @@ var baseMaps = {
 }
 L.control.layers(baseMaps, null).addTo(map);
 
+// bottom left or topleft?? ask
+var loadingControl = L.Control.loading({
+    separate: true,
+    position: 'bottomleft'
+});
+map.addControl(loadingControl);
+
 L.easyButton('fa-crosshairs fa-lg', function (btn, map) {
     var query = L.esri.query({
         url: a_hwkCreekBndry
@@ -67,6 +86,8 @@ L.easyButton('fa-crosshairs fa-lg', function (btn, map) {
         map.fitBounds(latLngBounds);
     });
 }).addTo(map);
+
+
 
 
 // Leaflet Browser Print
@@ -141,6 +162,11 @@ map.on("browser-print-start", function (e) {
         }
                             ]
     }).addTo(e.printMap);
+
+
+
+    legendBndry.addTo(e.printMap);
+
 
 });
 
@@ -1299,31 +1325,6 @@ function updateOpacityTilepollsens(val) {
 }
 
 
-// Legend Controls 
-
-//function createLegend(attributes, title) {
-//    $("div.info.legend.leaflet-control").remove();
-//    //Container
-//    var div = L.DomUtil.create('div', 'info legend');
-//    //Make control
-//    var LegendControl = L.Control.extend({
-//        options: {
-//            position: 'bottomright'
-//        },
-//        onAdd: function () {
-//            var labels = ['<strong>' + title + '</strong>']
-//
-//            attributes.forEach((k, v) => div.innerHTML += labels.push('<i class="circle" style="background:' + $ {
-//                v
-//            } + '"></i> ' + $ {
-//                k
-//            }));
-//            div.innerHTML = labels.join('<br>');
-//            return div;
-//        }
-//    });
-//    map.addControl(new LegendControl());
-//}
 
 
 /// Zoom to Layer
@@ -1346,40 +1347,57 @@ function createSidebar() {
     sidebar.open('home');
 }
 
-//var legendlayer = L.control.htmllegend({
-//    position: 'bottomright'
-//})
-//coordsLeg = [43.465951, -96.348829]
-//styleLeg = {
-//    color: 'red'
-//}
-//
-//legendBndry = L.circle(coordsLeg, styleLeg);
-//legendCnty = L.circle(coordsLeg, styleLeg);
-//legendHUC8 = L.circle(coordsLeg, styleLeg);
-//
-//var legendlayerBndry = L.control.htmllegend({})
 
 //make button to add layer but don't see the layer 
 // make a random point somewhere for each layer. don't add style. associate the legend to
 // not sure how to work this with printing but maybe add a part where this will add to the div for on print 
 
-function addLegend(id, title) {
 
-    //    legendlayer.onAdd
-    var legendlayer = L.control.htmllegend({
-        position: 'bottomright',
-        layer: title,
-        legends: [{
-            name: title,
-            elements: [{
-                html: document.querySelector(id).innerHTML
+//Legend control items 
+var legendBndry = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Planning Area',
+    legends: [{
+        name: 'Planning Area',
+        elements: [{
+            html: document.querySelector('#BndryLegend1').innerHTML
             }]
         }],
-        detectStretched: true,
-    })
-    map.addControl(legendlayer)
-}
+    detectStretched: true,
+});
+var legendcnty = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Counties',
+    legends: [{
+        name: 'Counties',
+        elements: [{
+            html: document.querySelector('#cntyLegend1').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendhuc8 = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Major Watershed HUC 8 Boundaries',
+    legends: [{
+        name: 'Major Watershed HUC 8 Boundaries',
+        elements: [{
+            html: document.querySelector('#huc8Legend1').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendhuc10 = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'HUC 10 Boundaries',
+    legends: [{
+        name: 'HUC 10 Boundaries',
+        elements: [{
+            html: document.querySelector('#huc10Legend1').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
 
 
 
@@ -1393,36 +1411,90 @@ function changeToOrigStyle(val, layer) {
     layer.setStyle(val);
 }
 
+function checkClick(id) {
+    console.log(id);
+    console.log("the checkClick function has been initialized");
+}
 
 
 $(document).ready(function () {
     createSidebar();
 
-
-    ///change this to switch statements so the layer for gradients is removed. 
-
     $('input[type="checkbox"]').click(function () {
         layerClicked = window[event.target.value];
         colorGradeID = window[event.target.id]; // the function name of the style for gradient color scheme 
         colorOrigID = window[event.target.name]; //the original color scheme function
+        //        layerClicked.on('loading', function (e) {
+        //            loadingControl._showIndicator()
+        //        });
+        //        layerClicked.on('load', function (e) {
+        //            loadingControl._hideIndicator
+        //        });
         if ($(this).is(":checked") && $(this).hasClass('pollution-sens')) {
+            layerClicked.on('loading', function (e) {
+                loadingControl._showIndicator()
+            });
+            layerClicked.on('load', function (e) {
+                loadingControl._hideIndicator
+            });
             map.removeLayer(layerClicked);
             map.addLayer(colorGradeID);
         } else if ($(this).is(":not(:checked)") && $(this).hasClass('pollution-sens')) {
             map.removeLayer(colorGradeID);
         } else if ($(this).is(":checked") && $(this).hasClass('colorGrade')) {
+            layerClicked.on('loading', function (e) {
+                loadingControl._showIndicator()
+            });
+            layerClicked.on('load', function (e) {
+                loadingControl._hideIndicator
+            });
             changeStyle(colorGradeID, layerClicked); //calls function to change the style
         } else if ($(this).is(":not(:checked)") && $(this).hasClass('colorGrade')) {
             changeToOrigStyle(colorOrigID, layerClicked);
+        } else if ($(this).is(":checked") && $(this).hasClass('showLegend')) {
+            map.addControl(layerClicked); //calls function to add legend
+        } else if ($(this).is(":not(:checked)") && $(this).hasClass('showLegend')) {
+            map.removeControl(layerClicked);
         } else if ($(this).is(":checked")) {
-            console.log("using 3rd choice")
-            console.log(layerClicked);
+            layerClicked.on('loading', function (e) {
+                loadingControl._showIndicator()
+            });
+            layerClicked.on('load', function (e) {
+                loadingControl._hideIndicator
+            });
             map.addLayer(layerClicked);
         } else if ($(this).is(":not(:checked)")) {
             map.removeLayer(layerClicked);
         }
     });
 
+    //    
+    //        $('input[type="checkbox"]').click(function () {
+    //        layerClicked = window[event.target.value];
+    //        colorGradeID = window[event.target.id]; // the function name of the style for gradient color scheme 
+    //        colorOrigID = window[event.target.name]; //the original color scheme function
+    //        layerClicked.on('loading', function (e) {
+    //            loadingControl._showIndicator()
+    //        });
+    //        layerClicked.on('load', function (e) {
+    //            loadingControl._hideIndicator
+    //        });
+    //        if ($(this).is(":checked") && $(this).hasClass('pollution-sens')) {
+    //            map.removeLayer(layerClicked);
+    //            map.addLayer(colorGradeID);
+    //        } else if ($(this).is(":not(:checked)") && $(this).hasClass('pollution-sens')) {
+    //            map.removeLayer(colorGradeID);
+    //        } else if ($(this).is(":checked") && $(this).hasClass('colorGrade')) {
+    //            changeStyle(colorGradeID, layerClicked); //calls function to change the style
+    //        } else if ($(this).is(":not(:checked)") && $(this).hasClass('colorGrade')) {
+    //            changeToOrigStyle(colorOrigID, layerClicked);
+    //        } else if ($(this).is(":checked")) {
+    //
+    //            map.addLayer(layerClicked);
+    //        } else if ($(this).is(":not(:checked)")) {
+    //            map.removeLayer(layerClicked);
+    //        }
+    //    });
 
     if ($(window).width() < 414.1) {
         map.setView([46.4, -91.99]);
@@ -1616,4 +1688,115 @@ $(document).ready(function () {
 //            fillOpacity: val,
 //        });
 //    }
+//}
+
+//able to add and remove legend but the legend object is cached so its not undefined when removed
+//function addLegend2(layer) {
+//    layerleg = window[event.target.value];
+//    console.log(layerleg);
+//    check = layerleg._entries;
+//
+//    console.log(check);
+//    if (check != undefined) {
+//        console.log("removing legend call")
+//        map.removeControl(layerleg);
+//    } else {
+//        map.addControl(layerleg);
+//        console.log("adding legend call")
+//    }
+//}
+
+//function addLegend(id, title) {
+//
+//    //    legendlayer.onAdd
+//    var legendlayer = L.control.htmllegend({
+//        position: 'bottomright',
+//        layer: title,
+//        legends: [{
+//            name: title,
+//            elements: [{
+//                html: document.querySelector(id).innerHTML
+//            }]
+//        }],
+//        detectStretched: true,
+//    });
+//    check = legendlayer._entries
+//    console.log(check);
+//    map.addControl(legendlayer)
+//}
+
+
+//function showLegend(id, title) {
+//    var legend = L.control({
+//        position: 'bottomright'
+//    });
+//    var element = document.querySelector(id).innerHTML;
+//    console.log(element);
+//
+//    legend.onAdd = function (map) {
+//        var div = L.DomUtil.create('div', 'info legend', 'legend-' + title),
+//            labels = ['<strong>' + title + '</strong>'],
+//            elements = document.querySelector(id).innerHTML;
+//        console.log(element);
+//        div.innerHTML = labels + '<br>' + elements;
+//        return div;
+//
+//    };
+//    legend.addTo(map);
+
+//
+//
+//    var LegendControl = L.Control.extend({
+//        options: {
+//            position: 'bottomright'
+//        },
+//        onAdd: function () {
+//            div.innerHTML = labels + '<br>' + element;
+//            return div;
+//        }
+//    });
+//    map.addControl(new LegendControl());
+
+//}
+
+//var legendlayer = L.control.htmllegend({
+//    position: 'bottomright'
+//})
+//var coordsLeg = [43.465951, -96.348829]
+//var styleLeg = {
+//    color: 'red'
+//}
+//
+//legendBndry = L.circle(coordsLeg, styleLeg);
+//legendCnty = L.circle(coordsLeg, styleLeg);
+//legendHUC8 = L.circle(coordsLeg, styleLeg);
+//
+//var legendlayerBndry = L.control.htmllegend({})
+
+
+
+// Legend Controls 
+
+//function createLegend(attributes, title) {
+//    $("div.info.legend.leaflet-control").remove();
+//    //Container
+//    var div = L.DomUtil.create('div', 'info legend');
+//    //Make control
+//    var LegendControl = L.Control.extend({
+//        options: {
+//            position: 'bottomright'
+//        },
+//        onAdd: function () {
+//            var labels = ['<strong>' + title + '</strong>']
+//
+//            attributes.forEach((k, v) => div.innerHTML += labels.push('<i class="circle" style="background:' + $ {
+//                v
+//            } + '"></i> ' + $ {
+//                k
+//            }));
+//            div.innerHTML = labels.join('<br>');
+//            return div;
+//        }
+//    });
+//    map.addControl(new LegendControl());
 //}

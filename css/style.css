@@ -156,6 +156,7 @@ p {
     color: whitesmoke;
     font: 14pt "Helvetica Neue", Arial, Helvetica, sans-serif;
     font-weight: bold;
+    text-shadow: 1px 1px black;
 }
 
 
@@ -166,6 +167,8 @@ p {
     font-size: 1.7em;
     text-align: center;
     color: whitesmoke;
+    text-shadow: 1px 1px black;
+
 
     /*    background-image: linear-gradient(to bottom, #3498db, #2980b9);*/
 }
@@ -210,12 +213,23 @@ p {
     cursor: pointer;
 }
 
+/*
 .categoryHead {
     margin-top: 5px;
     font-size: 1.3em;
     color: #042440;
-    /*    #A5A16D;*/
+    #A5A16D;
 }
+*/
+.categoryHead {
+    font-style: bold;
+    font-weight: 700;
+    margin-top: 15px;
+    font-size: 1.3em;
+    color: #042440;
+    text-shadow: 1px -.5px lightgray;
+}
+
 
 /*Leaflet Zoom Home plugin code*/
 .leaflet-control-zoomhome a {
@@ -239,16 +253,27 @@ a.leaflet-control-zoomhome-out {
 
 }
 
-.categoryHead {
-    font-style: bold;
-    font-weight: 700;
-    margin-top: 15px;
-    color: #042440;
-}
+
 
 .color-scheme {
     padding-top: 20px;
 }
+
+.card {
+    border: none;
+}
+
+.legendtoggle {
+    padding-left: 15px;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+/*
+.fa-edit {
+    color: #A5A16D;
+}
+*/
 
 
 /* access to color gradient thing
