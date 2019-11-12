@@ -166,7 +166,7 @@ map.on("browser-print-start", function (e) {
 
 
 
-//    legendBndry.addTo(e.printMap);
+    //    legendBndry.addTo(e.printMap);
 
 
 });
@@ -1327,6 +1327,26 @@ function updateOpacityTilepollsens(val) {
     }
 }
 
+var rangeSlider = function () {
+    var slider = $('.range-slider'),
+        range = $('.slider'),
+        value = $('.range-slider_val');
+
+    slider.each(function () {
+
+        value.each(function () {
+            var value = $(this).prev().attr('value');
+            $(this).html(value);
+        });
+
+        range.on('input', function () {
+            $(this).next(value).html(this.value);
+        });
+        labeledby: range;
+    });
+};
+
+rangeSlider();
 
 
 
@@ -1460,6 +1480,10 @@ function checkClick(id) {
 
 $(document).ready(function () {
     createSidebar();
+
+    $('#range').on("input", function () {
+        $('.output').val(this.value);
+    }).trigger("change");
 
     $('input[type="checkbox"]').click(function () {
         layerClicked = window[event.target.value];

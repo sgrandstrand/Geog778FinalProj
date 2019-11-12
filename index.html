@@ -261,11 +261,11 @@
                         <span class="fab fa-elementor"></span></button>
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsewtrVul">
-                        <div class="card card-body">
+                        <div class="card card-body range-slider">
                             <p>Opacity Fill
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, wtrVul)"></p>
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, wtrVul)"><span class="range-slider_val hidden"></span></p>
                             <p>Opacity Boundary
-                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, wtrVul)"></p>
+                                <input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, wtrVul)"><span class="range-slider_val"></span></p>
 
                             <p class="color-scheme"><input type="checkbox" name="styleWtrVul" class="colorGrade" id="styleGradientWtrVul" value="wtrVul"> Change to Gradient Color Scheme</p>
 
@@ -290,8 +290,10 @@
                                 <svg width="20" height="10">
                                     <rect width="15" height="10" style="fill:#bed2ff; stroke-width:2; stroke:#bed2ff; fill-opacity:0.8" />
                                 </svg>Very Low<br>
+                                <!--
                             </p>
                             <p><button type="button" class="btn btn-primary show-legend-btn" onclick="showLegend('#wtrVulLegend', 'DWSMA Vulnerability')">Show Legend</button></p>
+-->
                         </div>
                     </div>
                     <br>
@@ -2156,7 +2158,6 @@
             padding-left: 10px;
             color: white;
         }
-
     </style>
 
 
@@ -2196,9 +2197,7 @@
     <!--    <script type="text/javascript" src="js/L.Control.Sidebar.js"></script>-->
     <script type="text/javascript" src="js/main1.js"></script>
 
-</body>
-
-</html>
+</body></html>
 
 
 

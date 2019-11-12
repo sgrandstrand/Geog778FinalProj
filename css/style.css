@@ -288,6 +288,17 @@ h3 > div > div > p {
     background-color: aqua;
 }
 
+input:focus {
+    outline: none;
+}
+
+.range-slider_val {
+    color: black;
+    font-style: oblique;
+
+}
+
+
 /*
 .fa-edit {
     color: #A5A16D;
