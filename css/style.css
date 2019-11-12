@@ -276,6 +276,18 @@ a:hover {
 
 }
 
+/*to get to the sub title legend print*/
+h3 > div > div > p {
+    color: black;
+    font-size: 10pt;
+    margin-bottom: -1em;
+    margin-top: -1em;
+}
+
+#legend#cntyLegend1 {
+    background-color: aqua;
+}
+
 /*
 .fa-edit {
     color: #A5A16D;

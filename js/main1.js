@@ -115,6 +115,7 @@ map.on("browser-print-start", function (e) {
         metric: false,
         maxWidth: 200
     }).addTo(e.printMap);
+    addPrintLegend(e);
     L.latlngGraticule({
         showLabel: true,
         dashArray: [5, 5],
@@ -165,10 +166,11 @@ map.on("browser-print-start", function (e) {
 
 
 
-    legendBndry.addTo(e.printMap);
+//    legendBndry.addTo(e.printMap);
 
 
 });
+
 
 
 //// URL's for Layers ////
@@ -1400,6 +1402,44 @@ var legendhuc10 = L.control.htmllegend({
     detectStretched: true,
 });
 
+// add legends to print
+function addPrintLegend(e) {
+    var legends = [];
+    console.log(legends)
+    $.each($('input[class="showLegend"]:checked'), function () {
+        //        x = this.value;
+        //        console.log(x);
+        //        return x.addTo(e.printMap);
+
+        legends.push($(this).val());
+    });
+    if (legends.length == 0) {
+        return
+    } else {
+        var i;
+        var list = [];
+        for (i = 0; i < legends.length; i++) {
+            list += legends[i] + '.addTo(' + e + '.printMap);'
+        }
+        console.log(list);
+        return list
+    }
+
+}
+
+//    if (($('input[value="legendBndry"]').is(':checked')) && ($('input[value="legendcnty"]').is(':checked')) && ($('input[value="legendhuc8"]').is(':checked')) && ($('input[value="legendhuc10"]').is(':checked'))) {
+//        return
+//        legendBndry.addTo(e.printMap);
+//        legendcnty.addTo(e.printMap);
+//        legendhuc8.addTo(e.printMap);
+//        legendhuc10.addTo(e.printMap);
+//
+//    } else if ($('input[value="legendhuc10"]').is(':checked')) {
+//        return legendhuc10.addTo(e.printMap);
+//    } else if ($('input[value="legendcnty"]').is(':checked')) {
+//        return legendcnty.addTo(e.printMap);
+//    }
+//}
 
 
 function changeStyle(val, layer) {
@@ -1425,6 +1465,9 @@ $(document).ready(function () {
         layerClicked = window[event.target.value];
         colorGradeID = window[event.target.id]; // the function name of the style for gradient color scheme 
         colorOrigID = window[event.target.name]; //the original color scheme function
+
+        legendname = this.name;
+        legendvalue = this.value;
         //        layerClicked.on('loading', function (e) {
         //            loadingControl._showIndicator()
         //        });
@@ -1454,8 +1497,14 @@ $(document).ready(function () {
             changeToOrigStyle(colorOrigID, layerClicked);
         } else if ($(this).is(":checked") && $(this).hasClass('showLegend')) {
             map.addControl(layerClicked); //calls function to add legend
+            console.log(colorOrigID);
+            leg = document.querySelector(legendname).innerHTML; //testname is the this.value which is the id for the legend container
+            console.log(leg);
+            $("#addSubLegend").append('<div id= legend' + legendvalue + ' >' + leg + ' </div');
         } else if ($(this).is(":not(:checked)") && $(this).hasClass('showLegend')) {
-            map.removeControl(layerClicked);
+            map.removeControl(layerClicked); //remove legend control
+            removeID = '#legend' + legendvalue // to get the jquery selector for the div the legend is in in the sub title print area
+            $(removeID).remove(); //removes legend from sub print area
         } else if ($(this).is(":checked")) {
             layerClicked.on('loading', function (e) {
                 loadingControl._showIndicator()
