@@ -253,8 +253,6 @@ a.leaflet-control-zoomhome-out {
 
 }
 
-
-
 .color-scheme {
     padding-top: 20px;
 }
@@ -267,6 +265,15 @@ a.leaflet-control-zoomhome-out {
     padding-left: 15px;
     margin-bottom: 15px;
     font-style: italic;
+}
+
+.metadataHeader {
+    color: #042440;
+}
+
+a:hover {
+    color: #A5A16D;
+
 }
 
 /*

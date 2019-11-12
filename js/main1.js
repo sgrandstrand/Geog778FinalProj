@@ -598,6 +598,7 @@ function stylewellhead(feature) {
 function styleGradientwellhead(feature) {
     return {
         "color": "#006d2c",
+
     };
 }
 

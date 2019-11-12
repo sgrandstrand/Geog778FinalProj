@@ -85,7 +85,7 @@
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
 
-                    <button class="btn-xs btn-primary " type="button" data-toggle="collapse" data-target="#BndryLegend" aria-expanded="false" aria-controls="BndryLegend" name="addlegendbtn" value='legendBndry'>Legend <span class="sr-only">Toggle Legend </span>
+                    <button class="btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#BndryLegend" aria-expanded="false" aria-controls="BndryLegend" name="addlegendbtn" value='legendBndry'>Legend <span class="sr-only">Toggle Legend </span>
                     </button>
 
                     <!--                Collapsed Div's -->
@@ -93,7 +93,6 @@
                         <div class="card card-body">
                             <p>Opacity Fill<input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacity(this.value, hawkcreekbndry)"></p>
                             <p>Opacity Boundary<input class="slider" type="range" min="0" max="1" step="0.1" oninput="updateOpacityBound(this.value, hawkcreekbndry)"></p> <br>
-
                         </div>
                     </div>
                     <div class="collapse" id="BndryLegend">
@@ -111,7 +110,6 @@
                                 <label>Show Legend</label>
                             </div>
                         </div>
-
                     </div>
 
                     <!--END HAWK CREEK BOUNDARY-->
@@ -633,7 +631,7 @@
                     </div>
 
                     <br>
-                    <input type="checkbox" value="phos"> Lake Phosophorus Sensitivity Significance <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsephos" aria-expanded="false" aria-controls="collapsephos">
+                    <input type="checkbox" value="phos"> Lake Phosphorus Sensitivity Significance <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapsephos" aria-expanded="false" aria-controls="collapsephos">
                         <span class="sr-only">Expand to Edit </span>
                         <span class="fa fa-edit"></span></button>
                     <button class="btn-xs btn-outline-primary" type="button" data-toggle="collapse" data-target="#phosLegend" aria-expanded="false" aria-controls="phosLegend"> <span class="sr-only">Toggle Legend </span>
@@ -1649,7 +1647,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <a class="card-link" data-toggle="collapse" href="#metadataHUC">
+                        <a class="card-link metadataHeader" data-toggle="collapse" href="#metadataHUC">
                             Major Watershed (HUC 8), HUC 10, HUC 12
                         </a>
                     </div>
@@ -1661,7 +1659,7 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <a class="collapsed card-link" data-toggle="collapse" href="#metadataDNRCatch">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadataDNRCatch">
                             DNR Lake Habitat Strategy
                         </a>
                     </div>
@@ -1673,7 +1671,7 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <a class="collapsed card-link" data-toggle="collapse" href="#metadataDWSV">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadataDWSV">
                             Drinking Water Supply Vulnerability
                         </a>
                     </div>
@@ -1688,7 +1686,7 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <a class="collapsed card-link" data-toggle="collapse" href="#metadataWellHead">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadataWellHead">
                             Well Head Protection Areas
                         </a>
                     </div>
@@ -1703,7 +1701,7 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <a class="collapsed card-link" data-toggle="collapse" href="#metadatabedrockPoll">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatabedrockPoll">
                             Bedrock Surface Pollution Sensitivity
                         </a>
                     </div>
@@ -1718,7 +1716,7 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <a class="collapsed card-link" data-toggle="collapse" href="#metadatanitrTwn">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatanitrTwn">
                             Nitrate Rates by Township
                         </a>
                     </div>
@@ -1732,7 +1730,7 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <a class="collapsed card-link" data-toggle="collapse" href="#metadatapollsens">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatapollsens">
                             Pollution Sensitivity of Near-Surface Materials
                         </a>
                     </div>
@@ -1747,7 +1745,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <a class="collapsed card-link" data-toggle="collapse" href="#metadatafEMAflood">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatafEMAflood">
                             100 Year Floodplain
                         </a>
                     </div>
@@ -1762,6 +1760,274 @@
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadataaltwtr">
+                            Altered Watercourse
+                        </a>
+                    </div>
+                    <div id="metadataaltwtr" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Geospatial Information Office (MnGeo) for the Minnesota Pollution Control Agency </p><br>
+                            <p><b>Description:</b> The Altered Watercourse Project was a joint effort between the Minnesota Pollution Control Agency (MPCA) and Minnesota Geospatial Information Office (MnGeo) to create a statewide inventory of streams that have been hydrologically altered (e.g. channelized, ditched or impounded). The dataset was created to support MPCA's water quality monitoring and assessment program and provides information about stream habitats that have been compromised through such alteration.<br>
+
+                                The project entailed digitization of Geographic Information System (GIS) 'events' on to the United States Geological Survey's National Hydrography Dataset (NHD) stream linework. The events were then categorized as one of four types: Altered, Natural, Impounded, or No definable channel, based upon a standardized methodology and criteria. These categorizations were performed manually by GIS technicians using visible interpretation of multiple years of aerial photography, LiDAR (Light Detection And Ranging)-based elevation data, and various other reference data in ArcGIS 10.0. <br>
+
+                                Beginning in 2018, some custom linework was added to the dataset to represent streams that were not present in the NHD. These custom line features do not have a Reachcode, and have a note in the Permanent ID field and the Source Feature ID. These line features will be incorporated into the NHD in the future.
+                            </p><br>
+                            <p><b>Publication:</b> 2018</p><br>
+                            <p><b>More information:</b><a href=" http://www.mngeo.state.mn.us/ProjectServices/awat/index.html" target="_blank"> http://www.mngeo.state.mn.us/ProjectServices/awat/index.html</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatacONUS">
+                            NWI
+                        </a>
+                    </div>
+                    <div id="metadatacONUS" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> US Fish and Wildlife Service </p><br>
+                            <p><b>Description:</b> Geospatial Wetlands Digital Data within the continental United States in Open GIS Consortium (OGC) Web Map Service format. This data set represents the extent, approximate location and type of wetlands and deepwater habitats in the conterminous United States. These data delineate the areal extent of wetlands and surface waters as defined by Cowardin et al. (1979). Certain wetland habitats are excluded from the National mapping program because of the limitations of aerial imagery as the primary data source used to detect wetlands.
+                            </p><br>
+                            <p><b>Publication:</b> 7/31/2009</p><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatabuffwetlnds">
+                            Public Waters
+                        </a>
+                    </div>
+                    <div id="metadatabuffwetlnds" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Department of Natural Resources (DNR) - Ecological and Water Resources Division </p><br>
+                            <p><b>Description:</b> These data represent public waters and public ditches that require permanent vegetation buffers or alternative riparian water quality practices. The buffer map data comprise two geographical feature classes: one linear feature class for watercourses and one polygonal feature class for lakes, reservoirs and wetlands. The attribute for the buffer width requirement is derived from three different classification attributes: (1) the Minnesota DNR's Public Waters Inventory classification, (2) the DNR assigned shoreland classification, and (3) public open drainage system data (also referred to as open ditches) established under Minnesota Statute (M.S.) 103E and provided by local drainage authorities. The DNR Commissioner has validated the authenticity of this map for purposes described in M.S. 103F.48. <br>
+
+                                Public waters are all lakes, wetlands and watercourses that meet the criteria set forth in M.S. 103G.005, subd. 15 and are designated on public waters inventory maps. Public water wetlands without DNR shoreland classifications are excluded from the buffer map. The DNR coordinated with counties and watershed districts to identify public ditches that require a buffer. <br>
+
+                                The buffer protection map helps landowners identify buffer protection requirements, under Minnesota's Buffer Law. Public ditches require a 16.5-foot buffer and public waters require a 50-foot average buffer; public ditches that are also public watercourses require a 16.5-foot buffer unless the DNR assigned a specific shoreland classification, in which case a 50-foot average buffer is required. Local ordinances may require wider buffers. This map displays minimum standards and is not intended to affect existing local controls that are more restrictive than these requirements. Furthermore, the buffer map does not depict "other waters" to be addressed by local water plans and does not identify locations where local Soil and Water Conservation Districts (SWCDs) have selected an alternate water quality practice
+                            </p><br>
+                            <p><b>Publication:</b> 08/21/2018</p><br>
+                            <p><b>More information:</b><a href=" https://www.dnr.state.mn.us/buffers/index.html" target="_blank"> https://www.dnr.state.mn.us/buffers/index.html</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatabuffwtrcrse">
+                            Public Ditches
+                        </a>
+                    </div>
+                    <div id="metadatabuffwtrcrse" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Department of Natural Resources (DNR) - Ecological and Water Resources Division </p><br>
+                            <p><b>Description:</b> These data represent public waters and public ditches that require permanent vegetation buffers or alternative riparian water quality practices. The buffer map data comprise two geographical feature classes: one linear feature class for watercourses and one polygonal feature class for lakes, reservoirs and wetlands. The attribute for the buffer width requirement is derived from three different classification attributes: (1) the Minnesota DNR's Public Waters Inventory classification, (2) the DNR assigned shoreland classification, and (3) public open drainage system data (also referred to as open ditches) established under Minnesota Statute (M.S.) 103E and provided by local drainage authorities. The DNR Commissioner has validated the authenticity of this map for purposes described in M.S. 103F.48. <br>
+
+                                Public waters are all lakes, wetlands and watercourses that meet the criteria set forth in M.S. 103G.005, subd. 15 and are designated on public waters inventory maps. Public water wetlands without DNR shoreland classifications are excluded from the buffer map. The DNR coordinated with counties and watershed districts to identify public ditches that require a buffer. <br>
+
+                                The buffer protection map helps landowners identify buffer protection requirements, under Minnesota's Buffer Law. Public ditches require a 16.5-foot buffer and public waters require a 50-foot average buffer; public ditches that are also public watercourses require a 16.5-foot buffer unless the DNR assigned a specific shoreland classification, in which case a 50-foot average buffer is required. Local ordinances may require wider buffers. This map displays minimum standards and is not intended to affect existing local controls that are more restrictive than these requirements. Furthermore, the buffer map does not depict "other waters" to be addressed by local water plans and does not identify locations where local Soil and Water Conservation Districts (SWCDs) have selected an alternate water quality practice
+                            </p><br>
+                            <p><b>Publication:</b> 08/21/2018</p><br>
+                            <p><b>More information:</b><a href="https://www.dnr.state.mn.us/buffers/index.html" target="_blank"> https://www.dnr.state.mn.us/buffers/index.html</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatarWI">
+                            Restorable Wetland Inventory
+                        </a>
+                    </div>
+                    <div id="metadatarWI" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> The Duck Unlimited </p><br>
+                            <p><b>Description:</b> Merged version of the Restorable Depression Wetland Inventory downloaded from the Duck Unlimited site 10/10/2019 by county <br>
+                            </p><br>
+                            <p><b>Publication:</b> Downloaded on 10/10/2019</p><br>
+                            <p><b>More information:</b><a href="https://www.ducks.org/conservation/geographic-information-systems/minnesota-restorable-wetlands" target="_blank"> https://www.ducks.org/conservation/geographic-information-systems/minnesota-restorable-wetlands</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadataimptStrm">
+                            Impaired Streams
+                        </a>
+                    </div>
+                    <div id="metadataimptStrm" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Pollution Control Agency </p><br>
+                            <p><b>Description:</b> This is a set of the impaired lakes as determined by MPCA's surface water quality assessment proposed process for the 2018 reporting cycle to US Environmental Protection Agency (EPA). Lakes declared impaired prior to 2018 are also included in this dataset unless they have been delisted. EPA evaluates the list and either approves it as-is or modifies it, which may result in changes to this spatial data. <br>
+                                Note that for the purpose of submitting the impaired waters list to EPA, waterbodies partially or wholly within Indian reservation boundaries are published in separate datasets. The MPCA still considers these waters impaired and has an interest in restoring them. The MPCA respectfully requests that the waters partially or wholly within Indian reservations be symbolized differently on map products so that viewers can differentiate them from waters not intersecting Indian reservations. <br>
+                                These lakes are a subset and enhancement of the 1:24,000 scale National Hydrography Dataset (NHD). In cases where the NHD does not include lakes that MPCA has assessed, additional lakes from the MN Department of Natural Resources (DNR) Division of Waters lakes database are added. Since the impaired lakes are a small subset of the NHD and DNR lakes, only that subset is included in the dataset. This dataset includes impaired lakes which have not yet had a TMDL plan approved by the US EPA, those that have a US EPA approved TMDL plan as well as those lakes that do not need a TMDL plan.
+                            </p><br>
+                            <p><b>Publication:</b> 04/03/2018</p><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadataimpLks">
+                            Impaired Lakes
+                        </a>
+                    </div>
+                    <div id="metadataimpLks" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> The Duck Unlimited </p><br>
+                            <p><b>Description:</b> Merged version of the Restorable Depression Wetland Inventory downloaded from the Duck Unlimited site 10/10/2019 by county <br>
+                            </p><br>
+                            <p><b>Publication:</b> Downloaded on 10/10/2019</p><br>
+                            <p><b>More information:</b><a href="https://www.ducks.org/conservation/geographic-information-systems/minnesota-restorable-wetlands" target="_blank"> https://www.ducks.org/conservation/geographic-information-systems/minnesota-restorable-wetlands</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadataphos">
+                            Lake Phosphorus Sensitivity Significance
+                        </a>
+                    </div>
+                    <div id="metadataphos" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Department of Natural Resources (DNR) - Ecological and Water Resources (EWR) </p><br>
+                            <p><b>Description:</b> This layer was created to identify Lakes of Phosphorus Sensitivity Significance (LPSS) within Minnesota. Available lake data were analyzed to classify lakes based on sensitivity to nutrient pollution. <br>
+
+                                Phosphorus sensitivity was estimated for each lake by predicting how much water clarity would be reduced with additional phosphorus loading to the lake. A phosphorus sensitivity significance index was formulated to prioritize lakes as they relate to Minnesota Pollution Control Agency's (MPCA) policy objective of focusing on high quality, unimpaired lakes at greatest risk of becoming impaired. The phosphorus sensitivity significance index, which is a function of phosphorus sensitivity, lake size, lake total phosphorus concentration, proximity to MPCA's phosphorus impairment thresholds, and watershed disturbance, was used to determine the lake's Priority Class. <br>
+
+                                The goal of this list was to objectively prioritize lakes based on their sensitivity to phosphorus pollution. Lakes identified as nutrient-impaired or proposed for nutrient impairment listing are also included.
+                            </p><br>
+                            <p><b>Publication:</b> 2018</p><br>
+                            <p><b>More information:</b><a href="https://gisdata.mn.gov/dataset/water-dnr-hydrography" target="_blank"> https://gisdata.mn.gov/dataset/water-dnr-hydrography</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatatrout">
+                            Trout Streams
+                        </a>
+                    </div>
+                    <div id="metadatatrout" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Department of Natural Resources (MNDNR)</p><br>
+                            <p><b>Description:</b> This layer shows legally designated trout streams and trout stream tributaries as identified in Minnesota Rules Chapter 6264. See http://www.revisor.leg.state.mn.us/arule/6264/0050.html for legal descriptions and restrictions associated with designated trout waters. <br>
+
+                                This data set includes designated trout streams and their protected tributaries only. Users are encouraged to use the full resolution Stream Routes with Kittle Numbers and Mile Measures layer ( http://gisdata.mn.gov/dataset/water-measured-kittle-routes ) as a base layer to visualize all streams (designated and not) to fully understand hydrological connectivity and impacts to trout resources. <br>
+
+                                Designated segments are maintained as tabular data and displayed as linear events on the Stream Routes with Kittle Numbers and Mile Measures layer ( http://gisdata.mn.gov/dataset/water-measured-kittle-routes ). In the attribute table, designated segments extend from the FROM_MEAS (mile) to the TO_MEAS (mile) and have a total length = [LENGTH_MI] on a route with total length = [ROUTE_MI].
+                            </p><br>
+                            <p><b>Publication:</b> 06/21/2018</p><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatanatPra">
+                            Native Prairies
+                        </a>
+                    </div>
+                    <div id="metadatanatPra" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Department of Natural Resources (DNR)</p><br>
+                            <p><b>Description:</b> Native prairie polygons are a subset of a larger database of DNR Native Plant Communities and are the result of that classification system and protocol. <br>
+
+                                As a subset of the DNR Native Plant Communities dataset, this dataset contains selected native plant community classifications (prairies) that result from the Minnesota Biological Survey (MBS), State Park land cover data, Forestry native plant community data, and Wildlife Management Areas land cover data. It includes polygons representing the highest quality native prairie communities remaining in surveyed areas. These native prairie communities are important areas for conservation. <br>
+
+                                Native plant communities (sometimes also referred to as "natural communities") are groups of native plants that interact with each other and their surrounding environment in ways not greatly altered by modern human activity or by introduced plant or animal species. These groups of native species form recognizable units, such as an oak forest, a prairie, or a marsh, that tend to repeat across the landscape and over time. <br>
+                                Native plant communities are generally classified and described by considering vegetation, hydrology, land forms, soils, and natural disturbance regimes. The native plant community types and subtypes in this data layer are classified primarily by vegetation and major habitat features.<br>
+                                Areas that are not mapped as native plant community polygons primarily represent: 1) land where modern human activities such as farming, overgrazing, wetland drainage, recent logging and residential and commercial development have destroyed or greatly altered the natural vegetation; and 2) native plant community polygons that were below minimal size criteria.<br>
+                                Note: some areas that are not mapped are important for conservation. They may include habitat for native plants and animals, corridors for animal movement, buffers surrounding high quality natural areas and open space, and target areas for restoration.
+                            </p><br>
+                            <p><b>Publication:</b> 10/03/2019</p><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatanatPlnt">
+                            Native Plant Communities
+                        </a>
+                    </div>
+                    <div id="metadatanatPlnt" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Department of Natural Resources (MNDNR)</p><br>
+                            <p><b>Description:</b> This dataset contains results of the Minnesota Biological Survey (MBS), State Park land cover data, Forestry native plant community data, and Wildlife Management Areas land cover data. It includes polygons representing the highest quality native plant communities remaining in surveyed areas (typically counties). These native plant communities are important areas for conservation. <br>
+
+                                Native plant communities (sometimes also referred to as "natural communities") are groups of native plants that interact with each other and their surrounding environment in ways not greatly altered by modern human activity or by introduced plant or animal species. These groups of native species form recognizable units, such as an oak forest, a prairie, or a marsh, that tend to repeat across the landscape and over time. <br>
+
+                                Native plant communities are generally classified and described by considering vegetation, hydrology, land forms, soils, and natural disturbance regimes. The native plant community types and subtypes in this data layer are classified primarily by vegetation and major habitat features. <br>
+
+                                Areas that are not mapped as native plant community polygons primarily represent: 1) land where modern human activities such as farming, overgrazing, wetland drainage, recent logging and residential and commercial development have destroyed or greatly altered the natural vegetation; and 2) native plant community polygons that were below minimal size criteria. <br>
+                                Note: some areas that are not mapped are important for conservation. They may include habitat for native plants and animals, corridors for animal movement, buffers surrounding high quality natural areas and open space, and target areas for restoration.<br>
+                            </p><br>
+                            <p><b>Publication:</b> 10/22/2019</p><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatamBSbio">
+                            MBS Sites of Biodiversity Significance
+                        </a>
+                    </div>
+                    <div id="metadatamBSbio" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> The Minnesota Biological Survey, Minnesota Department of Natural Resources, Division of Ecological Resources</p><br>
+                            <p><b>Description:</b> This data layer represents areas with varying levels of native biodiversity that may contain high quality native plant communities, rare plants, rare animals, and/or animal aggregations. Initially, boundaries of sites are determined by review of aerial photography in order to identify potential areas of native biodiversity based on native vegetation. In subsequent field investigations, MBS assesses the ecological characteristics of the site and the presence of rare species. A biodiversity significance rank is assigned on the basis of the number of rare species, the quality of the native plant communities, size of the site, and context within the landscape. Following field investigations, site boundaries sometimes are revised, or sites added, to incorporate critical habitat for rare plants and rare animals. In these instances, the quality of native plant communities is not the primary criteria for ranking the site. MBS Sites that are found to be disturbed are retained in the layer as negative data and are given the Biodiversity Significance rank of "Below." Those disturbed areas within MBS Sites and all areas outside MBS Sites are lands where native plant communities have been seriously altered or destroyed by human activities such as farming, recent logging, draining, and development.
+                            </p><br>
+                            <p><b>Publication:</b> 06/20/2019</p><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadataGAP">
+                            GAP DNR, State, County and Federal Lands
+                        </a>
+                    </div>
+                    <div id="metadataGAP" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota DNR - Division of Fish &amp; Wildlife - Wildlife Unit</p><br>
+                            <p><b>Description:</b> This is the complete GAP Stewardship database containing land ownership information for the entire state of Minnesota. These lands are managed for a variety of economic, environmental, and recreational uses. Attribute fields describe ownership, administrator, and conservation management code. The base cartography is derived from mathematically subdivided PLS sections. The forty acre polygons have been dissolved on the ownership values in the attribute table. Ownership reflects surface features only. Ownership is only as current as the source information and should not be considered comprehensive for the entire state. Conservation management codes are based upon the owning or administrating entity. Land interest is expressed only when some organization owns or administers more than 50 percent of a forty except where we were able to create sub-fourty accuracy stewardship polygons. Lakes have been assigned to the adjacent or underlying land steward.
+                            </p><br>
+                            <p><b>Publication:</b> 2018</p><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadataeasemnts">
+                            Easements
+                        </a>
+                    </div>
+                    <div id="metadataeasemnts" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Board of Water and Soil Resources (BWSR)</p><br>
+                            <p><b>Description:</b> Conservation easements are a critical component of the state’s efforts to improve water quality by reducing soil erosion, phosphorus and nitrogen loading, and improving wildlife habitat and flood attenuation on private lands. Easements protect the state’s water and soil resources by permanently restoring wetlands, adjacent native grassland wildlife habitat complexes and permanent riparian buffers. In cooperation with county Soil &amp; Water Conservation Districts (SWCDs), BWSR's easement programs compensate landowners for granting conservation easements and establishing native vegetation habitat on economically marginal, flood-prone, environmentally sensitive or highly erodible lands.
+                            </p><br>
+                            <p><b>Publication:</b> 02/06/2019</p><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatanLCD">
+                            NLCD
+                        </a>
+                    </div>
+                    <div id="metadatanLCD" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> U.S. Geological Survey</p><br>
+                            <p><b>Description:</b> The U.S. Geological Survey (USGS), in partnership with several federal agencies, has developed and released four National Land Cover Database (NLCD) products over the past two decades: NLCD 1992, 2001, 2006, and 2011.These products provide spatially explicit and reliable information on the Nation’s land cover and land cover change. To continue the legacy of NLCD and further establish a long-term monitoring capability for the Nation’s land resources, the USGS has designed a new generation of NLCD products named NLCD 2016. The NLCD 2016 design aims to provide innovative, consistent, and robust methodologies for production of a multi-temporal land cover and land cover change database from 2001 to 2016 at 2–3-year intervals. Comprehensive research was conducted and resulted in developed strategies for NLCD 2016: a streamlined process for assembling and preprocessing Landsat imagery and geospatial ancillary datasets; a multi-source integrated training data development and decision-tree based land cover classifications; a temporally, spectrally, and spatially integrated land cover change analysis strategy; a hierarchical theme-based post-classification and integration protocol for generating land cover and change products; a continuous fields biophysical parameters modeling method; and an automated scripted operational system for the NLCD 2016 production. The performance of the developed strategies and methods were tested in twenty World Reference System-2 path/row throughout the conterminous U.S. An overall agreement ranging from 71% to 97% between land cover classification and reference data was achieved for all tested area and all years. Results from this study confirm the robustness of this comprehensive and highly automated procedure for NLCD 2016 operational mapping.
+                            </p><br>
+                            <p><b>Publication:</b> 2016</p><br>
+                        </div>
+                    </div>
+                </div>
+
             </div> <!-- Side bar Pane Metadata end-->
             <div class="sidebar-pane" id="help">
                 <h1 class="sidebar-header"> User Guide<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
@@ -1871,7 +2137,7 @@
 
 
 
-        <!--
+<!--
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fa fa-bars"></span>
         </button>
@@ -1896,22 +2162,22 @@
 
 
 
-                        <!--                        <p><input type="checkbox" name="#BndryLegend1" class="showLegend" value="legendBndry"> Show Legend</p>-->
+<!--                        <p><input type="checkbox" name="#BndryLegend1" class="showLegend" value="legendBndry"> Show Legend</p>-->
 
 
-                        <!--
+<!--
 
                         <p><input type="checkbox" data-toggle="toggle" data-on="Remove Legend" data-off="Add Legend" data-onstyle="success" data-offstyle="danger" class="showLegend" value="legendBndry" onclick="checkClick(this.value)"><span class="sr-only">Toggle Legend </span>
 
                         </p>
 -->
-                  <!--
+<!--
                     <button class="btn-xs btn-primary " type="button" data-toggle="collapse" data-target="#BndryLegend" aria-expanded="false" aria-controls="BndryLegend">Legend <span class="sr-only">Toggle Legend </span>
                                                                         <span class="fab fa-elementor"></span>
                     </button>
 -->
-                            <!--                           
+<!--                           
 
 <p><input type="checkbox" name="#BndryLegend1" class="showLegend" value="legendBndry"> Show Legend</p>-->
 
-                            <!--                            <p><input type="checkbox" name="#BndryLegend" class="showLegend" value="legendBndry"> Show Legend</p>-->
+<!--                            <p><input type="checkbox" name="#BndryLegend" class="showLegend" value="legendBndry"> Show Legend</p>-->
