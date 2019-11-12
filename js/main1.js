@@ -1342,7 +1342,6 @@ var rangeSlider = function () {
         range.on('input', function () {
             $(this).next(value).html(this.value);
         });
-        labeledby: range;
     });
 };
 
@@ -1421,30 +1420,30 @@ var legendhuc10 = L.control.htmllegend({
         }],
     detectStretched: true,
 });
+var legendhuc12 = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'HUC 12 Boundaries',
+    legends: [{
+        name: 'HUC 12 Boundaries',
+        elements: [{
+            html: document.querySelector('#huc12Legend1').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
 
 // add legends to print
-function addPrintLegend(e) {
-    var legends = [];
-    console.log(legends)
+function addPrintLegend(print) {
+    //    console.log(legendcnty);
+    //    console.log(legendcnty.addTo(print.printMap));
+    //    console.log(print);
+    //    var legends = [];
+    //    console.log(legends)
     $.each($('input[class="showLegend"]:checked'), function () {
-        //        x = this.value;
-        //        console.log(x);
-        //        return x.addTo(e.printMap);
-
-        legends.push($(this).val());
+        console.log(window[this.value]);
+        x = window[this.value];
+        return x.addTo(print.printMap);
     });
-    if (legends.length == 0) {
-        return
-    } else {
-        var i;
-        var list = [];
-        for (i = 0; i < legends.length; i++) {
-            list += legends[i] + '.addTo(' + e + '.printMap);'
-        }
-        console.log(list);
-        return list
-    }
-
 }
 
 //    if (($('input[value="legendBndry"]').is(':checked')) && ($('input[value="legendcnty"]').is(':checked')) && ($('input[value="legendhuc8"]').is(':checked')) && ($('input[value="legendhuc10"]').is(':checked'))) {
@@ -1490,8 +1489,6 @@ $(document).ready(function () {
         colorGradeID = window[event.target.id]; // the function name of the style for gradient color scheme 
         colorOrigID = window[event.target.name]; //the original color scheme function
 
-        legendname = this.name;
-        legendvalue = this.value;
         //        layerClicked.on('loading', function (e) {
         //            loadingControl._showIndicator()
         //        });
@@ -1521,14 +1518,8 @@ $(document).ready(function () {
             changeToOrigStyle(colorOrigID, layerClicked);
         } else if ($(this).is(":checked") && $(this).hasClass('showLegend')) {
             map.addControl(layerClicked); //calls function to add legend
-            console.log(colorOrigID);
-            leg = document.querySelector(legendname).innerHTML; //testname is the this.value which is the id for the legend container
-            console.log(leg);
-            $("#addSubLegend").append('<div id= legend' + legendvalue + ' >' + leg + ' </div');
         } else if ($(this).is(":not(:checked)") && $(this).hasClass('showLegend')) {
             map.removeControl(layerClicked); //remove legend control
-            removeID = '#legend' + legendvalue // to get the jquery selector for the div the legend is in in the sub title print area
-            $(removeID).remove(); //removes legend from sub print area
         } else if ($(this).is(":checked")) {
             layerClicked.on('loading', function (e) {
                 loadingControl._showIndicator()
@@ -1541,6 +1532,42 @@ $(document).ready(function () {
             map.removeLayer(layerClicked);
         }
     });
+
+
+    //   **** If I want to add legend to the sub title div. Do the following in the $(input checkbox) function: *****
+
+    //      $('input[type="checkbox"]').click(function () {
+    //        layerClicked = window[event.target.value];
+    //        colorGradeID = window[event.target.id]; // the function name of the style for gradient color scheme 
+    //        colorOrigID = window[event.target.name]; //the original color scheme function
+    //
+    //        legendname = this.name;
+    //        legendvalue = this.value;
+    //    
+    //     else if ($(this).is(":checked") && $(this).hasClass('showLegend')) {
+    //            map.addControl(layerClicked); //calls function to add legend
+    //            console.log(colorOrigID);
+    //            leg = document.querySelector(legendname).innerHTML; //testname is the this.value which is the id for the legend container
+    //            console.log(leg);
+    //            $("#addSubLegend").append('<div id= legend' + legendvalue + ' >' + leg + ' </div');
+    //        } else if ($(this).is(":not(:checked)") && $(this).hasClass('showLegend')) {
+    //            map.removeControl(layerClicked); //remove legend control
+    //            removeID = '#legend' + legendvalue // to get the jquery selector for the div the legend is in in the sub title print area
+    //            $(removeID).remove(); //removes legend from sub print area
+
+    // CSS FOR LEGEND:
+    /*to get to the sub title legend print*/
+    //h3 > div > div > p {
+    //    color: black;
+    //    font-size: 10pt;
+    //    margin-bottom: -1em;
+    //    margin-top: -1em;
+    //}
+    //            
+    //*** END OF LEGEND IN BOTTOM PART ///
+
+
+
 
     //    
     //        $('input[type="checkbox"]').click(function () {
