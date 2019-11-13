@@ -303,20 +303,26 @@ input:focus {
     border-color: #A5A16D;
 }
 
-/*
-.btn-info {
-    background-color: #042440;
-    border-color: #042440;
-}
-*/
-
 .btn-info:hover {
     background-color: #042440;
     border-color: #042440;
 }
 
+/*
+.btn-info {
+    background-color: #042440;
+    border-color: #042440;
+}
 
-
+.btn-info:hover {
+    background-color: #A5A16D;
+    border-color: #A5A16D;
+}
+*/
+.gradientNote {
+    font-size: 9pt;
+    padding-left: 1.5em;
+}
 
 button: focus {
     outline: 0;
@@ -331,6 +337,34 @@ button: focus {
 :focus {
     outline: 0;
     outline: none;
+}
+
+.userPurpose {
+    text-align: center;
+    font-weight: 600;
+    color: #042440;
+    text-shadow: 1px -.5px lightgray;
+}
+
+.userHeader {
+    font-size: 18pt;
+    color: #042440;
+    font-weight: 600;
+    text-shadow: 1px -.5px lightgray;
+}
+
+.userContent {
+    font-size: 12pt;
+    font-weight: 400;
+    text-align: center;
+    text-shadow: 1px -.5px lightgray;
+}
+
+.userList {
+    margin-bottom: .8em;
+    font-size: 12pt;
+    font-weight: 400;
+    text-shadow: 1px -.5px lightgray;
 }
 
 /*

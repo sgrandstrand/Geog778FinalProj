@@ -416,29 +416,16 @@ var phos = L.esri.featureLayer({
 
 var trout = L.esri.featureLayer({
     url: a_trout,
-    style: function () {
-        return {
-            color: "#f781bf",
-            opacity: 1,
-        };
-    }
+    style: styletrout,
 });
 var natPra = L.esri.featureLayer({
     url: a_natPra,
-    style: function () {
-        return {
-            color: "#735100",
-        };
-    }
+    style: stylenatPra,
 });
 
 var natPlnt = L.esri.featureLayer({
     url: a_natPlnt,
-    style: function () {
-        return {
-            color: "#71c98d",
-        };
-    }
+    style: stylenatPlnt,
 });
 
 var mBSbio = L.esri.featureLayer({
@@ -574,6 +561,9 @@ var mask = L.esri.featureLayer({
     style: function () {
         return {
             color: "black",
+            "fillColor": "black",
+            "fillOpacity": 0.8,
+            "opacity": 1,
         };
     }
 });
@@ -584,16 +574,18 @@ var mask = L.esri.featureLayer({
 function stylewellhead(feature) {
     return {
         "color": "#a65628",
-        fillOpacity: 0.8,
-        opacity: 1,
+        "fillColor": "#a65628",
+        "fillOpacity": 0.8,
+        "opacity": 1,
     };
 }
 
 function styleGradientwellhead(feature) {
     return {
         "color": "#006d2c",
-        fillOpacity: 0.8,
-        opacity: 1,
+        "fillColor": "#006d2c",
+        "fillOpacity": 0.8,
+        "opacity": 1,
 
     };
 }
@@ -744,8 +736,10 @@ function stylerWI(feature) {
     return {
         "color": "#f5a37a",
         "fillColor": "#f5a37a",
+        "weight": 2,
         "fillOpacity": 0.8,
         "opacity": 1,
+
     };
 }
 
@@ -753,6 +747,7 @@ function styleGradientrWI(feature) {
     return {
         "color": "#084594",
         "fillColor": "#084594",
+        "weight": 2,
         "fillOpacity": 0.8,
         "opacity": 1,
     };
@@ -834,7 +829,7 @@ function stylehSPF_TSS(feature) {
     else if (type > 0.05 && type <= .5) colorToUse = '#fad155';
     else if (type > 0.5 && type <= 1) colorToUse = '#f2a72e';
     else if (type > 1 && type <= 2.5) colorToUse = '#ad5313';
-    else if (type > 2.5 && type <= 12.25) colorToUse = '#6b0000';
+    else if (type > 2.5 && type <= 12.26) colorToUse = '#6b0000';
     else colorToUse = "transparent";
     return {
         "color": colorToUse,
@@ -853,7 +848,7 @@ function styleGradienthSPF_TSS(feature) {
     else if (type > 0.05 && type <= .5) colorToUse = '#fcbba1';
     else if (type > 0.5 && type <= 1) colorToUse = '#fb6a4a';
     else if (type > 1 && type <= 2.5) colorToUse = '#cb181d';
-    else if (type > 2.5 && type <= 12.25) colorToUse = '#67000d';
+    else if (type > 2.5 && type <= 12.26) colorToUse = '#67000d';
     else colorToUse = "transparent";
     return {
         "color": colorToUse,
@@ -907,7 +902,7 @@ function stylehSPF_TP(feature) {
     else if (type > 0.29 && type <= 0.43) colorToUse = '#fad155';
     else if (type > 0.43 && type <= 0.61) colorToUse = '#f2a72e';
     else if (type > 0.61 && type <= 1.61) colorToUse = '#ad5313';
-    else if (type > 1.61 && type <= 5.67) colorToUse = '#6b0000';
+    else if (type > 1.61 && type <= 5.68) colorToUse = '#6b0000';
     else colorToUse = "transparent";
     return {
         "color": colorToUse,
@@ -925,7 +920,7 @@ function styleGradienthSPF_TP(feature) {
     else if (type > 0.29 && type <= 0.43) colorToUse = '#fcbba1';
     else if (type > 0.43 && type <= 0.61) colorToUse = '#fb6a4a';
     else if (type > 0.61 && type <= 1.61) colorToUse = '#cb181d';
-    else if (type > 1.61 && type <= 5.67) colorToUse = '#67000d';
+    else if (type > 1.61 && type <= 5.68) colorToUse = '#67000d';
     else colorToUse = "transparent";
     return {
         "color": colorToUse,
@@ -943,7 +938,7 @@ function stylehSPF_Discharge(feature) {
     else if (type > 0.33 && type <= 0.41) colorToUse = '#fad155';
     else if (type > 0.41 && type <= 0.51) colorToUse = '#f2a72e';
     else if (type > 0.51 && type <= 0.73) colorToUse = '#ad5313';
-    else if (type > 0.73 && type <= 0.98) colorToUse = '#6b0000';
+    else if (type > 0.73 && type <= 0.99) colorToUse = '#6b0000';
     else colorToUse = "transparent";
     return {
         "color": colorToUse,
@@ -961,7 +956,7 @@ function styleGradienthSPF_Discharge(feature) {
     else if (type > 0.33 && type <= 0.41) colorToUse = '#fcbba1';
     else if (type > 0.41 && type <= 0.51) colorToUse = '#fb6a4a';
     else if (type > 0.51 && type <= 0.73) colorToUse = '#cb181d';
-    else if (type > 0.73 && type <= 0.98) colorToUse = '#67000d';
+    else if (type > 0.73 && type <= 0.99) colorToUse = '#67000d';
     else colorToUse = "transparent";
     return {
         "color": colorToUse,
@@ -975,36 +970,60 @@ function styleGradienthSPF_Discharge(feature) {
 function styletrout(feature) {
     return {
         "color": "#f781bf",
+        "fillColor": "#f781bf",
+        "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8
     };
 }
 
 function styleGradienttrout(feature) {
     return {
         "color": "#756bb1",
+        "fillColor": "#756bb1",
+        "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8,
     };
 }
 
 function stylenatPra(feature) {
     return {
         "color": "#735100",
+        "fillColor": "#735100",
+        "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8,
     };
 }
 
 function styleGradientnatPra(feature) {
     return {
         "color": "#756bb1",
+        "fillColor": "#756bb1",
+        "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8,
     };
 }
 
 function stylenatPlnt(feature) {
     return {
         "color": "#71c98d",
+        "fillColor": "#71c98d",
+        "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8,
     };
 }
 
 function styleGradientnatPlnt(feature) {
     return {
         "color": "#756bb1",
+        "fillColor": "#756bb1",
+        "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8,
     };
 }
 
@@ -1046,6 +1065,8 @@ function stylegAP_DNR(feature) {
         "color": '#88cd66',
         "fillColor": '#88cd66',
         "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8
     };
 }
 
@@ -1054,6 +1075,8 @@ function stylegAP_State(feature) {
         "color": '#e8beff',
         "fillColor": '#e8beff',
         "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8
     };
 }
 
@@ -1062,6 +1085,8 @@ function stylegAP_Cnty(feature) {
         "color": '#ffff73',
         "fillColor": '#ffff73',
         "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8
     };
 }
 
@@ -1070,6 +1095,8 @@ function stylegAP_Fed(feature) {
         "color": '#bee8ff',
         "fillColor": '#bee8ff',
         "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8
     };
 }
 
@@ -1078,6 +1105,7 @@ function styleeasemnts(feature) {
         "color": "#f28f24",
         "fillColor": "#f28f24",
         "fillOpacity": 0.8,
+        "opacity": 1,
     };
 }
 
@@ -1096,7 +1124,8 @@ function styleGSSURGO(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        "fillOpacity": 0.8
+        "fillOpacity": 0.8,
+        "opacity": 1,
     };
 }
 
@@ -1118,7 +1147,7 @@ function styleBioIndex(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
@@ -1141,7 +1170,7 @@ function styleHydIndex(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
@@ -1164,7 +1193,7 @@ function styleGeoIndex(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
@@ -1187,7 +1216,7 @@ function styleConIndex(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
@@ -1210,7 +1239,7 @@ function styleWQIndex(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
@@ -1233,7 +1262,7 @@ function styleCombIndex(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
@@ -1250,7 +1279,7 @@ function styleDNRCatch(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
@@ -1314,7 +1343,8 @@ function styleGradientNitrTwn(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        "fillOpacity": 0.8
+        "fillOpacity": 0.8,
+        "opacity": 1,
     };
 }
 
@@ -1405,7 +1435,7 @@ function createSidebar() {
 /// ***Legend control items*** ////
 
 var legendBndry = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Planning Area',
     legends: [{
         name: 'Planning Area',
@@ -1416,7 +1446,7 @@ var legendBndry = L.control.htmllegend({
     detectStretched: true,
 });
 var legendcnty = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Counties',
     legends: [{
         name: 'Counties',
@@ -1427,7 +1457,7 @@ var legendcnty = L.control.htmllegend({
     detectStretched: true,
 });
 var legendhuc8 = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Major Watershed HUC 8 Boundaries',
     legends: [{
         name: 'Major Watershed HUC 8 Boundaries',
@@ -1438,7 +1468,7 @@ var legendhuc8 = L.control.htmllegend({
     detectStretched: true,
 });
 var legendhuc10 = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'HUC 10 Boundaries',
     legends: [{
         name: 'HUC 10 Boundaries',
@@ -1449,7 +1479,7 @@ var legendhuc10 = L.control.htmllegend({
     detectStretched: true,
 });
 var legendhuc12 = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'HUC 12 Boundaries',
     legends: [{
         name: 'HUC 12 Boundaries',
@@ -1460,7 +1490,7 @@ var legendhuc12 = L.control.htmllegend({
     detectStretched: true,
 });
 var legendwtrVul = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'DWSMA Vulnerability',
     legends: [{
         name: 'DWSMA Vulnerability',
@@ -1472,7 +1502,7 @@ var legendwtrVul = L.control.htmllegend({
 });
 
 var legendwellhead = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Well Head Protection Areas',
     legends: [{
         name: 'Well Head Protection Areas',
@@ -1483,7 +1513,7 @@ var legendwellhead = L.control.htmllegend({
     detectStretched: true,
 });
 var legendbedrockPoll = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Bedrock Surface Pollution Sensitivity',
     legends: [{
         name: 'Bedrock Surface Pollution Sensitivity',
@@ -1495,7 +1525,7 @@ var legendbedrockPoll = L.control.htmllegend({
 });
 
 var legendnitrTwn = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Nitrate Rates by Township',
     legends: [{
         name: 'Nitrate Rates by Township',
@@ -1506,7 +1536,7 @@ var legendnitrTwn = L.control.htmllegend({
     detectStretched: true,
 });
 var legendpollsens = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Pollution Sensitivity of Near-Surface Materials',
     legends: [{
         name: 'Pollution Sensitivity of Near-Surface Materials',
@@ -1517,7 +1547,7 @@ var legendpollsens = L.control.htmllegend({
     detectStretched: true,
 });
 var legendfEMAflood = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: '100 Year Flood Plain',
     legends: [{
         name: '100 Year Flood Plain',
@@ -1528,7 +1558,7 @@ var legendfEMAflood = L.control.htmllegend({
     detectStretched: true,
 });
 var legendaltwtr = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Altered Watercourse',
     legends: [{
         name: 'Altered Watercourse',
@@ -1539,7 +1569,7 @@ var legendaltwtr = L.control.htmllegend({
     detectStretched: true,
 });
 var legendcONUS = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'NWI',
     legends: [{
         name: 'NWI',
@@ -1550,7 +1580,7 @@ var legendcONUS = L.control.htmllegend({
     detectStretched: true,
 });
 var legendbuffwetlnds = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Public Waters',
     legends: [{
         name: 'Public Waters',
@@ -1561,7 +1591,7 @@ var legendbuffwetlnds = L.control.htmllegend({
     detectStretched: true,
 });
 var legendbuffwtrcrse = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Public Ditches',
     legends: [{
         name: 'Public Ditches',
@@ -1572,7 +1602,7 @@ var legendbuffwtrcrse = L.control.htmllegend({
     detectStretched: true,
 });
 var legendrWI = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Restorable Wetland Inventory',
     legends: [{
         name: 'Restorable Wetland Inventory',
@@ -1583,7 +1613,7 @@ var legendrWI = L.control.htmllegend({
     detectStretched: true,
 });
 var legendimptStrm = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Impaired Streams (Proposed)',
     legends: [{
         name: 'Impaired Streams (Proposed)',
@@ -1594,7 +1624,7 @@ var legendimptStrm = L.control.htmllegend({
     detectStretched: true,
 });
 var legendimpLks = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Impaired Lakes (Proposed)',
     legends: [{
         name: 'Impaired Lakes (Proposed)',
@@ -1605,7 +1635,7 @@ var legendimpLks = L.control.htmllegend({
     detectStretched: true,
 });
 var legendphos = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Lake Phosphorus Sensitivity Significance',
     legends: [{
         name: 'Lake Phosphorus Sensitivity Significance',
@@ -1616,7 +1646,7 @@ var legendphos = L.control.htmllegend({
     detectStretched: true,
 });
 var legendhSPF_TSS = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'HSPF TSS',
     legends: [{
         name: 'HSPF TSS',
@@ -1627,7 +1657,7 @@ var legendhSPF_TSS = L.control.htmllegend({
     detectStretched: true,
 });
 var legendhSPF_TN = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'HSPF TN',
     legends: [{
         name: 'HSPF TN',
@@ -1638,7 +1668,7 @@ var legendhSPF_TN = L.control.htmllegend({
     detectStretched: true,
 });
 var legendhSPF_TP = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'HSPF TP',
     legends: [{
         name: 'HSPF TP',
@@ -1649,7 +1679,7 @@ var legendhSPF_TP = L.control.htmllegend({
     detectStretched: true,
 });
 var legendhSPF_Discharge = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'HSPF Discharge',
     legends: [{
         name: 'HSPF Discharge',
@@ -1660,7 +1690,7 @@ var legendhSPF_Discharge = L.control.htmllegend({
     detectStretched: true,
 });
 var legendtrout = L.control.htmllegend({
-    position: 'bottomright',
+    position: 'bottomleft',
     layer: 'Trout Streams',
     legends: [{
         name: 'Trout Streams',
@@ -1670,41 +1700,238 @@ var legendtrout = L.control.htmllegend({
         }],
     detectStretched: true,
 });
-//var legendfEMAflood = L.control.htmllegend({
-//    position: 'bottomright',
-//    layer: '100 Year Flood Plain',
-//    legends: [{
-//        name: '100 Year Flood Plain',
-//        elements: [{
-//            html: document.querySelector('#fEMAfloodLegend').innerHTML
-//            }]
-//        }],
-//    detectStretched: true,
-//});
-//var legendfEMAflood = L.control.htmllegend({
-//    position: 'bottomright',
-//    layer: '100 Year Flood Plain',
-//    legends: [{
-//        name: '100 Year Flood Plain',
-//        elements: [{
-//            html: document.querySelector('#fEMAfloodLegend').innerHTML
-//            }]
-//        }],
-//    detectStretched: true,
-//});
-//var legendfEMAflood = L.control.htmllegend({
-//    position: 'bottomright',
-//    layer: '100 Year Flood Plain',
-//    legends: [{
-//        name: '100 Year Flood Plain',
-//        elements: [{
-//            html: document.querySelector('#fEMAfloodLegend').innerHTML
-//            }]
-//        }],
-//    detectStretched: true,
-//});
+var legendnatPra = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Native Prairies',
+    legends: [{
+        name: 'Native Prairies',
+        elements: [{
+            html: document.querySelector('#natPraLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendnatPlnt = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Native Plant Communities',
+    legends: [{
+        name: 'Native Plant Communities',
+        elements: [{
+            html: document.querySelector('#natPlntLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendmBSbio = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'MBS Sites of Biodiversity Significance',
+    legends: [{
+        name: 'MBS Sites of Biodiversity Significance',
+        elements: [{
+            html: document.querySelector('#mBSbioLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
 
-
+var legendgAP_DNR = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'GAP DNR Lands',
+    legends: [{
+        name: 'GAP DNR Lands',
+        elements: [{
+            html: document.querySelector('#gAP_DNRLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendgAP_State = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'GAP State Lands',
+    legends: [{
+        name: 'GAP State Lands',
+        elements: [{
+            html: document.querySelector('#gAP_StateLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendgAP_Cnty = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'GAP County Lands',
+    legends: [{
+        name: 'GAP County Lands',
+        elements: [{
+            html: document.querySelector('#gAP_CntyLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendgAP_Fed = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'GAP Federal Lands',
+    legends: [{
+        name: 'GAP Federal Lands',
+        elements: [{
+            html: document.querySelector('#gAP_FedLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendeasemnts = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Easements',
+    legends: [{
+        name: 'Easements',
+        elements: [{
+            html: document.querySelector('#easemntsLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendnLCD = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'NLCD 2016',
+    legends: [{
+        name: 'NLCD 2016',
+        elements: [{
+            html: document.querySelector('#nLCDLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendgSSURGO = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'GSSURGO',
+    legends: [{
+        name: 'GSSURGO',
+        elements: [{
+            html: document.querySelector('#gSSURGOLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendbioIndex = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Bio Index Mean',
+    legends: [{
+        name: 'Bio Index Mean',
+        elements: [{
+            html: document.querySelector('#bioIndexLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendconIndex = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Con Index Mean',
+    legends: [{
+        name: 'Con Index Mean',
+        elements: [{
+            html: document.querySelector('#conIndexLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendhydIndex = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Hyd Index Mean',
+    legends: [{
+        name: 'Hyd Index Mean',
+        elements: [{
+            html: document.querySelector('#hydIndexLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendgeoIndex = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Geo Index Mean',
+    legends: [{
+        name: 'Geo Index Mean',
+        elements: [{
+            html: document.querySelector('#geoIndexLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendwQIndex = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Water Quality Index Mean',
+    legends: [{
+        name: 'Water Quality Index Mean',
+        elements: [{
+            html: document.querySelector('#wQIndexLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendcombIndex = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Combined Index Mean',
+    legends: [{
+        name: 'Combined Index Mean',
+        elements: [{
+            html: document.querySelector('#combIndexLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendwildLife = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Wildlife Habitat Quality Risk',
+    legends: [{
+        name: 'Wildlife Habitat Quality Risk',
+        elements: [{
+            html: document.querySelector('#wildLifeLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendwaterQual = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Water Quality Risk',
+    legends: [{
+        name: 'Water Quality Risk',
+        elements: [{
+            html: document.querySelector('#waterQualLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendsoil = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Soil Erosion Risk',
+    legends: [{
+        name: 'Soil Erosion Risk',
+        elements: [{
+            html: document.querySelector('#soilLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legenddNRCatch = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'DNR Lake Habitat Strategy',
+    legends: [{
+        name: 'DNR Lake Habitat Strategy',
+        elements: [{
+            html: document.querySelector('#dNRCatchLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendmask = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Planning Area Mask',
+    legends: [{
+        name: 'Planning Area Mask',
+        elements: [{
+            html: document.querySelector('#maskLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
 
 
 // add legends to print
