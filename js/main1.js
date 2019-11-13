@@ -224,13 +224,13 @@ var a_rWI = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/H
 
 var a_mask = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/36" //mask of state for printing purposes
 
-var a_hPSF_TSS = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/37" //HPSF loading for TSS
+var a_hSPF_TSS = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/37" //HSPF loading for TSS
 
-var a_hPSF_TN = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/38" //HPSF loading for TN
+var a_hSPF_TN = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/38" //HSPF loading for TN
 
-var a_hPSF_TP = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/39" //HPSF loading for TP
+var a_hSPF_TP = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/39" //HSPF loading for TP
 
-var a_hPSF_Discharge = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/40" //HPSF loading for Discharge
+var a_hSPF_Discharge = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/40" //HSPF loading for Discharge
 
 /// *** RASTER LAYERS ***////
 
@@ -260,6 +260,7 @@ var hawkcreekbndry = L.esri.featureLayer({
         return {
             color: "red",
             fillOpacity: 0,
+            opacity: 1,
         };
     },
     onEachFeature: function (feature, layer) {
@@ -272,7 +273,9 @@ var cnty = L.esri.featureLayer({
     style: function () {
         return {
             color: "#7256E8",
-            weight: 2
+            weight: 2,
+            fillOpacity: .2,
+            opacity: 1,
         };
     },
     onEachFeature: function (feature, layer) {
@@ -286,7 +289,9 @@ var huc8 = L.esri.featureLayer({
     style: function () {
         return {
             color: "#a6cee3",
-            weight: 2
+            weight: 2,
+            fillOpacity: .2,
+            opacity: 1,
         };
     },
     onEachFeature: function (feature, layer) {
@@ -298,7 +303,9 @@ var huc10 = L.esri.featureLayer({
     style: function () {
         return {
             color: "#fb9a99",
-            weight: 2
+            weight: 2,
+            fillOpacity: .2,
+            opacity: 1,
         };
     },
     onEachFeature: function (feature, layer) {
@@ -310,7 +317,9 @@ var huc12 = L.esri.featureLayer({
     style: function () {
         return {
             color: "#fdbf6f",
-            weight: 2
+            weight: 2,
+            fillOpacity: .2,
+            opacity: 1,
         };
     },
     onEachFeature: function (feature, layer) {
@@ -410,6 +419,7 @@ var trout = L.esri.featureLayer({
     style: function () {
         return {
             color: "#f781bf",
+            opacity: 1,
         };
     }
 });
@@ -537,24 +547,24 @@ var dNRCatch = L.esri.featureLayer({
     style: styleDNRCatch,
 });
 
-var hPSF_TSS = L.esri.featureLayer({
-    url: a_hPSF_TSS,
-    style: stylehPSF_TSS,
+var hSPF_TSS = L.esri.featureLayer({
+    url: a_hSPF_TSS,
+    style: stylehSPF_TSS,
 });
 
-var hPSF_TN = L.esri.featureLayer({
-    url: a_hPSF_TN,
-    style: stylehPSF_TN,
+var hSPF_TN = L.esri.featureLayer({
+    url: a_hSPF_TN,
+    style: stylehSPF_TN,
 });
 
-var hPSF_TP = L.esri.featureLayer({
-    url: a_hPSF_TP,
-    style: stylehPSF_TP,
+var hSPF_TP = L.esri.featureLayer({
+    url: a_hSPF_TP,
+    style: stylehSPF_TP,
 });
 
-var hPSF_Discharge = L.esri.featureLayer({
-    url: a_hPSF_Discharge,
-    style: stylehPSF_Discharge,
+var hSPF_Discharge = L.esri.featureLayer({
+    url: a_hSPF_Discharge,
+    style: stylehSPF_Discharge,
 });
 
 /////*** Misc. layers ***/////
@@ -569,37 +579,21 @@ var mask = L.esri.featureLayer({
 });
 
 
-
-//var htmlLegend2 = L.control.htmllegend({
-//    position: 'bottomright',
-//    legends: [{
-//        name: 'Counties',
-//        elements: [{
-//            html: document.querySelector('#cntyLegend').innerHTML
-//        }]
-//}],
-//    detectStretched: true,
-//})
-//map.addControl(htmlLegend2)
-
-
-//get unique values method
-//function onlyUnique(value, index, self) {
-//    return self.indexOf(value) === index;
-//}
-
-
 /// STYLE FUNCTIONS
 
 function stylewellhead(feature) {
     return {
         "color": "#a65628",
+        fillOpacity: 0.8,
+        opacity: 1,
     };
 }
 
 function styleGradientwellhead(feature) {
     return {
         "color": "#006d2c",
+        fillOpacity: 0.8,
+        opacity: 1,
 
     };
 }
@@ -619,7 +613,7 @@ function styleWtrVul(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 0.8,
         "fillOpacity": 0.8
     };
 }
@@ -638,7 +632,7 @@ function styleGradientWtrVul(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 0.8,
         "fillOpacity": 0.8
     };
 }
@@ -646,12 +640,16 @@ function styleGradientWtrVul(feature) {
 function stylefEMAflood(feature) {
     return {
         "color": "#ffff00",
+        "fillOpacity": 0.5,
+        "opacity": 1,
     };
 }
 
 function styleGradientfEMAflood(feature) {
     return {
         "color": "#084594",
+        "fillOpacity": 0.5,
+        "opacity": 1,
     };
 }
 
@@ -666,6 +664,7 @@ function styleAltWtr(feature) {
 
     return {
         "color": colorToUse,
+        "opacity": 1,
     };
 }
 
@@ -677,6 +676,7 @@ function styleGradientAltWtr(feature) {
 
     return {
         "color": colorToUse,
+        "opacity": 1,
     };
 }
 
@@ -690,7 +690,7 @@ function styleCONUS(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
@@ -700,7 +700,8 @@ function styleGradientCONUS(feature) {
         "color": "#084594",
         "fillColor": "#084594",
         "weight": 2,
-        "fillOpacity": 0.8
+        "fillOpacity": 0.8,
+        "opacity": 1,
     };
 }
 
@@ -709,6 +710,9 @@ function stylebuffwetlnds(feature) {
         "color": "#7e8be6",
         "fillColor": '#7e8be6',
         "weight": 2,
+        "fillOpacity": 0.8,
+        "opacity": 1,
+
     };
 }
 
@@ -717,18 +721,22 @@ function styleGradientbuffwetlnds(feature) {
         "color": "#084594",
         "fillColor": '#084594',
         "weight": 2,
+        "fillOpacity": 0.8,
+        "opacity": 1,
     };
 }
 
 function stylebuffwtrcrse(feature) {
     return {
         "color": "#674d6e",
+        "opacity": 1,
     };
 }
 
 function styleGradientbuffwtrcrse(feature) {
     return {
         "color": "#084594",
+        "opacity": 1,
     };
 }
 
@@ -736,6 +744,8 @@ function stylerWI(feature) {
     return {
         "color": "#f5a37a",
         "fillColor": "#f5a37a",
+        "fillOpacity": 0.8,
+        "opacity": 1,
     };
 }
 
@@ -743,6 +753,8 @@ function styleGradientrWI(feature) {
     return {
         "color": "#084594",
         "fillColor": "#084594",
+        "fillOpacity": 0.8,
+        "opacity": 1,
     };
 }
 
@@ -750,12 +762,14 @@ function styleGradientrWI(feature) {
 function styleimptStrm(feature) {
     return {
         "color": "#8c0007",
+        "opacity": 1,
     };
 }
 
 function styleGradientimptStrm(feature) {
     return {
         "color": "#67000d",
+        "opacity": 1,
     };
 }
 
@@ -764,6 +778,7 @@ function styleimpLks(feature) {
         "color": "#002366",
         "fillColor": "#002366",
         "fillOpacity": 0.8,
+        "opacity": 1,
     };
 }
 
@@ -772,6 +787,7 @@ function styleGradientimpLks(feature) {
         "color": "#67000d",
         "fillColor": "#67000d",
         "fillOpacity": 0.8,
+        "opacity": 1,
     };
 }
 
@@ -788,7 +804,7 @@ function stylePhos(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
@@ -805,13 +821,13 @@ function styleGradientPhos(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
 
 
-function stylehPSF_TSS(feature) {
+function stylehSPF_TSS(feature) {
     type = feature.properties.TSS_Ton_Ac;
     var colorToUse;
     if (type >= 0 && type <= 0.05) colorToUse = '#ffff80';
@@ -824,11 +840,13 @@ function stylehPSF_TSS(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
+        "opacity": 1,
         "fillOpacity": 0.8
+
     };
 }
 
-function styleGradienthPSF_TSS(feature) {
+function styleGradienthSPF_TSS(feature) {
     type = feature.properties.TSS_Ton_Ac;
     var colorToUse;
     if (type >= 0 && type <= 0.05) colorToUse = '#fff5f0';
@@ -841,11 +859,12 @@ function styleGradienthPSF_TSS(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
 
-function stylehPSF_TN(feature) {
+function stylehSPF_TN(feature) {
     type = feature.properties.TN_Lb_Acre;
     var colorToUse;
     if (type >= 0 && type <= 5) colorToUse = '#ffff80';
@@ -858,11 +877,12 @@ function stylehPSF_TN(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
 
-function styleGradienthPSF_TN(feature) {
+function styleGradienthSPF_TN(feature) {
     type = feature.properties.TN_Lb_Acre;
     var colorToUse;
     if (type >= 0 && type <= 5) colorToUse = '#fff5f0';
@@ -875,11 +895,12 @@ function styleGradienthPSF_TN(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
 
-function stylehPSF_TP(feature) {
+function stylehSPF_TP(feature) {
     type = feature.properties.TP_Lb_Acre;
     var colorToUse;
     if (type >= 0.17 && type <= 0.29) colorToUse = '#ffff80';
@@ -892,11 +913,12 @@ function stylehPSF_TP(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
 
-function styleGradienthPSF_TP(feature) {
+function styleGradienthSPF_TP(feature) {
     type = feature.properties.TP_Lb_Acre;
     var colorToUse;
     if (type >= 0.17 && type <= 0.29) colorToUse = '#fff5f0';
@@ -909,11 +931,12 @@ function styleGradienthPSF_TP(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
 
-function stylehPSF_Discharge(feature) {
+function stylehSPF_Discharge(feature) {
     type = feature.properties.Q_Acft_Acr;
     var colorToUse;
     if (type >= 0.28 && type <= 0.33) colorToUse = '#ffff80';
@@ -926,11 +949,12 @@ function stylehPSF_Discharge(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
 
-function styleGradienthPSF_Discharge(feature) {
+function styleGradienthSPF_Discharge(feature) {
     type = feature.properties.Q_Acft_Acr;
     var colorToUse;
     if (type >= 0.28 && type <= 0.33) colorToUse = '#fff5f0';
@@ -943,6 +967,7 @@ function styleGradienthPSF_Discharge(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
@@ -995,7 +1020,7 @@ function styleMBSBio(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
@@ -1011,7 +1036,7 @@ function styleGradientMBSBio(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
@@ -1241,7 +1266,7 @@ function styleBedrockPoll(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        //        "opacity": ,
+        "opacity": 1,
         "fillOpacity": 0.8
     };
 }
@@ -1257,7 +1282,8 @@ function styleGradientbedrockPoll(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        "fillOpacity": 0.8
+        "fillOpacity": 0.8,
+        "opacity": 1,
     };
 }
 
@@ -1272,7 +1298,8 @@ function styleNitrTwn(feature) {
         "color": colorToUse,
         "fillColor": colorToUse,
         "weight": 2,
-        "fillOpacity": 0.8
+        "fillOpacity": 0.8,
+        "opacity": 1,
     };
 }
 
@@ -1375,14 +1402,15 @@ function createSidebar() {
 // not sure how to work this with printing but maybe add a part where this will add to the div for on print 
 
 
-//Legend control items 
+/// ***Legend control items*** ////
+
 var legendBndry = L.control.htmllegend({
     position: 'bottomright',
     layer: 'Planning Area',
     legends: [{
         name: 'Planning Area',
         elements: [{
-            html: document.querySelector('#BndryLegend1').innerHTML
+            html: document.querySelector('#BndryLegend').innerHTML
             }]
         }],
     detectStretched: true,
@@ -1393,7 +1421,7 @@ var legendcnty = L.control.htmllegend({
     legends: [{
         name: 'Counties',
         elements: [{
-            html: document.querySelector('#cntyLegend1').innerHTML
+            html: document.querySelector('#cntyLegend').innerHTML
             }]
         }],
     detectStretched: true,
@@ -1404,7 +1432,7 @@ var legendhuc8 = L.control.htmllegend({
     legends: [{
         name: 'Major Watershed HUC 8 Boundaries',
         elements: [{
-            html: document.querySelector('#huc8Legend1').innerHTML
+            html: document.querySelector('#huc8Legend').innerHTML
             }]
         }],
     detectStretched: true,
@@ -1415,7 +1443,7 @@ var legendhuc10 = L.control.htmllegend({
     legends: [{
         name: 'HUC 10 Boundaries',
         elements: [{
-            html: document.querySelector('#huc10Legend1').innerHTML
+            html: document.querySelector('#huc10Legend').innerHTML
             }]
         }],
     detectStretched: true,
@@ -1426,11 +1454,258 @@ var legendhuc12 = L.control.htmllegend({
     legends: [{
         name: 'HUC 12 Boundaries',
         elements: [{
-            html: document.querySelector('#huc12Legend1').innerHTML
+            html: document.querySelector('#huc12Legend').innerHTML
             }]
         }],
     detectStretched: true,
 });
+var legendwtrVul = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'DWSMA Vulnerability',
+    legends: [{
+        name: 'DWSMA Vulnerability',
+        elements: [{
+            html: document.querySelector('#wtrVulLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+
+var legendwellhead = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Well Head Protection Areas',
+    legends: [{
+        name: 'Well Head Protection Areas',
+        elements: [{
+            html: document.querySelector('#wellheadLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendbedrockPoll = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Bedrock Surface Pollution Sensitivity',
+    legends: [{
+        name: 'Bedrock Surface Pollution Sensitivity',
+        elements: [{
+            html: document.querySelector('#bedrockPollLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+
+var legendnitrTwn = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Nitrate Rates by Township',
+    legends: [{
+        name: 'Nitrate Rates by Township',
+        elements: [{
+            html: document.querySelector('#nitrTwnLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendpollsens = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Pollution Sensitivity of Near-Surface Materials',
+    legends: [{
+        name: 'Pollution Sensitivity of Near-Surface Materials',
+        elements: [{
+            html: document.querySelector('#pollsensLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendfEMAflood = L.control.htmllegend({
+    position: 'bottomright',
+    layer: '100 Year Flood Plain',
+    legends: [{
+        name: '100 Year Flood Plain',
+        elements: [{
+            html: document.querySelector('#fEMAfloodLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendaltwtr = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Altered Watercourse',
+    legends: [{
+        name: 'Altered Watercourse',
+        elements: [{
+            html: document.querySelector('#altwtrLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendcONUS = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'NWI',
+    legends: [{
+        name: 'NWI',
+        elements: [{
+            html: document.querySelector('#cONUSLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendbuffwetlnds = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Public Waters',
+    legends: [{
+        name: 'Public Waters',
+        elements: [{
+            html: document.querySelector('#buffwetlndsLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendbuffwtrcrse = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Public Ditches',
+    legends: [{
+        name: 'Public Ditches',
+        elements: [{
+            html: document.querySelector('#buffwtrcrseLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendrWI = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Restorable Wetland Inventory',
+    legends: [{
+        name: 'Restorable Wetland Inventory',
+        elements: [{
+            html: document.querySelector('#rWILegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendimptStrm = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Impaired Streams (Proposed)',
+    legends: [{
+        name: 'Impaired Streams (Proposed)',
+        elements: [{
+            html: document.querySelector('#imptStrmLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendimpLks = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Impaired Lakes (Proposed)',
+    legends: [{
+        name: 'Impaired Lakes (Proposed)',
+        elements: [{
+            html: document.querySelector('#impLksLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendphos = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Lake Phosphorus Sensitivity Significance',
+    legends: [{
+        name: 'Lake Phosphorus Sensitivity Significance',
+        elements: [{
+            html: document.querySelector('#phosLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendhSPF_TSS = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'HSPF TSS',
+    legends: [{
+        name: 'HSPF TSS',
+        elements: [{
+            html: document.querySelector('#hSPF_TSSLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendhSPF_TN = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'HSPF TN',
+    legends: [{
+        name: 'HSPF TN',
+        elements: [{
+            html: document.querySelector('#hSPF_TNLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendhSPF_TP = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'HSPF TP',
+    legends: [{
+        name: 'HSPF TP',
+        elements: [{
+            html: document.querySelector('#hSPF_TPLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendhSPF_Discharge = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'HSPF Discharge',
+    legends: [{
+        name: 'HSPF Discharge',
+        elements: [{
+            html: document.querySelector('#hSPF_DischargeLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendtrout = L.control.htmllegend({
+    position: 'bottomright',
+    layer: 'Trout Streams',
+    legends: [{
+        name: 'Trout Streams',
+        elements: [{
+            html: document.querySelector('#troutLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+//var legendfEMAflood = L.control.htmllegend({
+//    position: 'bottomright',
+//    layer: '100 Year Flood Plain',
+//    legends: [{
+//        name: '100 Year Flood Plain',
+//        elements: [{
+//            html: document.querySelector('#fEMAfloodLegend').innerHTML
+//            }]
+//        }],
+//    detectStretched: true,
+//});
+//var legendfEMAflood = L.control.htmllegend({
+//    position: 'bottomright',
+//    layer: '100 Year Flood Plain',
+//    legends: [{
+//        name: '100 Year Flood Plain',
+//        elements: [{
+//            html: document.querySelector('#fEMAfloodLegend').innerHTML
+//            }]
+//        }],
+//    detectStretched: true,
+//});
+//var legendfEMAflood = L.control.htmllegend({
+//    position: 'bottomright',
+//    layer: '100 Year Flood Plain',
+//    legends: [{
+//        name: '100 Year Flood Plain',
+//        elements: [{
+//            html: document.querySelector('#fEMAfloodLegend').innerHTML
+//            }]
+//        }],
+//    detectStretched: true,
+//});
+
+
+
 
 // add legends to print
 function addPrintLegend(print) {
@@ -1484,6 +1759,23 @@ $(document).ready(function () {
         $('.output').val(this.value);
     }).trigger("change");
 
+    $('.collapse')
+        .on('shown.bs.collapse', function () {
+            $(this)
+                .parent()
+                .find(".fa-plus")
+                .removeClass("fa-plus")
+                .addClass("fa-minus");
+        })
+        .on('hidden.bs.collapse', function () {
+            $(this)
+                .parent()
+                .find(".fa-minus")
+                .removeClass("fa-minus")
+                .addClass("fa-plus");
+        });
+
+
     $('input[type="checkbox"]').click(function () {
         layerClicked = window[event.target.value];
         colorGradeID = window[event.target.id]; // the function name of the style for gradient color scheme 
@@ -1532,6 +1824,7 @@ $(document).ready(function () {
             map.removeLayer(layerClicked);
         }
     });
+
 
 
     //   **** If I want to add legend to the sub title div. Do the following in the $(input checkbox) function: *****
