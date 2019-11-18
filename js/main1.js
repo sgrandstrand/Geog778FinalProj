@@ -89,7 +89,6 @@ L.easyButton('fa-crosshairs fa-lg', function (btn, map) {
 
 
 
-
 // Leaflet Browser Print
 
 L.control.browserPrint({
@@ -99,17 +98,24 @@ L.control.browserPrint({
     printModes: [
 		"Landscape",
 		"Portrait",
-		L.control.browserPrint.mode.auto()
+        L.control.browserPrint.mode.portrait("Tabloid Portrait", "tabloid"),
+//		L.control.browserPrint.mode.auto()
 	],
     manualMode: false,
     position: 'topright'
 }).addTo(map);
+
+map.on("browser-print-end", function (e) {
+    postPrintLegend();
+    sidebar.open('home');
+});
 
 //var legend = L.control({
 //    position: 'bottomright'
 //});
 
 map.on("browser-print-start", function (e) {
+    sidebar.close('home');
     L.control.scale({
         position: 'bottomright',
         metric: false,
@@ -164,73 +170,77 @@ map.on("browser-print-start", function (e) {
                             ]
     }).addTo(e.printMap);
 
-
-
-    //    legendBndry.addTo(e.printMap);
-
-
 });
 
+
+//Create sidebar function
+//function createSidebar() {
+//    var sidebar = L.control.sidebar('sidebar').addTo(map);
+//    sidebar.open('home');
+//}
+var sidebar = L.control.sidebar('sidebar').addTo(map);
 
 
 //// URL's for Layers ////
 
-var a_hwkCreekBndry = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/1"; //2 Hawk Creek Boundary 
-var a_cnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/0"; //1 county layer
-var a_huc8 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/2"; //6USGS HUC 8
-var a_huc10 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/3"; //7USGS HUC 10
-var a_huc12 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/4"; //8USGS HUC 12
+var a_twnshp = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Boundary_HawkCrk/FeatureServer/0" //township layer
+var a_zones = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Boundary_HawkCrk/FeatureServer/7" //zones for hawk creek
+var a_hwkCreekBndry = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Boundary_HawkCrk/FeatureServer/2"; //2 Hawk Creek Boundary 
+var a_cnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Boundary_HawkCrk/FeatureServer/1"; //1 county layer
+var a_huc8 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Boundary_HawkCrk/FeatureServer/3"; //6USGS HUC 8
+var a_huc10 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Boundary_HawkCrk/FeatureServer/4"; //7USGS HUC 10
+var a_huc12 = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Boundary_HawkCrk/FeatureServer/5"; //8USGS HUC 12
 
-var a_fEMAflood = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/13"; //18 100 year flood plain from FEMA
-var a_imptStrm = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/26"; //Impaired streams
-var a_impLks = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/27"; //Impaired Lakes
-var a_altwtr = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/14"; //19 Altered Watercourse
-var a_phos = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/11"; // 16 lake phosophorus sensitivity significance 
-var a_trout = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/31"; //trout streams
-var a_wellhead = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/32"; //Well Head Protection Areas
-var a_wtrVul = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/10"; //15 drinking water supply vulnerability
+var a_fEMAflood = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hydrology_HawkCrk/FeatureServer/0"; //18 100 year flood plain from FEMA
+var a_imptStrm = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/SurfaceWaterQuality_HawkCrk/FeatureServer/0"; //Impaired streams
+var a_impLks = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/SurfaceWaterQuality_HawkCrk/FeatureServer/1"; //Impaired Lakes
+var a_altwtr = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hydrology_HawkCrk/FeatureServer/1"; //19 Altered Watercourse
+var a_phos = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/SurfaceWaterQuality_HawkCrk/FeatureServer/2"; // 16 lake phosophorus sensitivity significance 
+var a_trout = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Biodiversity_HawkCrk/FeatureServer/0"; //trout streams
+var a_wellhead = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Groundwater_HawkCrk/FeatureServer/6"; //Well Head Protection Areas
+var a_wtrVul = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Groundwater_HawkCrk/FeatureServer/0"; //15 drinking water supply vulnerability
 
 //land status layers
-var a_gAP_DNR = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/22"; //27GAP DNR Lands
-var a_gAP_State = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/23"; //28GAP state Lands
-var a_gAP_Cnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/24"; //GAP county Lands
-var a_gAP_Fed = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/25"; //GAP Federal Lands
-var a_natPra = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/8"; //14DNR native prairies
+var a_gAP_DNR = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/LandUse_HawkCrk/FeatureServer/0"; //27GAP DNR Lands
+var a_gAP_State = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/LandUse_HawkCrk/FeatureServer/1"; //28GAP state Lands
+var a_gAP_Cnty = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/LandUse_HawkCrk/FeatureServer/2"; //GAP county Lands
+var a_gAP_Fed = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/LandUse_HawkCrk/FeatureServer/3"; //GAP Federal Lands
+var a_natPra = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Biodiversity_HawkCrk/FeatureServer/1"; //14DNR native prairies
 
 // index layers //
-var a_bioIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/15"; //20Bio Index Mean
-var a_hydIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/16"; //21Hyd Index Mean
-var a_geoIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/17"; //22Geo Index Mean
-var a_conIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/18"; //23Con Index Mean
-var a_wQIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/19"; //24WQ index Mean
-var a_combIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/20"; //25combined index mean
+var a_bioIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Characteristics_HawkCrk/FeatureServer/0"; //20Bio Index Mean
+var a_hydIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Characteristics_HawkCrk/FeatureServer/2"; //21Hyd Index Mean
+var a_geoIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Characteristics_HawkCrk/FeatureServer/3"; //22Geo Index Mean
+var a_conIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Characteristics_HawkCrk/FeatureServer/1"; //23Con Index Mean
+var a_wQIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Characteristics_HawkCrk/FeatureServer/4"; //24WQ index Mean
+var a_combIndex = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Characteristics_HawkCrk/FeatureServer/5"; //25combined index mean
 
 // Misc. layers
 
-var a_natPlnt = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/21"; //26DNR native plant communities
-var a_mBSbio = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/28"; //MBS sites of biodiversity significance 
-var a_cONUS = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/7"; //12NWI CONUS_wet_poly
-var a_dNRCatch = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/8"; //13 DNR catchments 
-var a_bedrockPoll = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/12"; // 17bedrock surface pollution sensitivity
-var a_nitrTwn = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/30"; //Nitrate rates by township
-var a_easemnts = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/6" // 11 Boundary rin con easements? 
-var a_gSSURGO = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/33" // WHAT IS THIS? 
+var a_natPlnt = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Biodiversity_HawkCrk/FeatureServer/2"; //26DNR native plant communities
+var a_mBSbio = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Biodiversity_HawkCrk/FeatureServer/3"; //MBS sites of biodiversity significance 
+var a_cONUS = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hydrology_HawkCrk/FeatureServer/2"; //12NWI CONUS_wet_poly
+var a_dNRCatch = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Characteristics_HawkCrk/FeatureServer/6"; //13 DNR catchments 
+var a_bedrockPoll = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Groundwater_HawkCrk/FeatureServer/7"; // 17bedrock surface pollution sensitivity
+var a_nitrTwn = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Groundwater_HawkCrk/FeatureServer/8"; //Nitrate rates by township
+var a_easemnts = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/LandUse_HawkCrk/FeatureServer/4" // 11 Boundary rin con easements? 
+var a_gSSURGO = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/LandUse_HawkCrk/FeatureServer/5" // WHAT IS THIS? 
 
-var a_buffwetlnds = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/5" //Buffer Protection of Lakes, reservoirs, and wetlands
+var a_buffwetlnds = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hydrology_HawkCrk/FeatureServer/3" //Buffer Protection of Lakes, reservoirs, and wetlands
 
-var a_buffwtrcrse = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/34" //Buffer Protection of watercourse
+var a_buffwtrcrse = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hydrology_HawkCrk/FeatureServer/4" //Buffer Protection of watercourse
 
-var a_rWI = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/35" //Restorable Wetland Inventory
+var a_rWI = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hydrology_HawkCrk/FeatureServer/5" //Restorable Wetland Inventory
 
-var a_mask = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/36" //mask of state for printing purposes
+var a_mask = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Boundary_HawkCrk/FeatureServer/6" //mask of state for printing purposes
 
-var a_hSPF_TSS = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/37" //HSPF loading for TSS
+var a_hSPF_TSS = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/SurfaceWaterQuality_HawkCrk/FeatureServer/3" //HSPF loading for TSS
 
-var a_hSPF_TN = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/38" //HSPF loading for TN
+var a_hSPF_TN = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/SurfaceWaterQuality_HawkCrk/FeatureServer/4" //HSPF loading for TN
 
-var a_hSPF_TP = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/39" //HSPF loading for TP
+var a_hSPF_TP = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/SurfaceWaterQuality_HawkCrk/FeatureServer/5" //HSPF loading for TP
 
-var a_hSPF_Discharge = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/HawkCreekWtrshed_Vector/FeatureServer/40" //HSPF loading for Discharge
+var a_hSPF_Discharge = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/SurfaceWaterQuality_HawkCrk/FeatureServer/6" //HSPF loading for Discharge
 
 /// *** RASTER LAYERS ***////
 
@@ -258,9 +268,11 @@ var hawkcreekbndry = L.esri.featureLayer({
     url: a_hwkCreekBndry,
     style: function () {
         return {
-            color: "red",
-            fillOpacity: 0,
-            opacity: 1,
+            "color": "red",
+            "fillColor": "red",
+            "weight": 2,
+            "fillOpacity": 0,
+            "opacity": 1,
         };
     },
     onEachFeature: function (feature, layer) {
@@ -272,10 +284,11 @@ var cnty = L.esri.featureLayer({
     url: a_cnty,
     style: function () {
         return {
-            color: "#7256E8",
-            weight: 2,
-            fillOpacity: .2,
-            opacity: 1,
+            "color": "#7256E8",
+            "fillColor": "#7256E8",
+            "weight": 2,
+            "fillOpacity": .2,
+            "opacity": 1,
         };
     },
     onEachFeature: function (feature, layer) {
@@ -288,10 +301,11 @@ var huc8 = L.esri.featureLayer({
     url: a_huc8,
     style: function () {
         return {
-            color: "#a6cee3",
-            weight: 2,
-            fillOpacity: .2,
-            opacity: 1,
+            "color": "#a6cee3",
+            "fillColor": "#a6cee3",
+            "weight": 2,
+            "fillOpacity": .2,
+            "opacity": 1,
         };
     },
     onEachFeature: function (feature, layer) {
@@ -302,10 +316,11 @@ var huc10 = L.esri.featureLayer({
     url: a_huc10,
     style: function () {
         return {
-            color: "#fb9a99",
-            weight: 2,
-            fillOpacity: .2,
-            opacity: 1,
+            "color": "#fb9a99",
+            "fillColor": "#fb9a99",
+            "weight": 2,
+            "fillOpacity": .2,
+            "opacity": 1,
         };
     },
     onEachFeature: function (feature, layer) {
@@ -316,10 +331,11 @@ var huc12 = L.esri.featureLayer({
     url: a_huc12,
     style: function () {
         return {
-            color: "#fdbf6f",
-            weight: 2,
-            fillOpacity: .2,
-            opacity: 1,
+            "color": "#fdbf6f",
+            "fillColor": "#fdbf6f",
+            "weight": 2,
+            "fillOpacity": .2,
+            "opacity": 1,
         };
     },
     onEachFeature: function (feature, layer) {
@@ -327,6 +343,26 @@ var huc12 = L.esri.featureLayer({
     },
 });
 
+var twnshp = L.esri.featureLayer({
+    url: a_twnshp,
+    style: function () {
+        return {
+            "color": "slategray",
+            "fillColor": "slategray",
+            "weight": 2,
+            "fillOpacity": .2,
+            "opacity": 1,
+        };
+    },
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<p><i> Township Name: ' + feature.properties.Name + '</i></p>');
+    },
+});
+
+var zones = L.esri.featureLayer({
+    url: a_zones,
+    style: stylezones,
+});
 
 ////// *** Groundwater Layers *** /////
 
@@ -560,8 +596,9 @@ var mask = L.esri.featureLayer({
     url: a_mask,
     style: function () {
         return {
-            color: "black",
+            "color": "black",
             "fillColor": "black",
+            "weight": 2,
             "fillOpacity": 0.8,
             "opacity": 1,
         };
@@ -571,10 +608,29 @@ var mask = L.esri.featureLayer({
 
 /// STYLE FUNCTIONS
 
+function stylezones(feature) {
+    type = feature.properties.Zone;
+    var colorToUse;
+    if (type === "Farmed") colorToUse = '#ff8c00';
+    else if (type === "Lakes") colorToUse = '#87CEFA';
+    else if (type === "Minnesota River") colorToUse = '#7CFC00';
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.2
+    };
+}
+
+
 function stylewellhead(feature) {
     return {
         "color": "#a65628",
         "fillColor": "#a65628",
+        "weight": 2,
         "fillOpacity": 0.8,
         "opacity": 1,
     };
@@ -584,6 +640,7 @@ function styleGradientwellhead(feature) {
     return {
         "color": "#006d2c",
         "fillColor": "#006d2c",
+        "weight": 2,
         "fillOpacity": 0.8,
         "opacity": 1,
 
@@ -632,6 +689,8 @@ function styleGradientWtrVul(feature) {
 function stylefEMAflood(feature) {
     return {
         "color": "#ffff00",
+        "fillColor": "#ffff00",
+        weight: 2,
         "fillOpacity": 0.5,
         "opacity": 1,
     };
@@ -640,6 +699,7 @@ function stylefEMAflood(feature) {
 function styleGradientfEMAflood(feature) {
     return {
         "color": "#084594",
+        "fillColor": "#084594",
         "fillOpacity": 0.5,
         "opacity": 1,
     };
@@ -1420,11 +1480,6 @@ function zoomToFeature(urlLayer) {
     });
 }
 
-//Create sidebar function
-function createSidebar() {
-    var sidebar = L.control.sidebar('sidebar').addTo(map);
-    sidebar.open('home');
-}
 
 
 //make button to add layer but don't see the layer 
@@ -1485,6 +1540,29 @@ var legendhuc12 = L.control.htmllegend({
         name: 'HUC 12 Boundaries',
         elements: [{
             html: document.querySelector('#huc12Legend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendtwnshp = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Township Boundaries',
+    legends: [{
+        name: 'Township Boundaries',
+        elements: [{
+            html: document.querySelector('#twnshpLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+
+var legendzones = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Zones',
+    legends: [{
+        name: 'Zones',
+        elements: [{
+            html: document.querySelector('#zonesLegend').innerHTML
             }]
         }],
     detectStretched: true,
@@ -1942,10 +2020,19 @@ function addPrintLegend(print) {
     //    var legends = [];
     //    console.log(legends)
     $.each($('input[class="showLegend"]:checked'), function () {
-        console.log(window[this.value]);
+        //        console.log(window[this.value]);
         x = window[this.value];
         return x.addTo(print.printMap);
     });
+}
+
+function postPrintLegend() {
+    $.each($('input[class="showLegend"]:checked'), function () {
+        //        console.log(window[this.value]);
+        x = window[this.value];
+        return x.addTo(map);
+    });
+
 }
 
 //    if (($('input[value="legendBndry"]').is(':checked')) && ($('input[value="legendcnty"]').is(':checked')) && ($('input[value="legendhuc8"]').is(':checked')) && ($('input[value="legendhuc10"]').is(':checked'))) {
@@ -1980,7 +2067,8 @@ function checkClick(id) {
 
 
 $(document).ready(function () {
-    createSidebar();
+    sidebar.open('home');
+    //    createSidebar();
 
     $('#range').on("input", function () {
         $('.output').val(this.value);
@@ -2002,7 +2090,9 @@ $(document).ready(function () {
                 .addClass("fa-plus");
         });
 
-
+    $('leaflet-printing').click(function () {
+        console.log("print button clicked");
+    });
     $('input[type="checkbox"]').click(function () {
         layerClicked = window[event.target.value];
         colorGradeID = window[event.target.id]; // the function name of the style for gradient color scheme 

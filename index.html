@@ -9,14 +9,14 @@
     <title></title>
     <!-- CSS links -->
 
-    <!--    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />-->
+
 
     <link href="lib/leaflet/leaflet.css" rel="stylesheet">
     <link href="css/Leaflet.EasyButton.css" rel="stylesheet">
 
     <!--    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">-->
 
-    <!--    <link href="lib/leaflet.MiniMap/Control.MiniMap.css" rel="stylesheet">-->
+
 
     <link href="css/pretty-checkbox.min.css" rel="stylesheet">
     <link href="lib/leaflet.loading/Control.Loading.css" rel="stylesheet">
@@ -158,6 +158,40 @@
                 <!--                END County -->
 
                 <div class="wrapper">
+                    <p><input type="checkbox" value="twnshp"> Township
+
+                        <!--                Buttons -->
+                        <button class="btn-xs btn-xs btn-info" type="button" data-toggle="collapse" data-target="#collapsetwnshp" aria-expanded="false" aria-controls="collapsetwnshp">
+                            <span class="sr-only">Expand to Edit </span>
+                            <span class="fa fa-plus"></span>
+                        </button>
+                    </p>
+                    <!--Collapsed Div's-->
+                    <div class="collapse" id="collapsetwnshp">
+                        <div class="card card-body legendcard" id="twnshpLegend">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:slategray; stroke-width:2; stroke:slategray; fill-opacity:0.5" />
+                                </svg>Township Boundaries</p>
+                        </div>
+
+                        <div class="pretty p-switch p-fill legendtoggle">
+                            <input type="checkbox" name="#twnshpLegend" class="showLegend" value="legendtwnshp" />
+                            <div class="state">
+                                <label>Show Legend</label>
+                            </div>
+                        </div>
+                        <div class="card card-body">
+                            <p>Opacity Fill
+                                <input class="slider" type="range" min="0" max="1" step="0.1" value=".2" oninput="updateOpacity(this.value, twnshp)"></p>
+                            <p>Opacity Boundary
+                                <input class="slider" type="range" min="0" max="1" step="0.1" value="1" oninput="updateOpacityBound(this.value, twnshp)"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--                END Township -->
+
+                <div class="wrapper">
                     <p> <input type="checkbox" value="huc8"> Major Watershed (HUC 8)
                         <!--                Buttons -->
                         <button class="btn-xs btn-info" type="button" data-toggle="collapse" data-target="#collapsehuc8" aria-expanded="false" aria-controls="collapseExample">
@@ -247,11 +281,46 @@
                 </div>
                 <!--End HUC 12 -->
 
+                <div class="wrapper">
+                    <p> <input type="checkbox" value="zones"> Zones <button class="btn-xs btn-info" type="button" data-toggle="collapse" data-target="#collapsezones" aria-expanded="false" aria-controls="collapsezones">
+                            <span class="sr-only">Expand to Edit </span>
+                            <span class="fa fa-plus"></span></button>
+                    </p>
+                    <!--                COLLAPSED DIV'S-->
+                    <div class="collapse" id="collapsezones">
+                        <div class="card card-body legendcard" id="zonesLegend">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#87CEFA; stroke-width:2; stroke:#87CEFA; fill-opacity:0.8" />
+                                </svg>Lakes<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#ff8c00; stroke-width:2; stroke:#ff8c00; fill-opacity:0.8" />
+                                </svg>Farmed<br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#7CFC00; stroke-width:2; stroke:##7CFC00; fill-opacity:0.8" />
+                                </svg>Minnesota River<br>
+                        </div>
+                        <div class="pretty p-switch p-fill legendtoggle">
+                            <input type="checkbox" name="#zonesLegend" class="showLegend" value="legendzones" />
+                            <div class="state">
+                                <label>Show Legend</label>
+                            </div>
+                        </div>
+
+                        <div class="card card-body range-slider">
+                            <p>Opacity Fill
+                                <input class="slider" type="range" min="0" max="1" step="0.1" value="0.2" oninput="updateOpacity(this.value, zones)"><span class="range-slider_val hidden"></span></p>
+                            <p>Opacity Boundary
+                                <input class="slider" type="range" min="0" max="1" step="0.1" value="1" oninput="updateOpacityBound(this.value, zones)"><span class="range-slider_val"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <!--End Zones -->
+
                 <!--                Groundwater Layers -->
 
                 <h4 class="categoryHead">Groundwater</h4>
                 <div class="wrapper">
-                    <p> <input type="checkbox" value="wtrVul"> DWSMA Vulnerability <button class="btn-xs btn-info" type="button" data-toggle="collapse" data-target="#collapsewtrVul" aria-expanded="false" aria-controls="collapseExample">
+                    <p> <input type="checkbox" value="wtrVul"> DWSMA Vulnerability <button class="btn-xs btn-info" type="button" data-toggle="collapse" data-target="#collapsewtrVul" aria-expanded="false" aria-controls="collapsewtrVul">
                             <span class="sr-only">Expand to Edit </span>
                             <span class="fa fa-plus"></span></button>
                     </p>
@@ -542,7 +611,7 @@
                     <p> <input type="checkbox" value="buffwetlnds"> Public Waters <button class="btn-xs btn-info" type="button" data-toggle="collapse" data-target="#collapsebuffwetlnds" aria-expanded="false" aria-controls="collapsebuffwetlnds">
                             <span class="sr-only">Expand to Edit </span>
                             <span class="fa fa-plus"></span></button> </p>
-                    <!--                COLLAPSED DIV'S-->
+                    <!--                COLLAPSED DIV-->
                     <div class="collapse" id="collapsebuffwetlnds">
                         <div class="card card-body legendcard" id="buffwetlndsLegend">
                             <p><svg width="20" height="10">
@@ -729,7 +798,7 @@
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsehSPF_TSS">
                         <div class="card card-body legendcard" id="hSPF_TSSLegend">
-                            <p><svg width="20" height="10">
+                            <p>Ton/Acre <br><svg width="20" height="10">
                                     <rect width="15" height="10" style="fill:#ffff80; stroke-width:2; stroke:#ffff80; fill-opacity:0.8" />
                                 </svg>0.00 - .05 <br>
                                 <svg width="20" height="10">
@@ -771,7 +840,7 @@
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsehSPF_TN">
                         <div class="card card-body legendcard" id="hSPF_TNLegend">
-                            <p><svg width="20" height="10">
+                            <p>Lb/Acre<br><svg width="20" height="10">
                                     <rect width="15" height="10" style="fill:#ffff80; stroke-width:2; stroke:#ffff80; fill-opacity:0.8" />
                                 </svg>0.00 - 5.00 <br>
                                 <svg width="20" height="10">
@@ -813,7 +882,7 @@
                     <!--                COLLAPSED DIV'S-->
                     <div class="collapse" id="collapsehSPF_TP">
                         <div class="card card-body legendcard" id="hSPF_TPLegend">
-                            <p><svg width="20" height="10">
+                            <p>Lb/Acre <br><svg width="20" height="10">
                                     <rect width="15" height="10" style="fill:#ffff80; stroke-width:2; stroke:#ffff80; fill-opacity:0.8" />
                                 </svg>0.17 - 0.29 <br>
                                 <svg width="20" height="10">
@@ -856,7 +925,7 @@
                     <div class="collapse" id="collapsehSPF_Discharge">
 
                         <div class="card card-body legendcard" id="hSPF_DischargeLegend">
-                            <p><svg width="20" height="10">
+                            <p>Acre Ft <br><svg width="20" height="10">
                                     <rect width="15" height="10" style="fill:#ffff80; stroke-width:2; stroke:#ffff80; fill-opacity:0.8" />
                                 </svg>0.28 - 0.33 <br>
                                 <svg width="20" height="10">
@@ -2329,7 +2398,7 @@
                         <li class="userList">In the upper left-hand corner you can click the <i class="far fa-plus-square"></i> and <i class="far fa-minus-square"></i> signs to zoom in and out of the map. The home icon <i class="fas fa-home"></i> will bring you back to view the entire state. </li>
                         <li class="userList">The <i class="fas fa-crosshairs"></i> crosshairs icon (upper left-hand corner) will zoom to the extent of the Hawk Creek Watershed boundary. </li>
                         <li class="userList">In the upper right-hand corner you can use the layers icon <i class="fas fa-layer-group"></i> to change the base layers of the map to light, dark, or satellite imagery. </li>
-                        <li class="userList">The print icon (upper right-hand corner) allows you to print the map in landscape or portrait mode. The auto option will set the extent to include all layers added on the map. *Please note if you have legends displayed on the map you must close the sidebar in order to align the content correctly. </li>
+                        <li class="userList">The print icon (upper right-hand corner) allows you to print the map in landscape, portrait or tabloid. </li>
                     </ul>
                 </p>
             </div> <!-- Side bar Pane Metadata end-->
@@ -2376,6 +2445,7 @@
             padding-left: 10px;
             color: white;
         }
+
     </style>
 
 
@@ -2415,7 +2485,9 @@
     <!--    <script type="text/javascript" src="js/L.Control.Sidebar.js"></script>-->
     <script type="text/javascript" src="js/main1.js"></script>
 
-</body></html>
+</body>
+
+</html>
 
 
 
