@@ -626,7 +626,7 @@ function stylezones(feature) {
     return {
         "color": colorToUse,
         "fillColor": "transparent",
-        "weight": 5,
+        "weight": 3,
         "opacity": 1,
         //        "fillOpacity": 0.2
     };
@@ -859,7 +859,7 @@ function stylePhos(feature) {
     if (type === "Highest") colorToUse = '#002673';
     else if (type === "Higher") colorToUse = '#005ce6';
     else if (type === "High") colorToUse = '#a1ceff';
-    else if (type === "Impaired") colorToUse = '#9c9c9c';
+    else if (type === "Impaired") colorToUse = 'red';
     else colorToUse = "transparent";
 
     return {
