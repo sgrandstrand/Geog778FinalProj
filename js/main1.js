@@ -25,6 +25,8 @@ var mapOptions = {
     zoomControl: false,
     center: [46.35, -94.8], // large screens
     //    center: [46.35, -93.5],
+    zoomSnap: 0.25,
+    zoomDelta: 0.25,
     zoom: 6.5,
     minZoom: 3,
     maxZoom: 18,
@@ -59,6 +61,13 @@ var zoomHome = L.Control.zoomHome({
 });
 zoomHome.addTo(map);
 
+var zoomboxOptions = {
+    modal: true,
+    title: "Box area zoom",
+    zoomSnap: 0.25
+};
+var zoomboxControl = L.control.zoomBox(zoomboxOptions);
+map.addControl(zoomboxControl);
 
 var baseMaps = {
     "Light": light,
@@ -93,7 +102,7 @@ L.easyButton('fa-crosshairs fa-lg', function (btn, map) {
 
 L.control.browserPrint({
     title: 'Print Map',
-    documentTitle: 'Hawk Creek Watershed',
+    documentTitle: 'Hawk Creek Middle Minnesota 1W1P',
     closePopupsOnPrint: false,
     printModes: [
 		"Landscape",
@@ -109,10 +118,6 @@ map.on("browser-print-end", function (e) {
     postPrintLegend();
     sidebar.open('home');
 });
-
-//var legend = L.control({
-//    position: 'bottomright'
-//});
 
 map.on("browser-print-start", function (e) {
     sidebar.close('home');
@@ -171,6 +176,7 @@ map.on("browser-print-start", function (e) {
     }).addTo(e.printMap);
 
 });
+
 
 
 //Create sidebar function
@@ -359,10 +365,7 @@ var twnshp = L.esri.featureLayer({
     },
 });
 
-var zones = L.esri.featureLayer({
-    url: a_zones,
-    style: stylezones,
-});
+
 
 ////// *** Groundwater Layers *** /////
 
@@ -596,13 +599,17 @@ var mask = L.esri.featureLayer({
     url: a_mask,
     style: function () {
         return {
-            "color": "black",
+            "color": "transparent",
             "fillColor": "black",
-            "weight": 2,
+            //            "weight": 2,
             "fillOpacity": 0.8,
-            "opacity": 1,
+            //            "opacity": 1,
         };
     }
+});
+var zones = L.esri.featureLayer({
+    url: a_zones,
+    style: stylezones,
 });
 
 
@@ -618,10 +625,10 @@ function stylezones(feature) {
 
     return {
         "color": colorToUse,
-        "fillColor": colorToUse,
-        "weight": 2,
+        "fillColor": "transparent",
+        "weight": 5,
         "opacity": 1,
-        "fillOpacity": 0.2
+        //        "fillOpacity": 0.2
     };
 }
 
@@ -958,7 +965,7 @@ function styleGradienthSPF_TN(feature) {
 function stylehSPF_TP(feature) {
     type = feature.properties.TP_Lb_Acre;
     var colorToUse;
-    if (type >= 0.17 && type <= 0.29) colorToUse = '#ffff80';
+    if (type >= 0.15 && type <= 0.29) colorToUse = '#ffff80';
     else if (type > 0.29 && type <= 0.43) colorToUse = '#fad155';
     else if (type > 0.43 && type <= 0.61) colorToUse = '#f2a72e';
     else if (type > 0.61 && type <= 1.61) colorToUse = '#ad5313';
@@ -1130,10 +1137,30 @@ function stylegAP_DNR(feature) {
     };
 }
 
+function styleGradientgAP_DNR(feature) {
+    return {
+        "color": '#756bb1',
+        "fillColor": '#756bb1',
+        "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8
+    };
+}
+
 function stylegAP_State(feature) {
     return {
         "color": '#e8beff',
         "fillColor": '#e8beff',
+        "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleGradientgAP_State(feature) {
+    return {
+        "color": '#756bb1',
+        "fillColor": '#756bb1',
         "weight": 2,
         "opacity": 1,
         "fillOpacity": 0.8
@@ -1150,10 +1177,30 @@ function stylegAP_Cnty(feature) {
     };
 }
 
+function styleGradientgAP_Cnty(feature) {
+    return {
+        "color": '#756bb1',
+        "fillColor": '#756bb1',
+        "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8
+    };
+}
+
 function stylegAP_Fed(feature) {
     return {
         "color": '#bee8ff',
         "fillColor": '#bee8ff',
+        "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8
+    };
+}
+
+function styleGradientgAP_Fed(feature) {
+    return {
+        "color": '#756bb1',
+        "fillColor": '#756bb1',
         "weight": 2,
         "opacity": 1,
         "fillOpacity": 0.8
