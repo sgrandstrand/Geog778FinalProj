@@ -645,6 +645,8 @@ function stylewellhead(feature) {
 
 function styleGradientwellhead(feature) {
     return {
+        //        "color": "rgb(0,109,44)",
+        //        "fillColor": "rgb(0,109,44)",
         "color": "#006d2c",
         "fillColor": "#006d2c",
         "weight": 2,
@@ -674,6 +676,24 @@ function styleWtrVul(feature) {
     };
 }
 
+//function styleGradientWtrVul(feature) {
+//    level = feature.properties.dws_vul;
+//    var colorToUse;
+//    if (level === "Very High") colorToUse = 'rgb(0,109,44)';
+//    else if (level === "High") colorToUse = 'rgb(49,163,84)';
+//    else if (level === "Moderate") colorToUse = 'rgb(116,196,118)';
+//    else if (level === "Low") colorToUse = 'rgb(186,228,179)';
+//    else if (level === "Very Low") colorToUse = 'rgb(237,248,233)';
+//    else colorToUse = "transparent";
+//
+//    return {
+//        "color": colorToUse,
+//        "fillColor": colorToUse,
+//        "weight": 2,
+//        "opacity": 0.8,
+//        "fillOpacity": 0.8
+//    };
+//}
 function styleGradientWtrVul(feature) {
     level = feature.properties.dws_vul;
     var colorToUse;
@@ -1407,6 +1427,21 @@ function styleBedrockPoll(feature) {
     };
 }
 
+//function styleGradientbedrockPoll(feature) {
+//    type = feature.properties.RATING;
+//    var colorToUse;
+//    if (type === "VH") colorToUse = 'rgb(0,109,44)';
+//    else if (type === "H") colorToUse = 'rgb(116,196,118)';
+//    else if (type === "M") colorToUse = 'rgb(237,248,233)';
+//    else colorToUse = "transparent";
+//    return {
+//        "color": colorToUse,
+//        "fillColor": colorToUse,
+//        "weight": 2,
+//        "fillOpacity": 0.8,
+//        "opacity": 1,
+//    };
+//}
 function styleGradientbedrockPoll(feature) {
     type = feature.properties.RATING;
     var colorToUse;
@@ -1439,6 +1474,22 @@ function styleNitrTwn(feature) {
     };
 }
 
+//function styleGradientNitrTwn(feature) {
+//    type = feature.properties.InitNRange;
+//    var colorToUse;
+//    if (type === "<5%") colorToUse = 'rgb(237,248,233)';
+//    else if (type === "5<10%") colorToUse = 'rgb(116,196,118)';
+//    else if (type === "≥10%") colorToUse = 'rgb(0,109,44)';
+//    else colorToUse = "transparent";
+//    return {
+//        "color": colorToUse,
+//        "fillColor": colorToUse,
+//        "weight": 2,
+//        "fillOpacity": 0.8,
+//        "opacity": 1,
+//    };
+//}
+
 function styleGradientNitrTwn(feature) {
     type = feature.properties.InitNRange;
     var colorToUse;
@@ -1454,8 +1505,6 @@ function styleGradientNitrTwn(feature) {
         "opacity": 1,
     };
 }
-
-
 
 ///// **** END OF STYLE FUNCTIONS *** \\\\\
 
