@@ -37,25 +37,12 @@ var mapOptions = {
 var map = L.map('mapid', mapOptions);
 
 
-//var light2 = new L.TileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2dyYW5kc3RyYW5kIiwiYSI6ImNqY3BtMm52MjJyZWsycXBmMDZremxsN3EifQ.3HVgf9jrNbmCSBBBlp5zlQ', {
-//    minZoom: 3,
-//    maxZoom: 18,
-//    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
-//});
-
-
-
 L.control.scale({
     position: 'bottomright',
     metric: false
 }).addTo(map);
 
-//var miniMap = new L.Control.MiniMap(light2, {
-//    toggleDisplay: true,
-//}).addTo(map);
-//L.control.zoom({
-//    position: 'bottomright'
-//}).addTo(map);
+
 var zoomHome = L.Control.zoomHome({
     position: 'topleft'
 });
@@ -177,13 +164,29 @@ map.on("browser-print-start", function (e) {
 
 });
 
-
-
-//Create sidebar function
-//function createSidebar() {
-//    var sidebar = L.control.sidebar('sidebar').addTo(map);
-//    sidebar.open('home');
-//}
+//L.Control.BrowserPrint.Utils.registerLayer(
+//    // Actual typeof object to compare with
+//    L.esri.featureLayer,
+//    // Any string you would like for current function for print events
+//    'L.esri.featurelayer',
+//    function (layer, utils) {
+//        // We need to recreate cluster object with available options
+//        // Here we use function, but we can use object aswell,
+//        // example: new L.MarkerClusterGroup(layer._group.options);
+//        var cluster = L.esri.featureLayer(layer._arcgisToGeoJSON(), utils.cloneOptions(layer.options));
+//
+//        // And we clone all inner layers to our new cluster
+//        // to properly recalculate/recreate position for print map
+//        //        cluster.addLayers(utils.cloneInnerLayers(layer._group));
+//
+//        return cluster;
+//    });
+////this.registerLayer(L.GeoJSON, 'L.GeoJSON', function(layer, utils) { 				return L.geoJson(layer.toGeoJSON(), utils.cloneOptions(layer.options)); });
+////Create sidebar function
+////function createSidebar() {
+////    var sidebar = L.control.sidebar('sidebar').addTo(map);
+////    sidebar.open('home');
+////}
 var sidebar = L.control.sidebar('sidebar').addTo(map);
 
 
@@ -281,9 +284,6 @@ var hawkcreekbndry = L.esri.featureLayer({
             "opacity": 1,
         };
     },
-    onEachFeature: function (feature, layer) {
-        layer.bindPopup('<p><i> Hawk Creek Watershed </i></p>');
-    },
 }).addTo(map);
 
 var cnty = L.esri.featureLayer({
@@ -377,11 +377,7 @@ var wtrVul = L.esri.featureLayer({
 var wellhead = L.esri.featureLayer({
     url: a_wellhead,
     style: stylewellhead,
-    //    onEachFeature: function (feature, layer) {
-    //        layer.on("mouseover", function (e) {
-    //
-    //        })
-    //    }
+
 });
 var bedrockPoll = L.esri.featureLayer({
     url: a_bedrockPoll,
@@ -601,7 +597,7 @@ var mask = L.esri.featureLayer({
         return {
             "color": "transparent",
             "fillColor": "black",
-            //            "weight": 2,
+            "weight": 2,
             "fillOpacity": 0.8,
             //            "opacity": 1,
         };
@@ -676,24 +672,6 @@ function styleWtrVul(feature) {
     };
 }
 
-//function styleGradientWtrVul(feature) {
-//    level = feature.properties.dws_vul;
-//    var colorToUse;
-//    if (level === "Very High") colorToUse = 'rgb(0,109,44)';
-//    else if (level === "High") colorToUse = 'rgb(49,163,84)';
-//    else if (level === "Moderate") colorToUse = 'rgb(116,196,118)';
-//    else if (level === "Low") colorToUse = 'rgb(186,228,179)';
-//    else if (level === "Very Low") colorToUse = 'rgb(237,248,233)';
-//    else colorToUse = "transparent";
-//
-//    return {
-//        "color": colorToUse,
-//        "fillColor": colorToUse,
-//        "weight": 2,
-//        "opacity": 0.8,
-//        "fillOpacity": 0.8
-//    };
-//}
 function styleGradientWtrVul(feature) {
     level = feature.properties.dws_vul;
     var colorToUse;
@@ -709,9 +687,17 @@ function styleGradientWtrVul(feature) {
         "fillColor": colorToUse,
         "weight": 2,
         "opacity": 0.8,
-        "fillOpacity": 0.8
+        "fillOpacity": 0.8,
     };
 }
+
+//function getOpacityValue(className) {
+//    var inputvalue = '"input[type=range]' + className + '"'
+//
+//    var opacityVal = $(inputvalue).val();
+//    return opacityVal
+//
+//}
 
 function stylefEMAflood(feature) {
     return {
@@ -823,7 +809,7 @@ function stylerWI(feature) {
     return {
         "color": "#f5a37a",
         "fillColor": "#f5a37a",
-        "weight": 2,
+        "weight": 1,
         "fillOpacity": 0.8,
         "opacity": 1,
 
@@ -834,7 +820,7 @@ function styleGradientrWI(feature) {
     return {
         "color": "#084594",
         "fillColor": "#084594",
-        "weight": 2,
+        "weight": 1,
         "fillOpacity": 0.8,
         "opacity": 1,
     };
@@ -1427,21 +1413,6 @@ function styleBedrockPoll(feature) {
     };
 }
 
-//function styleGradientbedrockPoll(feature) {
-//    type = feature.properties.RATING;
-//    var colorToUse;
-//    if (type === "VH") colorToUse = 'rgb(0,109,44)';
-//    else if (type === "H") colorToUse = 'rgb(116,196,118)';
-//    else if (type === "M") colorToUse = 'rgb(237,248,233)';
-//    else colorToUse = "transparent";
-//    return {
-//        "color": colorToUse,
-//        "fillColor": colorToUse,
-//        "weight": 2,
-//        "fillOpacity": 0.8,
-//        "opacity": 1,
-//    };
-//}
 function styleGradientbedrockPoll(feature) {
     type = feature.properties.RATING;
     var colorToUse;
@@ -1474,21 +1445,6 @@ function styleNitrTwn(feature) {
     };
 }
 
-//function styleGradientNitrTwn(feature) {
-//    type = feature.properties.InitNRange;
-//    var colorToUse;
-//    if (type === "<5%") colorToUse = 'rgb(237,248,233)';
-//    else if (type === "5<10%") colorToUse = 'rgb(116,196,118)';
-//    else if (type === "≥10%") colorToUse = 'rgb(0,109,44)';
-//    else colorToUse = "transparent";
-//    return {
-//        "color": colorToUse,
-//        "fillColor": colorToUse,
-//        "weight": 2,
-//        "fillOpacity": 0.8,
-//        "opacity": 1,
-//    };
-//}
 
 function styleGradientNitrTwn(feature) {
     type = feature.properties.InitNRange;
@@ -1575,12 +1531,6 @@ function zoomToFeature(urlLayer) {
         map.fitBounds(latLngBounds);
     });
 }
-
-
-
-//make button to add layer but don't see the layer 
-// make a random point somewhere for each layer. don't add style. associate the legend to
-// not sure how to work this with printing but maybe add a part where this will add to the div for on print 
 
 
 /// ***Legend control items*** ////
@@ -2110,13 +2060,7 @@ var legendmask = L.control.htmllegend({
 
 // add legends to print
 function addPrintLegend(print) {
-    //    console.log(legendcnty);
-    //    console.log(legendcnty.addTo(print.printMap));
-    //    console.log(print);
-    //    var legends = [];
-    //    console.log(legends)
     $.each($('input[class="showLegend"]:checked'), function () {
-        //        console.log(window[this.value]);
         x = window[this.value];
         return x.addTo(print.printMap);
     });
@@ -2147,20 +2091,15 @@ function postPrintLegend() {
 
 
 function changeStyle(val, layer) {
-    console.log(val);
+    //    console.log(val);
     layer.setStyle(val);
+    //    console.log(layer.setStyle(val));
 }
 
 function changeToOrigStyle(val, layer) {
-    console.log(val);
+    //    console.log(val);
     layer.setStyle(val);
 }
-
-function checkClick(id) {
-    console.log(id);
-    console.log("the checkClick function has been initialized");
-}
-
 
 $(document).ready(function () {
     sidebar.open('home');
@@ -2193,13 +2132,6 @@ $(document).ready(function () {
         layerClicked = window[event.target.value];
         colorGradeID = window[event.target.id]; // the function name of the style for gradient color scheme 
         colorOrigID = window[event.target.name]; //the original color scheme function
-
-        //        layerClicked.on('loading', function (e) {
-        //            loadingControl._showIndicator()
-        //        });
-        //        layerClicked.on('load', function (e) {
-        //            loadingControl._hideIndicator
-        //        });
         if ($(this).is(":checked") && $(this).hasClass('pollution-sens')) {
             layerClicked.on('loading', function (e) {
                 loadingControl._showIndicator()
@@ -2233,75 +2165,12 @@ $(document).ready(function () {
                 loadingControl._hideIndicator
             });
             map.addLayer(layerClicked);
+            //            console.log(layerClicked);
         } else if ($(this).is(":not(:checked)")) {
             map.removeLayer(layerClicked);
         }
     });
 
-
-
-    //   **** If I want to add legend to the sub title div. Do the following in the $(input checkbox) function: *****
-
-    //      $('input[type="checkbox"]').click(function () {
-    //        layerClicked = window[event.target.value];
-    //        colorGradeID = window[event.target.id]; // the function name of the style for gradient color scheme 
-    //        colorOrigID = window[event.target.name]; //the original color scheme function
-    //
-    //        legendname = this.name;
-    //        legendvalue = this.value;
-    //    
-    //     else if ($(this).is(":checked") && $(this).hasClass('showLegend')) {
-    //            map.addControl(layerClicked); //calls function to add legend
-    //            console.log(colorOrigID);
-    //            leg = document.querySelector(legendname).innerHTML; //testname is the this.value which is the id for the legend container
-    //            console.log(leg);
-    //            $("#addSubLegend").append('<div id= legend' + legendvalue + ' >' + leg + ' </div');
-    //        } else if ($(this).is(":not(:checked)") && $(this).hasClass('showLegend')) {
-    //            map.removeControl(layerClicked); //remove legend control
-    //            removeID = '#legend' + legendvalue // to get the jquery selector for the div the legend is in in the sub title print area
-    //            $(removeID).remove(); //removes legend from sub print area
-
-    // CSS FOR LEGEND:
-    /*to get to the sub title legend print*/
-    //h3 > div > div > p {
-    //    color: black;
-    //    font-size: 10pt;
-    //    margin-bottom: -1em;
-    //    margin-top: -1em;
-    //}
-    //            
-    //*** END OF LEGEND IN BOTTOM PART ///
-
-
-
-
-    //    
-    //        $('input[type="checkbox"]').click(function () {
-    //        layerClicked = window[event.target.value];
-    //        colorGradeID = window[event.target.id]; // the function name of the style for gradient color scheme 
-    //        colorOrigID = window[event.target.name]; //the original color scheme function
-    //        layerClicked.on('loading', function (e) {
-    //            loadingControl._showIndicator()
-    //        });
-    //        layerClicked.on('load', function (e) {
-    //            loadingControl._hideIndicator
-    //        });
-    //        if ($(this).is(":checked") && $(this).hasClass('pollution-sens')) {
-    //            map.removeLayer(layerClicked);
-    //            map.addLayer(colorGradeID);
-    //        } else if ($(this).is(":not(:checked)") && $(this).hasClass('pollution-sens')) {
-    //            map.removeLayer(colorGradeID);
-    //        } else if ($(this).is(":checked") && $(this).hasClass('colorGrade')) {
-    //            changeStyle(colorGradeID, layerClicked); //calls function to change the style
-    //        } else if ($(this).is(":not(:checked)") && $(this).hasClass('colorGrade')) {
-    //            changeToOrigStyle(colorOrigID, layerClicked);
-    //        } else if ($(this).is(":checked")) {
-    //
-    //            map.addLayer(layerClicked);
-    //        } else if ($(this).is(":not(:checked)")) {
-    //            map.removeLayer(layerClicked);
-    //        }
-    //    });
 
     if ($(window).width() < 414.1) {
         map.setView([46.4, -91.99]);
@@ -2314,296 +2183,41 @@ $(document).ready(function () {
         map.setView([46.35, -95.2])
     }
 
-    //    console.log($(window).width());
-
-
-    //        $('input[type="checkbox"]').click(function () {
-    //        layerClicked = window[event.target.value];
-    //        if ($(this).is(":checked")) {
-    //            map.addLayer(layerClicked);
-    //        } else if ($(this).is(":not(:checked)")) {
-    //            map.removeLayer(layerClicked);
-    //        }
-    //    });
-
-
-
-
-    //    $('input[type="checkbox"]').click(function () {
-    //        layerClicked = window[event.target.value];
-    //        layerLegendID = this.name;
-    //        if ($(this).is(":checked") && $(this).hasClass('showLegend')) {
-    //            map.addLayer(layerClicked);
-    //            addLegend(layerLegendID, layerClicked);
-    //        } else if ($(this).is(":not(:checked)") && $(this).hasClass('showLegend')) {
-    //            map.removeLayer(layerClicked);
-    //        } else if ($(this).is(":checked")) {
-    //            map.addLayer(layerClicked);
-    //        } else if ($(this).is(":not(:checked)")) {
-    //            map.removeLayer(layerClicked);
-    //        }
-    //    });
-    //    $('.showLegend').click(function () {
-    //        if ($(this).is(":checked")) {
-    //            addLegend
-    //        }
-    //    })
-
-
-
-
-
-
-
-    //    $('#toggleSidebar').click(function () {
-    //        $("#home").toggle(function () {
-    //
-    //        });
-    //    });
-    //    $('#closeSidebar').click(function () {
-    //        $("#home").toggle(function () {
-    //
-    //        });
-    //    });
-
-
-
-
-    //    legend.onAdd = function (map) {
-    //
-    //        var div = L.DomUtil.create('div', 'info legend'),
-    //            grades = [0, 10, 20, 50, 100, 200, 500, 1000],
-    //            labels = [],
-    //            from, to;
-    //
-    //        // loop through our density intervals and generate a label with a colored square for each interval
-    //        for (var i = 0; i < grades.length; i++) {
-    //            from = grades[i];
-    //            to = grades[i + 1];
-    //
-    //            labels.push(
-    //                '<i style="background:' + getColor(from + 1) + '"></i> ' +
-    //                from + (to ? '&ndash;' + to : '+'));
-    //        }
-    //
-    //
-    //        div.innerHTML = labels.join('<br>');
-    //        return div;
-    //    };
-    //
-    //    legend.addTo(map);
-
-
-
-
 
 });
 
 
 
 
-// this still gave undefined  
-//    layer.on("load", function (e)) {
-//        var lookup = {};
-//        var items = cONUS.properties.WETLAND_TY;
-//        var result = [];
+
+//   **** If I want to add legend to the sub title div. Do the following in the $(input checkbox) function: *****
+
+//      $('input[type="checkbox"]').click(function () {
+//        layerClicked = window[event.target.value];
+//        colorGradeID = window[event.target.id]; // the function name of the style for gradient color scheme 
+//        colorOrigID = window[event.target.name]; //the original color scheme function
 //
-//        for (var item, i = 0; item = items[i++];) {
-//            var name = item.name;
-//
-//            if (!(name in lookup)) {
-//                lookup[name] = 1;
-//                result.push(name);
-//            }
-//        }
-//        console.log(result);
-//    }
+//        legendname = this.name;
+//        legendvalue = this.value;
+//    
+//     else if ($(this).is(":checked") && $(this).hasClass('showLegend')) {
+//            map.addControl(layerClicked); //calls function to add legend
+//            console.log(colorOrigID);
+//            leg = document.querySelector(legendname).innerHTML; //testname is the this.value which is the id for the legend container
+//            console.log(leg);
+//            $("#addSubLegend").append('<div id= legend' + legendvalue + ' >' + leg + ' </div');
+//        } else if ($(this).is(":not(:checked)") && $(this).hasClass('showLegend')) {
+//            map.removeControl(layerClicked); //remove legend control
+//            removeID = '#legend' + legendvalue // to get the jquery selector for the div the legend is in in the sub title print area
+//            $(removeID).remove(); //removes legend from sub print area
 
-
-
-//Iterate through features, but features can't do that until they are loaded. weird quality with esri leaflet
-//    .on('load')
-//        var lookup = {};
-//    var items = feature.properties.WETLAND_TY;
-//    var result = [];
-//
-//    for (var item, i = 0; item = items[i++];) {
-//        var name = item.name;
-//
-//        if (!(name in lookup)) {
-//            lookup[name] = 1;
-//            result.push(name);
-//        }
-//    }
-//    console.log(result);
-
-
-// to call what is loaded on load of page
-//        $(document).ready(function () {
-//            getData();
-
-//    //keep nav bar from dissapearing 
-//    var margin = 78;
-//    $('#mapid').on('mousedown', function () {
-//        $('#navbarid').css('margin-top', margin + 'px');
-//    });
-//    $('#mapid').blur(function () {
-//        margin = margin + 78;
-//    });
-
-
-//Create sidebar function
-//
-//}); // end of document.ready function
-
-
-// potential function to add any layer to map. 
-//function getData1(url) {
-//    layer = L.esri.featureLayer({
-//        url: url
-//    }).addTo(map);
-//
-//};
-
-//// gradient layer for mapping scheme
-////var wtrVulChange = L.esri.featureLayer({
-////    url: a_wtrVul,
-////    style: styleGradientWtrVul,
-////});
-//
-//function updateOpacityBoundWtrVul(val) {
-//    var checkVal = document.getElementById("wtrVulGrad").checked;
-//    if (checkVal === true) {
-//        wtrVulChange.setStyle({
-//            opacity: val,
-//        });
-//    } else {
-//        wtrVul.setStyle({
-//            opacity: val,
-//        });
-//    }
+// CSS FOR LEGEND:
+/*to get to the sub title legend print*/
+//h3 > div > div > p {
+//    color: black;
+//    font-size: 10pt;
+//    margin-bottom: -1em;
+//    margin-top: -1em;
 //}
-//
-//function updateOpacityWtrVul(val) {
-//    var checkVal = document.getElementById("wtrVulGrad").checked;
-//    if (checkVal === true) {
-//        wtrVulChange.setStyle({
-//            fillOpacity: val,
-//        });
-//    } else {
-//        wtrVul.setStyle({
-//            fillOpacity: val,
-//        });
-//    }
-//}
-
-//able to add and remove legend but the legend object is cached so its not undefined when removed
-//function addLegend2(layer) {
-//    layerleg = window[event.target.value];
-//    console.log(layerleg);
-//    check = layerleg._entries;
-//
-//    console.log(check);
-//    if (check != undefined) {
-//        console.log("removing legend call")
-//        map.removeControl(layerleg);
-//    } else {
-//        map.addControl(layerleg);
-//        console.log("adding legend call")
-//    }
-//}
-
-//function addLegend(id, title) {
-//
-//    //    legendlayer.onAdd
-//    var legendlayer = L.control.htmllegend({
-//        position: 'bottomright',
-//        layer: title,
-//        legends: [{
-//            name: title,
-//            elements: [{
-//                html: document.querySelector(id).innerHTML
-//            }]
-//        }],
-//        detectStretched: true,
-//    });
-//    check = legendlayer._entries
-//    console.log(check);
-//    map.addControl(legendlayer)
-//}
-
-
-//function showLegend(id, title) {
-//    var legend = L.control({
-//        position: 'bottomright'
-//    });
-//    var element = document.querySelector(id).innerHTML;
-//    console.log(element);
-//
-//    legend.onAdd = function (map) {
-//        var div = L.DomUtil.create('div', 'info legend', 'legend-' + title),
-//            labels = ['<strong>' + title + '</strong>'],
-//            elements = document.querySelector(id).innerHTML;
-//        console.log(element);
-//        div.innerHTML = labels + '<br>' + elements;
-//        return div;
-//
-//    };
-//    legend.addTo(map);
-
-//
-//
-//    var LegendControl = L.Control.extend({
-//        options: {
-//            position: 'bottomright'
-//        },
-//        onAdd: function () {
-//            div.innerHTML = labels + '<br>' + element;
-//            return div;
-//        }
-//    });
-//    map.addControl(new LegendControl());
-
-//}
-
-//var legendlayer = L.control.htmllegend({
-//    position: 'bottomright'
-//})
-//var coordsLeg = [43.465951, -96.348829]
-//var styleLeg = {
-//    color: 'red'
-//}
-//
-//legendBndry = L.circle(coordsLeg, styleLeg);
-//legendCnty = L.circle(coordsLeg, styleLeg);
-//legendHUC8 = L.circle(coordsLeg, styleLeg);
-//
-//var legendlayerBndry = L.control.htmllegend({})
-
-
-
-// Legend Controls 
-
-//function createLegend(attributes, title) {
-//    $("div.info.legend.leaflet-control").remove();
-//    //Container
-//    var div = L.DomUtil.create('div', 'info legend');
-//    //Make control
-//    var LegendControl = L.Control.extend({
-//        options: {
-//            position: 'bottomright'
-//        },
-//        onAdd: function () {
-//            var labels = ['<strong>' + title + '</strong>']
-//
-//            attributes.forEach((k, v) => div.innerHTML += labels.push('<i class="circle" style="background:' + $ {
-//                v
-//            } + '"></i> ' + $ {
-//                k
-//            }));
-//            div.innerHTML = labels.join('<br>');
-//            return div;
-//        }
-//    });
-//    map.addControl(new LegendControl());
-//}
+//            
+//*** END OF LEGEND IN BOTTOM PART ///

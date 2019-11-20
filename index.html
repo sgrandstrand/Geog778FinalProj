@@ -344,9 +344,9 @@
 
                         <div class="card card-body range-slider">
                             <p>Fill Opacity
-                                <input class="slider" type="range" min="0" max="1" step="0.1" value="0.8" oninput="updateOpacity(this.value, wtrVul)"><span class="range-slider_val"></span></p>
+                                <input class="slider wtrVulFill" type="range" min="0" max="1" step="0.1" value="0.8" oninput="updateOpacity(this.value, wtrVul)"><span class="range-slider_val"></span></p>
                             <p>Boundary Opacity
-                                <input class="slider" type="range" min="0" max="1" step="0.1" value="0.8" oninput="updateOpacityBound(this.value, wtrVul)"><span class="range-slider_val"></span></p>
+                                <input class="slider wtrVulBound" type="range" min="0" max="1" step="0.1" value="0.8" oninput="updateOpacityBound(this.value, wtrVul)"><span class="range-slider_val"></span></p>
 
                             <p class="color-scheme"><input type="checkbox" name="styleWtrVul" class="colorGrade" id="styleGradientWtrVul" value="wtrVul"> Change to Gradient Color Schema</p>
 
@@ -1890,8 +1890,6 @@
                         <div class="card card-body">
                             <p>Fill Opacity
                                 <input class="slider" type="range" min="0" max="1" step="0.1" value="0.8" oninput="updateOpacity(this.value, mask)"><span class="range-slider_val"></span></p>
-                            <p>Boundary Opacity
-                                <input class="slider" type="range" min="0" max="1" step="0.1" value="1" oninput="updateOpacityBound(this.value, mask)"><span class="range-slider_val"></span></p>
                         </div>
                     </div>
                 </div>
@@ -1927,7 +1925,9 @@
                     </div>
                     <div id="metadataDNRCatch" class="collapse">
                         <div class="card-body">
-                            <b>Source:</b> Lake Watershed strategies from DNR Fish Habitat Plan
+                            <b>Source:</b> Lake Watershed strategies from DNR Fish Habitat Plan<br>
+                            <p><b>Publication:</b> 2013</p><br>
+                            <p><b>More information:</b> <a href="https://files.dnr.state.mn.us/fish_wildlife/fisheries/habitat/fishhabitatplan.pdf" target="_blank">https://files.dnr.state.mn.us/fish_wildlife/fisheries/habitat/fishhabitatplan.pdf</a></p>
                         </div>
                     </div>
                 </div>
@@ -1984,9 +1984,9 @@
                     </div>
                     <div id="metadatanitrTwn" class="collapse">
                         <div class="card-body">
-                            <p> <b>Source:</b> N/A </p><br>
-                            <p><b>Description:</b> TDB </p><br>
-                            <p><b>Publication:</b> TBD</p><br>
+                            <p> <b>Source:</b> MN Department of Agriculture </p><br>
+                            <p><b>Publication:</b> 2019</p><br>
+                            <p><b>More information:</b><a href=" https://www.mda.state.mn.us/township-testing-program" target="_blank"> https://www.mda.state.mn.us/township-testing-program</a></p>
                         </div>
                     </div>
                 </div>
@@ -2105,8 +2105,8 @@
                     </div>
                     <div id="metadatarWI" class="collapse">
                         <div class="card-body">
-                            <p> <b>Source:</b> The Duck Unlimited </p><br>
-                            <p><b>Description:</b> Merged version of the Restorable Depression Wetland Inventory downloaded from the Duck Unlimited site 10/10/2019 by county <br>
+                            <p> <b>Source:</b> Restorable Wetlands Working Group </p><br>
+                            <p><b>Description:</b> Merged version of the Restorable Wetland Inventory downloaded from the Ducks Unlimited site 10/10/2019 by county <br>
                             </p><br>
                             <p><b>Publication:</b> Downloaded on 10/10/2019</p><br>
                             <p><b>More information:</b><a href="https://www.ducks.org/conservation/geographic-information-systems/minnesota-restorable-wetlands" target="_blank"> https://www.ducks.org/conservation/geographic-information-systems/minnesota-restorable-wetlands</a></p>
@@ -2166,6 +2166,67 @@
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatahSPF_TSS">
+                            HSPF TSS
+                        </a>
+                    </div>
+                    <div id="metadatahSPF_TSS" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Pollution Control Agency </p><br>
+                            <p><b>Description:</b> Values were extracted from HSPF-SAM models of the Hawk Creek/Yellow Medicine Watershed and the Middle Minnesota River Wateshed. <br>
+                            </p><br>
+                            <p><b>Publication:</b> Accessed November 2019</p><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatahSPF_TN">
+                            HSPF TN
+                        </a>
+                    </div>
+                    <div id="metadatahSPF_TN" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Pollution Control Agency </p><br>
+                            <p><b>Description:</b> Values were extracted from HSPF-SAM models of the Hawk Creek/Yellow Medicine Watershed and the Middle Minnesota River Wateshed. <br>
+                            </p><br>
+                            <p><b>Publication:</b> Accessed November 2019</p><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatahSPF_TP">
+                            HSPF TP
+                        </a>
+                    </div>
+                    <div id="metadatahSPF_TP" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Pollution Control Agency </p><br>
+                            <p><b>Description:</b> Total phosphorus values were extracted from HSPF-SAM models of the Hawk Creek/Yellow Medicine Watershed and the Middle Minnesota River Wateshed. <br>
+                            </p><br>
+                            <p><b>Publication:</b> Accessed November 2019</p><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatahSPF_Discharge">
+                            HSPF Discharge
+                        </a>
+                    </div>
+                    <div id="metadatahSPF_Discharge" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Pollution Control Agency </p><br>
+                            <p><b>Description:</b> Values were extracted from HSPF-SAM models of the Hawk Creek/Yellow Medicine Watershed and the Middle Minnesota River Wateshed. <br>
+                            </p><br>
+                            <p><b>Publication:</b> Accessed November 2019</p><br>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card">
                     <div class="card-header">
                         <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatatrout">
@@ -2254,7 +2315,11 @@
                         <div class="card-body">
                             <p> <b>Source:</b> Minnesota DNR - Division of Fish &amp; Wildlife - Wildlife Unit</p><br>
                             <p><b>Description:</b> This is the complete GAP Stewardship database containing land ownership information for the entire state of Minnesota. These lands are managed for a variety of economic, environmental, and recreational uses. Attribute fields describe ownership, administrator, and conservation management code. The base cartography is derived from mathematically subdivided PLS sections. The forty acre polygons have been dissolved on the ownership values in the attribute table. Ownership reflects surface features only. Ownership is only as current as the source information and should not be considered comprehensive for the entire state. Conservation management codes are based upon the owning or administrating entity. Land interest is expressed only when some organization owns or administers more than 50 percent of a forty except where we were able to create sub-fourty accuracy stewardship polygons. Lakes have been assigned to the adjacent or underlying land steward.
-                            </p><br>
+                            </p>
+                            <p><b>DNR Divisions Shown: </b>Ecological Services, Enforcement, Fish and Wildlife, Forestry, Lands and Minerals, Parks and Recreation, Trails and Waterways, Waters and Minnesota DNR Undifferentiated </p>
+                            <p><b>State Departments Shown: </b>Agriculture, Corrections, Military Affairs, Transportation and State Undifferentiated </p>
+                            <p><b>County Agencies Shown: </b>County, County Admin/State Forest, County Admin/State Owned and County Admin/State Park. </p>
+                            <p><b>Federal Agencies Shown: </b>U.S. Army Corps of Engineers, U.S. Department of Agriculture, U.S. Forest Service, U.S. Fish and Wildlife Services, U.S. Park Service, Bureau of Indian Affairs, Bureau of Land Management and Farmers Home Administration.</p> <br>
                             <p><b>Publication:</b> 2018</p><br>
                         </div>
                     </div>
@@ -2385,20 +2450,20 @@
                         <li class="userList">Split into 8 categories: Boundaries, Groundwater, Hydrology, Surface Water Quality, Biodiversity, Land Use/Cover, Watershed Characterization and Other. The other section is a mask of the Hawk Creek Middle Minnesota planning area mainly used for printing purposes. </li>
                         <li class="userList">To turn on or add a layer click the checkbox. Layers are rendered in the order you turn them on. If you wish to display a layer above another click on it last. </li>
                         <li class="userList">The <i class="fas fa-plus"></i> button next to each layer will open to show the legend, a toggle button to display the legend on the map (for printing purposes) and an ability to change the opacity (transparency) of the layer and/or layer boundary. </li>
+                        <li class="userList">Some layers have the option to change their color to a gradient schema. This will change the values shown to a gradient color based on the group it belongs to (i.e. all hydrology layers render a blue gradient). Note that some layers will only display a portion of the original values. This will be stated under the checkbox if applicable.</li>
                     </ul>
                 </p>
                 <h3 class="userHeader"><i class="fas fa-info"></i> Metadata Tab: </h3>
-                <p class="userContent">Here you will find the sources for each layer
+                <p class="userContent">Here you will find descriptions and sources for each layer.
                 </p>
                 <h3 class="userHeader"> Additional Features: </h3>
                 <p class="userContent">
                     <ul style="list-style-type:disc;">
                         <li class="userList">In the upper left-hand corner you can click the <i class="far fa-plus-square"></i> and <i class="far fa-minus-square"></i> signs to zoom in and out of the map. The home icon <i class="fas fa-home"></i> will bring you back to view the entire state. </li>
-                        <li class="userList">The box zoom icon <i class="fas fa-expand"></i> (upper left-hand corner) allows you to create a box around an area you wish to zoom to. The center of this icon will have a circle in it while activated. Be sure to click on the icon again to deactivate. </li>
-
-                        <li class="userList">The <i class="fas fa-crosshairs"></i> crosshairs icon (upper left-hand corner) will zoom to the extent of the Hawk Creek Midddle Minnesota planning area. </li>
+                        <li class="userList">The box zoom icon <i class="fas fa-expand"></i> found in the upper left-hand corner allows you to create a box around an area you wish to zoom to. The center of this icon will have a circle in it while activated. Be sure to click on the icon again to deactivate. </li>
+                        <li class="userList">The <i class="fas fa-crosshairs"></i> crosshairs icon found in the upper left-hand corner will zoom to the extent of the Hawk Creek Midddle Minnesota planning area. </li>
                         <li class="userList">In the upper right-hand corner you can use the layers icon <i class="fas fa-layer-group"></i> to change the base layers of the map to light, dark, or satellite imagery. </li>
-                        <li class="userList">The print icon <img src="printicon.svg" alt="print icon" height="15" width="15"> (upper right-hand corner) allows you to print the map in landscape, portrait or tabloid. </li>
+                        <li class="userList">The print icon <img src="printicon.svg" alt="print icon" height="15" width="15"> in the upper right-hand corner allows you to print the map in landscape, portrait or tabloid. </li>
                     </ul>
                 </p>
             </div> <!-- Side bar Pane Metadata end-->
@@ -2445,7 +2510,6 @@
             padding-left: 10px;
             color: white;
         }
-
     </style>
 
 
@@ -2486,9 +2550,7 @@
     <!--    <script type="text/javascript" src="js/L.Control.Sidebar.js"></script>-->
     <script type="text/javascript" src="js/main1.js"></script>
 
-</body>
-
-</html>
+</body></html>
 
 
 
