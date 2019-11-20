@@ -241,6 +241,10 @@ var a_buffwtrcrse = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/se
 
 var a_rWI = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hydrology_HawkCrk/FeatureServer/5" //Restorable Wetland Inventory
 
+var a_rWI_a = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hydrology_HawkCrk/FeatureServer/15" //Restorable Wetland Inventory
+
+var a_rWI_b = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hydrology_HawkCrk/FeatureServer/7" //Restorable Wetland Inventory
+
 var a_mask = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Boundary_HawkCrk/FeatureServer/6" //mask of state for printing purposes
 
 var a_hSPF_TSS = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/SurfaceWaterQuality_HawkCrk/FeatureServer/3" //HSPF loading for TSS
@@ -424,7 +428,7 @@ var buffwtrcrse = L.esri.featureLayer({
     style: stylebuffwtrcrse,
 });
 var rWI = L.esri.featureLayer({
-    url: a_rWI,
+    url: a_rWI_a,
     style: stylerWI,
 });
 
