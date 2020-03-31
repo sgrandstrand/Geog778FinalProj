@@ -744,6 +744,78 @@
                 </div>
                 <!--End Impaired Lakes (Proposed) -->
                 <div class="wrapper">
+                    <p class="maplayer"><input type="checkbox" value="strms"> Assessed Waters 2018 - Streams <button class="btn-xs btn-info" type="button" data-toggle="collapse" data-target="#collapsestrms" aria-expanded="false" aria-controls="collapsestrms" title="Toggle Edit and Legend Control">
+                            <span class="sr-only">Expand to Edit </span>
+                            <span class="fa fa-plus"></span></button>
+                    </p>
+                    <!--                COLLAPSED DIV-->
+                    <div class="collapse" id="collapsestrms">
+                        <div class="card card-body legendcard" id="strmsLegend">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="5" style="fill:#73B273;" />
+                                </svg>Fully Supported <br>
+                                <svg width="20" height="5">
+                                    <rect width="15" height="10" style="fill:#FFFF73;" />
+                                </svg>Insufficient Data <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="5" style="fill:#FF0000;" />
+                                </svg>Not Supporting <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="5" style="fill:#B2B2B2;" />
+                                </svg>Not Assessed <br>
+                            </p>
+                        </div>
+                        <div class="pretty p-switch p-fill legendtoggle">
+                            <input type="checkbox" name="#strmsLegend" class="showLegend" value="legendstrms" />
+                            <div class="state">
+                                <label>Show Legend</label>
+                            </div>
+                        </div>
+                        <div class="card card-body">
+                            <p>Opacity
+                                <input class="slider" type="range" min="0" max="1" step="0.1" value="1" oninput="updateOpacityBound(this.value, strms)"><span class="range-slider_val"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <!--End Assessed Waters 2018 - Streams -->
+                <div class="wrapper">
+                    <p class="maplayer"><input type="checkbox" value="lkes"> Assessed Waters 2018 - Lakes <button class="btn-xs btn-info" type="button" data-toggle="collapse" data-target="#collapselkes" aria-expanded="false" aria-controls="collapselkes" title="Toggle Edit and Legend Control">
+                            <span class="sr-only">Expand to Edit </span>
+                            <span class="fa fa-plus"></span></button>
+                    </p>
+                    <!--                COLLAPSED DIV-->
+                    <div class="collapse" id="collapselkes">
+                        <div class="card card-body legendcard" id="lkesLegend">
+                            <p><svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#73B273; stroke-width:2; stroke:#73B273; fill-opacity:0.8" />
+                                </svg>Fully Supported <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#FFFF73; stroke-width:2; stroke:#FFFF73; fill-opacity:0.8" />
+                                </svg>Insufficient Data <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#FF0000; stroke-width:2; stroke:#FF0000; fill-opacity:0.8" />
+                                </svg>Not Supporting <br>
+                                <svg width="20" height="10">
+                                    <rect width="15" height="10" style="fill:#B2B2B2;stroke-width:2; stroke:#B2B2B2; fill-opacity:0.8" />
+                                </svg>Not Assessed <br>
+                            </p>
+                        </div>
+                        <div class="pretty p-switch p-fill legendtoggle">
+                            <input type="checkbox" name="#lkesLegend" class="showLegend" value="legendlkes" />
+                            <div class="state">
+                                <label>Show Legend</label>
+                            </div>
+                        </div>
+                        <div class="card card-body">
+                            <p>Fill Opacity
+                                <input class="slider" type="range" min="0" max="1" step="0.1" value="0.8" oninput="updateOpacity(this.value, lkes)"><span class="range-slider_val"></span></p>
+                            <p>Boundary Opacity
+                                <input class="slider" type="range" min="0" max="1" step="0.1" value="1" oninput="updateOpacityBound(this.value, lkes)"><span class="range-slider_val"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <!--End Assessed Waters 2018 - Lakes -->
+                <div class="wrapper">
                     <p class="maplayer"><input type="checkbox" value="phos"> Lake Phosphorus Sensitivity Significance <button class="btn-xs btn-info" type="button" data-toggle="collapse" data-target="#collapsephos" aria-expanded="false" aria-controls="collapsephos" title="Toggle Edit and Legend Control">
                             <span class="sr-only">Expand to Edit </span>
                             <span class="fa fa-plus"></span></button>
@@ -2148,6 +2220,22 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
+                        <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadatastrms">
+                            Assessed Waters 2018 - Streams and Lakes
+                        </a>
+                    </div>
+                    <div id="metadatastrms" class="collapse">
+                        <div class="card-body">
+                            <p> <b>Source:</b> Minnesota Pollution Control Agency </p><br>
+                            <p><b>Description:</b> This is a proposed set of the waterbodies assessed by MPCA's surface water quality assessment process for the 2018 303(d)/305(b) integrated report to EPA. EPA approved the data without requesting any changes in January, 2019. <br>
+                            </p><br>
+                            <p><b>Publication:</b> 02/06/2019</p><br>
+                            <p><b>More information:</b><a href="ftp://ftp.gisdata.mn.gov/pub/gdrs/data/pub/us_mn_state_pca/env_assessed_water_2018/metadata/metadata.html" target="_blank"> ftp://ftp.gisdata.mn.gov/pub/gdrs/data/pub/us_mn_state_pca/env_assessed_water_2018/metadata/metadata.html</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
                         <a class="collapsed card-link metadataHeader" data-toggle="collapse" href="#metadataphos">
                             Lake Phosphorus Sensitivity Significance
                         </a>
@@ -2510,6 +2598,7 @@
             padding-left: 10px;
             color: white;
         }
+
     </style>
 
 
@@ -2550,7 +2639,9 @@
     <!--    <script type="text/javascript" src="js/L.Control.Sidebar.js"></script>-->
     <script type="text/javascript" src="js/main1.js"></script>
 
-</body></html>
+</body>
+
+</html>
 
 
 

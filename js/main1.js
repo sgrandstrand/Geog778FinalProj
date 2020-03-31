@@ -243,7 +243,9 @@ var a_rWI = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/H
 
 var a_rWI_a = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hydrology_HawkCrk/FeatureServer/15" //Restorable Wetland Inventory
 
-var a_rWI_b = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hydrology_HawkCrk/FeatureServer/7" //Restorable Wetland Inventory
+var a_lkes = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hydrology_HawkCrk/FeatureServer/8" // Assessed Lakes 2018
+
+var a_strms = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hydrology_HawkCrk/FeatureServer/9" // Assessed Streams 2018
 
 var a_mask = "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Boundary_HawkCrk/FeatureServer/6" //mask of state for printing purposes
 
@@ -449,6 +451,14 @@ var impLks = L.esri.featureLayer({
 var phos = L.esri.featureLayer({
     url: a_phos,
     style: stylePhos,
+});
+var lkes = L.esri.featureLayer({
+    url: a_lkes,
+    style: stylelkes,
+});
+var strms = L.esri.featureLayer({
+    url: a_strms,
+    style: stylestrms,
 });
 
 ////// *** Biodiversity Layers *** /////
@@ -898,6 +908,38 @@ function styleGradientPhos(feature) {
     };
 }
 
+function stylelkes(feature) {
+    type = feature.properties.AQL;
+    var colorToUse;
+    if (type === "FS") colorToUse = '#73B273';
+    else if (type === "IF") colorToUse = '#FFFF73';
+    else if (type === "NS") colorToUse = '#FF0000';
+    else if (type === "NA") colorToUse = '#B2B2B2';
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "fillColor": colorToUse,
+        "weight": 2,
+        "opacity": 1,
+        "fillOpacity": 0.8
+    };
+}
+
+function stylestrms(feature) {
+    type = feature.properties.AQL;
+    var colorToUse;
+    if (type === "FS") colorToUse = '#73B273';
+    else if (type === "IF") colorToUse = '#FFFF73';
+    else if (type === "NS") colorToUse = '#FF0000';
+    else if (type === "NA") colorToUse = '#B2B2B2';
+    else colorToUse = "transparent";
+
+    return {
+        "color": colorToUse,
+        "opacity": 1
+    };
+}
 
 function stylehSPF_TSS(feature) {
     type = feature.properties.TSS_Ton_Ac;
@@ -1773,6 +1815,30 @@ var legendphos = L.control.htmllegend({
         }],
     detectStretched: true,
 });
+
+var legendlkes = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Assessed Waters 2018 - Lakes',
+    legends: [{
+        name: 'Assessed Waters 2018 - Lakes',
+        elements: [{
+            html: document.querySelector('#lkesLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+var legendstrms = L.control.htmllegend({
+    position: 'bottomleft',
+    layer: 'Assessed Waters 2018 - Streams',
+    legends: [{
+        name: 'Assessed Waters 2018 - Streams',
+        elements: [{
+            html: document.querySelector('#strmsLegend').innerHTML
+            }]
+        }],
+    detectStretched: true,
+});
+
 var legendhSPF_TSS = L.control.htmllegend({
     position: 'bottomleft',
     layer: 'HSPF TSS',
