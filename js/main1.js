@@ -909,7 +909,7 @@ function styleGradientPhos(feature) {
 }
 
 function stylelkes(feature) {
-    type = feature.properties.AQL;
+    type = feature.properties.AQR;
     var colorToUse;
     if (type === "FS") colorToUse = '#73B273';
     else if (type === "IF") colorToUse = '#FFFF73';
